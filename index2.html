@@ -16,6 +16,11 @@
 				<link rel="stylesheet" type="text/css" href="css/styleIE.css" />
 		<![endif]-->
 		<script type="text/javascript" src="js/modernizr.custom.11333.js"></script>
+		<style>
+			body{
+				background: #f9f9f9 url(images/cloth.jpg) repeat top left;
+			}
+		</style>
     </head>
     <body>
         <div class="container">
@@ -31,8 +36,8 @@
                 <div class="clr"></div>
             </div>
 			<div class="demos">
-				<a class="current-demo" href="index.html">Default Demo</a>
-				<a href="index2.html">Perspective Demo (Webkit only)</a>
+				<a href="index.html">Default Demo</a>
+				<a class="current-demo" href="index2.html">Perspective Demo (Webkit only)</a>
 			</div>
             <h1>Lateral On-Scroll Sliding with jQuery</h1>
             <h2 class="ss-subtitle">Codrops Timeline</h2>
@@ -75,12 +80,12 @@
                         <a href="http://tympanus.net/Development/HoverClickTriggerCircle/" class="ss-circle ss-circle-2">Hover and Click Trigger for Circular Elements with jQuery</a>
                     </div>
                 </div>
-                <div class="ss-row ss-small">
+				<div class="ss-row ss-small">
                     <div class="ss-left">
 						<a href="http://tympanus.net/Tutorials/ElasticSlideshow/" class="ss-circle ss-circle-3">Elastic Image Slideshow with Thumbnail Preview</a>
                     </div>
-                    <div class="ss-right">
-                        <h3>
+					<div class="ss-right">
+                         <h3>
                             <span>November 21, 2011</span>
                             <a href="http://tympanus.net/Tutorials/ElasticSlideshow/">Elastic Image Slideshow with Thumbnail Preview</a>
                         </h3>
@@ -427,7 +432,7 @@
         </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-		<script type="text/javascript">
+        <script type="text/javascript">
 		$(function() {
 
 			var $sidescroll	= (function() {
@@ -449,7 +454,7 @@
 					// page scroll easing
 					scollPageEasing = 'easeInOutExpo',
 					// perspective?
-					hasPerspective	= false,
+					hasPerspective	= true,
 					
 					perspective		= hasPerspective && Modernizr.csstransforms3d,
 					// initialize function
