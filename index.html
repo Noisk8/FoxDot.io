@@ -459,7 +459,6 @@ También puede asignar valores a los atributos de los objetos del jugador direct
 								<p> </p>
 								<p> </p>
 
-								<p><em>From <a href="http://www.gutenberg.org/ebooks/41595" target="_blank">"The Funny Side of Physic"</a> by A. D. Crabtre</em></p>
 							</div>
 						</div>
 					</div>
@@ -467,49 +466,26 @@ También puede asignar valores a los atributos de los objetos del jugador direct
 						<div class="content">
 							<div class="scroller">
 								<h2>SynthDefs</h2>
-								<p> </p>
+								
+								<p> 
+						FoxDot crea música dando a los objetos del jugador un "instrumento digital"
+  para jugar, que se llaman 'SynthDefs'. Puedes ver la lista de preinstalados
+  'Synths' mediante la ejecución
+</p>
+						<p> 
+print (SynthDefs)
+</p>
 
-								<p></p>
+								<p>
+  Cada uno de estos representa un objeto `SynthDef` * *. Estos objetos son entonces
+  dado a los >> para sonar, como dar un instrumento a alguien en su
+orquesta.</p>
+		
+		
 
-								<p></p>
+								<p>sawbass karp gong varsaw bell scratch pulse audioin blip pads rave donk saw orient creep growl marimba razz dub arpy ambi viola piano quin crunch noise star bass dab dirt twang swell pluck glass soprano charm spark bug squish sitar zap snick play2 play1 prophet ripple fuzz lazer klank nylon soft scatter loop
 
-								<p> </p>
-
-								<p> </p>
-
-								<p> </p>
-
-								<p> </p>
-
-								<p> </p>
-
-								<p> </p>
-
-								<p> </p>
-
-								<p> </p>
-
-								<p>  </p>
-
-								<p> 	</p>
-
-								<p>  </p>
-
-								<p> </p>
-
-								<p> </p>
-
-								<p>  </p>
-
-								<p>  </p>
-
-								<p>  </p>
-
-								<p> </p>
-
-								<p>  </p>
-
-								<p>  </p>
+</p>
 
 								<p><em>From <a href="http://www.gutenberg.org/ebooks/41595" target="_blank">"The Funny Side of Physic"</a> by A. D. Crabtre</em></p>
 							</div>
@@ -519,49 +495,202 @@ También puede asignar valores a los atributos de los objetos del jugador direct
 						<div class="content">
 							<div class="scroller">
 							<h2>Samples</h2>
-								<p> </p>
+							<h3> Reproducción de muestras incorporadas</h3>
+								<p>
+ FoxDot también se puede usar para secuenciar y manipular muestras de audio.
+ Para hacer esto, todo lo que necesitas hacer es usar el juego especial SynthDef.
+ El primer argumento de la obra SynthDef debería ser una cadena de caracteres
+ en lugar de una lista de números como lo haría con cualquier otro SynthDef.
+ Cada personaje representa un archivo de audio diferente, que se almacena en un búfer en SuperCollider. </p>
 
-								<p></p>
 
-								<p></p>
 
-								<p> </p>
+<p>Para ver qué personaje se relaciona con qué archivo de audio, ejecuta
+print (BufferManager ())
+</p>
+							<p> 
+ Puede reproducir muestras de audio en FoxDot / snd / subdirectorios utilizando el
+ 'play' Synth y usando una cadena de caracteres en lugar de la lista de notas.
+</p>
+ 								<p> bd >> play ("x")
+ </p>
 
-								<p> </p>
 
-								<p> </p>
+								<p> 
+ Un carácter se refiere a un sonido y el espacio en blanco se usa para silencio, por lo que
+ puedes difundir los sonidos a tiempo:</p>
+ 
+ 								<p>
+bd >> play ("x x x")
+  </p>
 
-								<p> </p>
 
-								<p> </p>
+								<p> 
+hh >> play ("-")</p>
 
-								<p> </p>
 
-								<p> </p>
+								<p> Puedes hacer patrones de encaje usando corchetes 
+ hick juega como: "x o xo"
+ </p>
 
-								<p> </p>
 
-								<p>  </p>
+								<p> 
+d1 >> play ("(x) (x) o")</p>
 
-								<p> 	</p>
 
-								<p>  </p>
+								<p> 
+ Lo siguiente es lo mismo que "------- =" </p>
 
-								<p> </p>
 
-								<p> </p>
+								<p>  
+hh >> play ("--- (- =)")
+</p>
 
-								<p>  </p>
+ 	<p>  Colocar caracteres entre corchetes los reproducirá todo en el espacio de un tiempo
+ Y se reproducirá como un personaje, no simultáneo, pero en rápida sucesión
+</p>
 
-								<p>  </p>
 
-								<p>  </p>
+								<p>  
+d1 >> play ("x-o [-o]")
+</p>
 
-								<p> </p>
 
-								<p>  </p>
 
-								<p>  </p>
+								<p> 
+
+d1 >> play ("x-o [---]")</p>
+
+d1 >> play ("x-o [-----]")
+
+d1 >> play ("x-o [--------------]")
+
+
+								<p> 
+ y se pueden poner entre corchetes como si fueran un solo personaje. </p>
+
+
+								<p> 
+d1 >> play ("x [-] o (= [- o])")
+</p>
+
+	
+								<p> 	
+ Puede combinar los corchetes como quiera: los siguientes patrones son idénticos
+</p>
+
+
+								<p> d1 >> play ("x-o (- [- o])")
+</p>
+
+
+
+
+
+
+
+
+								<p>  
+
+d1 >> play ("x-o [- (o)]")
+</p>
+
+ 
+								<p>  Las llaves acorazadas seleccionan una muestra de sonido al azar si quieres más variedad </p>
+								
+								
+								<p> 
+
+d1 >> play ("x-o {- = [-] [- o]}")</p>
+
+<p>  Los soportes angulares combinan patrones para jugar simultáneamente
+							
+</p>
+
+								<p> 
+
+d1 >> play ("<X> <-> <#> <V>")</p>
+
+
+								<p>  
+
+d1 >> play ("<X> <-> <#> <V>")
+</p>
+
+
+								<p> 
+
+ Cada personaje está asignado a una carpeta de archivos de sonido y puede seleccionar diferentes samples utilizando el argumento de la palabra clave " sample"
+</p>
+
+
+								<p> d1 >> play ("(x [-]) xu [-]")
+ </p>
+
+d1 >> play ("(x [-]) xu [-]", sample = 1)
+
+
+								<p> 
+
+d1 >> play ("(x [-]) xu [-]", sample = 2)
+
+</p>
+
+
+								<p> Cambiar la muestra para cada tiempo
+ 	</p>
+ 	
+								<p> 
+
+d1 >> play ("(x [-]) xu [-]", sample = [1,2,3])
+</p>
+ 
+								<p> 
+Puedes juntar dos patrones</p>
+
+<p> 
+d1 >> play (P ["x-o-"] & P ["**"])
+ </p>
+
+
+
+								<p>  
+ Y efectos de cambio aplicados a todos los patrones de capas al mismo tiempo
+d1 >> play (P ["x-o-"] & P ["**"], room = 0.5)
+</p>
+
+
+								<p>  
+ Ejemplo del tutorial del jugador, pero con muestras en su lugar
+ Condicionales ...</p>
+ 
+								<p> 
+
+d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x"))
+</p>
+		
+								<p>  O cámbialo al banco de muestra 2 multiplicando
+ </p>
+
+								<p> 
+d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2)
+</p>
+ Chain multiple condicional
+<p>d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2 + (d1.degree == "-") * 5)
+								 </p>
+
+								<p>  Que es lo mismo que
+								</p><p>
+d1 >> play ("x [-] xu [-] x", sample = d1.degree.map ({"x": 2, "-": 5}))
+								</p>
+
+
+	
+								
+
+
+							
+
 							
 							</div>
 					</div>
