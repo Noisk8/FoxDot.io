@@ -13,9 +13,9 @@ html { height: 100%; }
 }
 
 body {
-	font-family: 'Lato', Calibri, Arial, sans-serif;
+	font-family: 'monosapce', monospace-serif;
 	background: #fff;
-	font-weight: 400;
+	font-weight: 300;
 	font-size: 100%;
 	color: #333;
 	height: 100%;
