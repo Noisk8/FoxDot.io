@@ -319,9 +319,115 @@ También puede asignar valores a los atributos de los objetos del jugador direct
 						<div class="content">
 							<div class="scroller">
 								<h2> 	Clock </h2>
-								<p> </p>
-								<p> </p>
-		<p> </p>
+								
+								<p> Conceptos básicos del Clock </p>
+
+
+ <p> Para detener todos los objetos del >>, puede presionar Ctrl +. (Mantenga presionada la tecla Ctrl y presione el punto)
+ Que es un atajo para el comando:
+</p>
+
+<p>Clock.clear ()
+</p>
+ <p>Cambiar el tempo (esto tiene efecto en la siguiente barra) El valor predeterminado es 120 </p>
+<p>Clock.bpm = 144</p>
+
+ <p>Para ver lo que está programado para ser jugado. </p>
+
+<p>print (Reloj) </p>
+
+ Para ver cuál es la latencia
+<p>print (Clock.latency)
+</p>
+ <h3> Clock avanzado </h3>
+
+<p> Nota: No necesita ejecutar esta línea, se usa para instalar FoxDot para usuarios de Linux que usan Python 2. </p>
+
+<p>from __future__ import print_function
+</p>
+<p> Para ver lo que está programado para ser jugado.
+</p>
+
+<p>print (Clock)
+</p>
+ 
+ <p>Para ver cuál es la latencia
+
+</p>
+<p> print (Clock.latency)
+</p>
+
+<p> El Clock puede programar cualquier cosa con un método __call__ usando
+ Se necesita una pista de tiempo absoluto para programar una funciones
+ Clock.schedule necesita saber el ritmo para invocar algo en
+
+</p>
+
+<p>Clock.schedule ()
+</p>
+
+<p> Programar un evento después de una cierta duración
+ Clock.future necesita saber cuántos ritmos por delante para llamar a algo
+
+</p>
+<p> Clock.future ()
+
+</p>
+
+
+<p> Estos son equivalentes
+
+</p>
+<p>Clock.schedule (Clock.now () + 4, lambda: print ("hello"))
+
+</p>
+
+<p>Clock.future (4, lambda: print ("hello"))
+
+</p>
+
+ <p>Para programar otra cosa
+
+</p>
+
+<p>Clock.schedule (lambda: print ("hello"))
+</p>
+
+<p> Podemos llamar a algo cada n beats
+
+</p>
+
+<p>Clock.every (4, lambda: print ("hello"))
+</p>
+
+<p> Obtener el reloj actual y agregar 2. Útil para la programación.
+
+</p>
+
+<p>Clock.now () + 2
+</p>
+
+
+ <p>Con un decorador
+
+</p>
+
+<p> Puede crear su propia función y decorarla, para poder
+</p>
+<p> para usarlo en un objeto .every en un >>
+</p>
+
+<p>@PlayerMethod </p>
+<p>help de def (auto):
+   </p>
+   <p> print (self.gree)
+</p>
+<p>p1 >> pluck ([0,4]). every (3, "help")
+</p>
+
+<p> Y cancelarlo con </p>
+<p>p1.never ("help")</p>
+										<p> </p>
 								<p> </p>
 								
 								<p> </p>
