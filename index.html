@@ -269,34 +269,40 @@
 								<p>  Los valores en tuplas se usan simultáneamente, es decir, p1 tocará 3 notas individuales, luego un acorde de 3 juntas al mismo tiempo.</p>
 								<p> p1 >> pluck ([0,2,4, (0,2,4)])</p>
 								
-								<p> </p>
-								<p> </p>
+								<p>
+También puede asignar valores a los atributos de los objetos del jugador directamente </p>
+				<p> p1.oct = 5</p>	
+
+<p> Para ver todos los nombres de los atributos del >>, solo ejecuta </p>
+ 
+ <p> print (Player.get_attributes ()) </p>
+
+
+<p>  Juega solo este >>, silenciando a los demás </p>
+<p>p1.solo () # se predetermina a 1 </p>
+
+<p> Y desactivar el solo </p>
+ <p>p1.solo (0) </p>
+
+<p> Parar (no solo silenciar) a los otros >> </p>
+<p>p1.only () </p>
+
+<p> de programar varios >>  para hacer cosas
+ Esto le dirá a p1 que invierta las notas cada 4 tiempos </p>
+<p> p1 >> pads ([0,2,4,6]) </p>
+<p>every (4, "reverse")</p>
+
+ <p>Lo cual es lo mismo que: </p>
+<p>p1 >> pads ([0,2,4,6]). every (4, "reverse") </p>
+
+<p> Puedes cambiar varias cosas a la vez </p>
+<p>p1.every (4, "stutter", 4, oct = 4, pan = [- 1,1]) </p>
+
+  <p> Para detener cada llamada ... </p>
+
+			<p>p1.never ("reverse") </p>
 								
-								<p> </p>
-								<p> </p>
 								
-								<p> </p>
-								<p> </p>
-								
-								<p> </p>
-								<p> </p>
-								
-								<p> </p>
-								<p> </p>
-								
-								<p> </p>
-								<p> </p>
-								
-								<p> </p>
-								<p> </p>
-								
-								<p> </p>
-								<p> </p>
-								<p> </p>
-								<p> </p>
-								
-								<p> </p>
-								<p> </p>
 								<p><em>From <a href="http://www.gutenberg.org/ebooks/41595" target="_blank">"The Funny Side of Physic"</a> by A. D. Crabtre</em></p>
 							</div>
 						</div>
@@ -306,6 +312,23 @@
 							<div class="scroller">
 								<h2> 	Work in progress </h2>
 								<p> </p>
+								<p> </p>
+		<p> </p>
+								<p> </p>
+								
+								<p> </p>
+								<p> </p>
+								
+								<p> </p>
+								<p> </p>
+								
+								<p> </p>
+								<p> </p>
+								
+								<p> </p>
+								<p> </p>
+								
+								<p> </p>
 
 								<p> </p>
 
@@ -313,6 +336,13 @@
 
 								<p>  </p>
 
+								<p> </p>
+								<p> </p>
+								<p> </p>
+								<p> </p>
+								
+								<p> </p>
+								<p> </p>
 								<p> </p>
 
 								<p><em>From <a href="http://www.gutenberg.org/ebooks/41595" target="_blank">"The Funny Side of Physic"</a> by A. D. Crabtre</em></p>
