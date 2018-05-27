@@ -739,6 +739,61 @@ d1 >> play ("x [-] xu [-] x", sample = d1.degree.map ({"x": 2, "-": 5}))
 						<div class="content">
 							<div class="scroller">
 								<h2> Escalas</h2>
+				
+
+<p> Por defecto, los objetos del jugador usan la escala C mayor.
+</p>
+<p> Estos pueden cambiarse usando los argumentos de la palabra clave 'scale' y 'root'.
+</p>
+<p>Las escalas se pueden definir como una matriz de semitonos, de modo que la escala Mayor es [0,2,4,5,7,9,11]
+
+</p><p> o una de las escalas predefinidas del módulo Escala, p. Scale.minor.
+</p>
+<p> Root se refiere a la tónica de la escala; 0 es C, 1 es C #, 2 es D y así sucesivamente.
+</p>
+<p>La escala predeterminada se puede cambiar de forma que cualquier reproductor que no use una escala específica se actualice.
+
+</p>
+
+<p>Esto se hace usando la sintaxis a continuación (cada línea es técnicamente equivalente):
+</p>
+Scale.default.set ("principal")
+Scale.default.set (Scale.major)
+Scale.default.set ([0,2,4,5,7,9,11])
+
+<p> O lo mismo, pero menor:
+
+</p>
+Scale.default.set ("menor")
+Scale.default.set (Scale.minor)
+Scale.default.set ([0,2,3,5,7,10])
+
+<p> Esto es lo mismo para la raíz:
+</p>
+Root.default.set (1)
+Root.default.set ("C #")
+
+<p> O:
+
+</p>
+
+Root.default.set (2)
+Root.default.set ("D")
+
+<p>Para ver una lista de todas las escalas, use
+</p>
+print (Scale.names ())
+
+<p> Puede cambiar la escala utilizada por un jugador usando la palabra clave 'escala'
+</p>
+p1 >> pads ([0,1,2], scale = Scale.minor)
+
+<p> Del mismo modo, puede cambiar los jugadores de la nota raíz utilizando la palabra clave raíz </p>
+<p> y el objeto Root.default </p>
+
+p1 >> pads ([0,1,2], scale = Scale.minor, root = 2)
+
+</p>
 								
 								</div>
 								
