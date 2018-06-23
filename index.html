@@ -611,7 +611,7 @@ d1 >> play ("x-o {- = [-] [- o]}")</p>
 
 								<p> 
 
-d1 >> play ("<X> <-> <#> <V>")</p>
+d1 >> play ("<X> <-> <#> <V>") </p>
 
 
 								<p>  
@@ -704,6 +704,60 @@ d1 >> play ("x [-] xu [-] x", sample = d1.degree.map ({"x": 2, "-": 5}))
 						<div class="content">
 							<div class="scroller">
 								<h2>Efectos y Atributos</h2>
+                                
+                                
+                                <p > # Tutorial 14: Referencia de atributos del reproductor
+
+
+# Para ver todos los atributos:
+print (Player.get_attributes ())
+
+# Puede ver qué efectos están disponibles evaluando
+imprimir (FxList)
+
+# Usemos el filtro de paso alto para un ejemplo. Puedes ver que está descrito
+# al igual que:
+# "Fx 'highPassFilter' - args: hpr, hpf"
+
+# Cada efecto tiene un argumento "maestro" y luego argumentos secundarios. Aquí el
+El argumento # master es "hpf" (abreviatura de filtro de paso alto) y el argumento secundario
+# es "hpr" (abreviatura de resonancia de paso alto). El efecto solo se agrega cuando el
+El argumento # master no es cero:
+d1 >> suciedad ([0,4,2,1], dur = 1/2, hpf = 4000)
+
+# Esto establece el filtro de paso alto a 4000 Hz por lo que solo las frecuencias en el audio
+# signal * above * que en realidad se escuchan. Cambiemos el valor de resonancia. Sus
+# el valor predeterminado es 1, así que hagámoslo más pequeño
+d1 >> suciedad ([0,4,2,1], dur = 1/2, hpf = 4000)
+
+d1 >> suciedad ([0,4,2,1], dur = 1/2, hpf = 4000, hpr = 0.3)
+
+
+# ¿Notar una diferencia? Podemos usar patterns / vars en nuestros efectos para hacerlos
+# cambian con el tiempo:
+d1 >> suciedad ([0,4,2,1], dur = 1/2, hpf = linvar ([0,4000], 8), hpr = P [1,1,0.3] .stretch (8))
+
+
+
+
+####################
+Referencia
+####################
+
+
+
+####################
+# amp - Amplitud (por defecto es 1)
+# Establece el volumen de la nota / patrón
+
+d1 >> play ("*", dur = 1/2, amp = 1)
+
+# Medio volumen
+d1 >> play ("*", dur = 1/2, amp = .5)
+
+# Creando un patrón con amplificador
+d1 >> play ("*", dur = 1/2, amp = [1,0,1,1,0])
+                                    </p>
 								
 								</div>
 								
