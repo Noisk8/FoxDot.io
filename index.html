@@ -757,6 +757,374 @@ d1 >> play ("*", dur = 1/2, amp = .5)
 
 # Creando un patrón con amplificador
 d1 >> play ("*", dur = 1/2, amp = [1,0,1,1,0])
+                                    
+                                    ####################
+# amplify - Chagnes amp, multiplicando agasint el valor existente (en lugar de sobreescribir)
+
+# Creando un patrón con amplificador
+d1 >> play ("*", dur = 1/2, amp = [1,0,1,1,0])
+d1 >> play ("*", dur = 1/2, amplificar = [. 5,1,0])
+
+# Configurar una "caída" en la música (Reproduce a volumen completo durante 28, luego 0 por 4)
+p1 >> blip ([0,1,2,3], amplificar = var ([1,0], [28,4]))
+
+
+
+####################
+# curva
+
+
+
+####################
+# benddelay - Ver curva
+
+
+
+####################
+# bits
+# La profundidad de bits, en número de bits, a la que se reduce la señal;
+# este es un valor entre 1 y 24 donde se ignoran otros valores.
+# Usar aplastamiento para establecer la cantidad de reducción a la velocidad de bits (por defecto es 8)
+
+
+
+####################
+# bitcrush - Ver bits
+
+
+
+####################
+# desenfoque
+
+
+
+####################
+# bpf - Band Pass Filter
+
+
+
+####################
+# bpnoise - Ver bpf
+
+
+
+####################
+# bpr - Ver bpf
+
+
+
+####################
+# bpm
+
+
+
+####################
+# buf
+
+
+
+####################
+# canal
+
+
+
+####################
+# picar
+# 'Chuletas' la señal en trozos utilizando una onda de pulso de baja frecuencia sobre el sostenido de una nota.
+
+
+
+####################
+# grueso
+
+
+
+####################
+# peine demorado - Ver eco
+
+
+
+####################
+# aplastar
+
+
+
+####################
+# cortar
+# Corta una duración
+p1 >> desplume (P [: 8], dur = 1/2, corte = 1/8)
+p1 >> desplume (P [: 8], dur = 1/2, corte = 1/4)
+p1 >> pluck (P [: 8], dur = 1/2, corte = 1/2)
+
+
+
+####################
+# cortar
+
+
+
+####################
+# decay - Ver eco
+
+
+
+####################
+# grado - El grado de la nota, o tono, se puede especificar por palabra clave (también el primer posicional)
+p1 >> blip (grado = [0,1,2,3])
+
+# Lo cual es lo mismo que:
+p1 >> blip ([0,1,2,3])
+
+# Solo reproduce la nota "raíz" del acorde
+b1 >> bajo (p1.degree [0])
+
+
+
+####################
+# delay: duración de espera antes de enviar la información a SuperCollider (por defecto es 0)
+
+# Retrasa cada 3 notas por .1
+p1 >> blip ([0,1,2,3], delay = [0,0,0.1])
+
+# Retrasa cada 3 notas por .5
+p1 >> blip ([0,1,2,3], delay = [0,0,0.5])
+
+# Reproduce la nota una vez por cada retraso diferente
+p1 >> blip ([0,1,2,3], delay = (0,0.1))
+
+p1 >> blip ([0,1,2,3], delay = (0,0,25))
+
+p1 >> blip ([0,1,2,3], delay = (0, .1, .2, .3))
+                                    
+                                    ####################
+# dist
+
+
+
+####################
+# dur - Duraciones (predeterminado para 1 y 1/2 para el Reproductor de muestra)
+
+
+
+####################
+# eco
+# Palabra clave del título: echo, palabra clave (s) de atributo: decaimiento
+# Establece el tiempo de caída para cualquier efecto de eco en tiempos, funciona mejor en Sample Player (por defecto es 0)
+# Multiplicado contra el valor de sostenido
+d1 >> play ("x-o-", echo = 0.1)
+
+d1 >> play ("x-o-", echo = 0.5)
+
+p1 >> pluck (P [: 8], echo = .25)
+
+p1 >> pluck (P [: 8], echo = .5)
+
+p1 >> pluck (P [: 8], echo = .5, decay = .5)
+
+
+
+####################
+# env
+
+
+
+####################
+# fmod
+
+
+
+####################
+# formant
+
+
+
+####################
+# frecuencia
+
+
+
+####################
+# hpf - Filtro de paso alto
+# Filtra todas las frecuencias por debajo del valor dado, eliminando las frecuencias más bajas
+
+# 4000 hertz
+p1 >> pluck (P [: 8], dur = 1/2, hpf = 4000)
+
+# HPF es 0 para 4 tiempos, luego 4000 para 4 tiempos
+p1 >> pluck (P [: 8], dur = 1/2, hpf = var ([0,4000], [4,4]))
+
+# Cambio lineal en hpf desde 0 toma 4 tiempos para llegar a 4000, 4 tiempos de vuelta a 0
+p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [4,4]))
+
+# El cambio lineal en hpf desde 0 toma 8 tiempos para llegar a 4000, luego se restablece a 0
+p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [8,0]))
+
+# Con cambio de resonancia (el valor predeterminado es 1)
+p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [8,0]), hpr = .5)
+
+# Con el cambio de resonancia como un linvar
+p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [8,0]), hpr = linvar ([0.1,1], 12))
+
+
+
+####################
+# hpr - Ver hpf
+
+
+
+####################
+# lpf - Filtro de paso bajo
+# Filtra todas las frecuencias por encima del valor dado, eliminando las frecuencias más altas
+
+# 4000 hertz
+p1 >> pluck (P [: 8], dur = 1/2, lpf = 400)
+
+# Con el cambio de resonancia como un linvar
+p1 >> pluck (P [: 8], dur = 1/2, lpf = linvar ([500,4000], [8,0]), lpr = linvar ([0.1,1], 12))
+
+
+
+####################
+# lpr - Ver lpf
+
+
+
+####################
+# midinote
+
+
+
+####################
+# pan
+# Panoramización, donde -1 está muy a la izquierda, 1 está muy a la derecha (por defecto es 0)
+
+
+
+####################
+# tono - Ver grado
+
+
+
+####################
+# pshift
+
+
+
+####################
+# oct
+
+
+
+####################
+# tarifa
+# Variable keyword used for misc. cambios a una señal. P.ej. Velocidad de reproducción del reproductor de muestra (predeterminado en 1)
+
+
+
+####################
+# habitación
+# Palabra clave del título: sala, palabra clave (es) de atributo: mix
+
+# El argumento de la habitación especifica el tamaño de la habitación
+d1 >> play ("x-o-", sala = 0.5)
+
+# Mix es la mezcla seca / húmeda de reverberación o la cantidad de reverberación mezclada con la fuente. 1 es todo reverberación, 0 no es reverberación en absoluto. (Por defecto 0.1)
+d1 >> play ("x-o-", sala = 0.5, mix = .5)
+
+
+
+####################
+# Reveb
+# Ver Habitación
+
+
+
+####################
+# muestra
+# Palabra clave especial para jugadores de muestra; selecciona otro archivo de audio del banco de muestras para un personaje de muestra.
+
+
+
+####################
+escala de #
+
+
+
+####################
+# forma
+
+
+
+####################
+# slide - Slide to To
+# Slides 'el valor de frecuencia de una señal a frecuencia * (diapositiva + 1) durante la duración de una nota (por defecto es 0)
+
+p1 >> desplume (P [: 8], dur = 1/2, deslizamiento = 1)
+
+p1 >> desplume (P [: 8], dur = 1/2, deslizamiento = 12)
+
+p1 >> pluck (P [: 8], dur = 1/2, slide = var ([0, -1], [12,4]))
+
+
+
+####################
+# slidedelay
+
+
+
+####################
+# slidefrom
+
+
+
+####################
+deslizador #
+
+
+
+####################
+# untado
+
+
+
+####################
+# girar
+
+
+
+####################
+# striate
+
+
+
+####################
+# tartamudeo
+
+
+
+####################
+# sus - Sustain (por defecto es `dur`)
+
+
+
+####################
+# hinchar
+
+
+
+####################
+# vib - Vibrato
+# Vibrato - Palabra clave del título: vib, Palabra clave del atributo (s): Vibrato (por defecto es 0)
+
+p1 >> pluck (P [: 8], dur = 1/2, vib = 12)
+
+# Con el atributo secundario, vibdepth (predeterminado 0.2)
+p1 >> pluck (P [: 8], dur = 1/2, vib = 12, vibdepth = 0.5)
+
+
+
+####################
+# vibdepth - Ver vib
                                     </p>
 								
 								</div>
