@@ -104,7 +104,10 @@
 					   <img src="img/4.png" alt="FoxDot" >
 					   
 					   <p> 4 Descargar <em> <a href=" https://git-scm.com/download/win" target="_blank"> Git </a> esto para poder instalar posteriormente los quarks en supercollider</em></p>	
-					   
+                                
+                        <p> Para más info sobre la instalación en windows  <em> <a href="https://supercollider.github.io/download " target="_blank"> Ver este vídeo  </a>hecho por Steve Man</em></p>
+					 
+					 	
 					   
 					  <h3> Mac OS </h3>
 					  
@@ -581,41 +584,29 @@ d1 >> play ("x-o {- = [-] [- o]}")</p>
 
 								
 
-d1 >> play ("<jjj> <-> <jj> <V>") 
+<!-- d1 >> play ("<jjj> <-> <jj> <V>") 
 
 
 								
 
-d1 >> play (" <X> <-> <#> <V> ")
+d1 >> play (" <X> <-> <#> <V> ") -->
 
 
 
-								<p> 
-
- Cada personaje está asignado a una carpeta de archivos de sonido y puede seleccionar diferentes samples utilizando el argumento de la palabra clave " sample"
-</p>
+								<p> Cada personaje está asignado a una carpeta de archivos de sonido y puede seleccionar diferentes samples utilizando el argumento de la palabra clave " sample" </p>
 
 
-								<p> d1 >> play ("(x [-]) xu [-]")
- </p>
+								<p> d1 >> play ("(x [-]) xu [-]") </p>
 
-d1 >> play ("(x [-]) xu [-]", sample = 1)
-
-
-								<p> 
-
-d1 >> play ("(x [-]) xu [-]", sample = 2)
-
-</p>
+<p> d1 >> play ("(x [-]) xu [-]", sample = 1) </p>
 
 
-								<p> Cambiar la muestra para cada tiempo
- 	</p>
+								<p>  d1 >> play ("(x [-]) xu [-]", sample = 2) </p>
+
+
+								<p> Cambiar la muestra para cada tiempo </p>
  	
-								<p> 
-
-d1 >> play ("(x [-]) xu [-]", sample = [1,2,3])
-</p>
+								<p> d1 >> play ("(x [-]) xu [-]", sample = [1,2,3]) </p>
  
 								<p>  Puedes juntar dos patrones</p>
 
@@ -623,41 +614,26 @@ d1 >> play ("(x [-]) xu [-]", sample = [1,2,3])
 
 
 
-								<p> Y efectos de cambio aplicados a todos los patrones de capas al mismo tiempo
-d1 >> play (P ["x-o-"] Y  P ["**"], room = 0.5) </p>
+                                <p> Y efectos de cambio aplicados a todos los patrones de capas al mismo tiempo </p>
+<p> d1 >> play (P ["x-o-"] Y  P ["**"], room = 0.5) </p>
 
 
-								<p>  
- Ejemplo del tutorial del reproductor, pero con samples en su lugar
- Condicionales ...</p>
+								<p>  Ejemplo del tutorial del reproductor, pero con samples en su lugar Condicionales ...</p>
  
-								<p> 
-
-d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x"))
-</p>
+								<p> d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x"))</p>
 		
-								<p>  O cámbialo al banco de muestra 2 multiplicando
- </p>
+								<p>  O cámbialo al banco de muestra 2 multiplicando </p>
 
-								<p> 
-d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2)
-</p>
- Chain multiple condicional
-<p>d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2 + (d1.degree == "-") * 5)
-								 </p>
+								<p> d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2) </p>
+ <p> Chain multiple condicional </p>
+<p>d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2 + (d1.degree == "-") * 5)  </p>
 
-								<p>  Que es lo mismo que
-								</p><p>
-d1 >> play ("x [-] xu [-] x", sample = d1.degree.map ({"x": 2, "-": 5}))
-								</p>
+								<p>  Que es lo mismo que</p>
+                                <p>d1 >> play ("x [-] xu [-] x", sample = d1.degree.map ({"x": 2, "-": 5}))</p>
 
 
 	
-								
-
-
-							
-
+				
 							</div>
 					</div>
 					</div>
