@@ -58,6 +58,9 @@ a:hover {
 	padding-left: 240px;
 }
 
+h5 {
+    color: red;
+}
 .menu-panel {
 	background: #ba4735;
 	width: 240px;
@@ -260,3 +263,4 @@ a:hover {
 		font-size: 75%;
 	}
 }
+

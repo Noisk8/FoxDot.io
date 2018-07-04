@@ -441,7 +441,7 @@ También puede asignar valores a los atributos de los objetos del reproductor di
 </ul>
 
 
-								<p><em>From <a href="http://www.gutenberg.org/ebooks/41595" target="_blank">"The Funny Side of Physic"</a> by A. D. Crabtre</em></p>
+								<p><em>Ver<a href="https://github.com/Qirky/FoxDot/blob/master/FoxDot/demo/13_synthdefs.py" target="_blank">Archivo </a> original </em></p>
 							</div>
 						</div>
 					</div>
@@ -450,222 +450,96 @@ También puede asignar valores a los atributos de los objetos del reproductor di
 							<div class="scroller">
 							<h2>Samples</h2>
 							<h3> Reproducción de samples incorporadas</h3>
-								<p>
- FoxDot también se puede usar para secuenciar y manipular samples de audio.
+<p>FoxDot también se puede usar para secuenciar y manipular samples de audio.
  Para hacer esto, todo lo que necesitas hacer es usar el juego especial SynthDef.
  El primer argumento de la obra SynthDef debería ser una cadena de caracteres
  en lugar de una lista de números como lo haría con cualquier otro SynthDef.
  Cada personaje representa un archivo de audio diferente, que se almacena en un búfer en SuperCollider. </p>
-
-
-
-<p>Para ver qué personaje se relaciona con qué archivo de audio, ejecuta
-print (BufferManager ())
-</p>
-							<p> 
- Puede reproducir samples de audio en FoxDot / snd / subdirectorios utilizando el
- 'play' Synth y usando una cadena de caracteres en lugar de la lista de notas.
-</p>
- 								<p> bd >> play ("x")
- </p>
-
-
-								<p> 
- Un carácter se refiere a un sonido y el espacio en blanco se usa para silencio, por lo que
- puedes difundir los sonidos a tiempo:</p>
- 
- 								<p>
-bd >> play ("x x x")
-  </p>
-
-
-								<p> 
-hh >> play ("-")</p>
-
-
-								<p> Puedes hacer patrones de encaje usando corchetes 
- hick juega como: "x o xo"
- </p>
-
-
-								<p> 
-d1 >> play ("(x) (x) o")</p>
-
-
-								<p> 
- Lo siguiente es lo mismo que "------- =" </p>
-
-
-								<p>  
-hh >> play ("--- (- =)")
-</p>
-
- 	<p>  Colocar caracteres entre corchetes los reproducirá todo en el espacio de un tiempo
- Y se reproducirá como un personaje, no simultáneo, pero en rápida sucesión
-</p>
-
-
-								<p>  
-d1 >> play ("x-o [-o]")
-</p>
-
-
-
-								<p> 
-
-d1 >> play ("x-o [---]")</p>
-
-d1 >> play ("x-o [-----]")
-
-d1 >> play ("x-o [--------------]")
-
-
-								<p> 
- y se pueden poner entre corchetes como si fueran un solo personaje. </p>
-
-
-								<p> 
-d1 >> play ("x [-] o (= [- o])")
-</p>
-
-	
-								<p> 	
- Puede combinar los corchetes como quiera: los siguientes patrones son idénticos
-</p>
-
-
-								<p> d1 >> play ("x-o (- [- o])")
-</p>
-
-
-
-
-
-
-
-
-								<p>  
-
-d1 >> play ("x-o [- (o)]")
-</p>
-
- 
-								<p>  Las llaves acorazadas seleccionan una muestra de sonido al azar si quieres más variedad </p>
-								
-								
-								<p> 
-
-d1 >> play ("x-o {- = [-] [- o]}")</p>
-
-<p>  Los soportes angulares combinan patrones para jugar simultáneamente
-							
-</p>
-
-								
-
+<p>Para ver qué personaje se relaciona con qué archivo de audio, ejecuta </p>
+<p>print (BufferManager ())</p>
+<p>Puede reproducir samples de audio en FoxDot / snd / subdirectorios utilizando el
+ 'play' Synth y usando una cadena de caracteres en lugar de la lista de notas.</p>
+<p> bd >> play ("x")</p>
+<p>Un carácter se refiere a un sonido y el espacio en blanco se usa para silencio, por lo que puedes difundir los sonidos a tiempo:</p>
+<p>bd >> play ("x x x")</p>
+<p>hh >> play ("-")</p>
+<p> Puedes hacer patrones de encaje usando corchetes hick juega como: "x o xo" </p>
+<p> d1 >> play ("(x) (x) o")</p>
+<p> Lo siguiente es lo mismo que "------- =" </p>
+<p> hh >> play ("--- (- =)")</p>
+<p> Colocar caracteres entre corchetes los reproducirá todo en el espacio de un tiempo Y se reproducirá como un personaje, no simultáneo, pero en rápida sucesión </p>
+<p>  d1 >> play ("x-o [-o]")</p>
+<p>d1 >> play ("x-o [---]")</p>
+<p>d1 >> play ("x-o [-----]") </p>
+<p>d1 >> play ("x-o [--------------]") </p>
+<p> y se pueden poner entre corchetes como si fueran un solo personaje. </p>
+<p> d1 >> play ("x [-] o (= [- o])") </p>
+<p>Puede combinar los corchetes como quiera: los siguientes patrones son idénticos </p>
+<p> d1 >> play ("x-o (- [- o])")</p>
+<p> d1 >> play ("x-o [- (o)]")</p>
+<p>  Las llaves acorazadas seleccionan una muestra de sonido al azar si quieres más variedad </p>
+<p> d1 >> play ("x-o {- = [-] [- o]}")</p>
+<p> Los soportes angulares combinan patrones para jugar simultáneamente</p>
 <!-- d1 >> play ("<jjj> <-> <jj> <V>") 
-
-
-								
-
 d1 >> play (" <X> <-> <#> <V> ") -->
-
-
-
-								<p> Cada personaje está asignado a una carpeta de archivos de sonido y puede seleccionar diferentes samples utilizando el argumento de la palabra clave " sample" </p>
-
-
-								<p> d1 >> play ("(x [-]) xu [-]") </p>
-
+<p> Cada personaje está asignado a una carpeta de archivos de sonido y puede seleccionar diferentes samples utilizando el argumento de la palabra clave " sample" </p>
+<p> d1 >> play ("(x [-]) xu [-]") </p>
 <p> d1 >> play ("(x [-]) xu [-]", sample = 1) </p>
-
-
-								<p>  d1 >> play ("(x [-]) xu [-]", sample = 2) </p>
-
-
-								<p> Cambiar la muestra para cada tiempo </p>
- 	
-								<p> d1 >> play ("(x [-]) xu [-]", sample = [1,2,3]) </p>
- 
-								<p>  Puedes juntar dos patrones</p>
-
+<p>  d1 >> play ("(x [-]) xu [-]", sample = 2) </p>
+<p> Cambiar la muestra para cada tiempo </p>
+<p> d1 >> play ("(x [-]) xu [-]", sample = [1,2,3]) </p>
+<p>  Puedes juntar dos patrones</p>
 <p> d1 >> play (P ["x-o-"] Y P ["**"]) </p>
-
-
-
-                                <p> Y efectos de cambio aplicados a todos los patrones de capas al mismo tiempo </p>
+<p> Y efectos de cambio aplicados a todos los patrones de capas al mismo tiempo </p>
 <p> d1 >> play (P ["x-o-"] Y  P ["**"], room = 0.5) </p>
-
-
-								<p>  Ejemplo del tutorial del reproductor, pero con samples en su lugar Condicionales ...</p>
- 
-								<p> d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x"))</p>
-		
-								<p>  O cámbialo al banco de muestra 2 multiplicando </p>
-
-								<p> d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2) </p>
- <p> Chain multiple condicional </p>
+<p>  Ejemplo del tutorial del reproductor, pero con samples en su lugar Condicionales ...</p>
+<p> d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x"))</p>
+<p>  O cámbialo al banco de muestra 2 multiplicando </p>
+<p> d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2) </p>
+<p> Chain multiple condicional </p>
 <p>d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2 + (d1.degree == "-") * 5)  </p>
-
-								<p>  Que es lo mismo que</p>
-                                <p>d1 >> play ("x [-] xu [-] x", sample = d1.degree.map ({"x": 2, "-": 5}))</p>
-
-
-	
-				
-							</div>
-					</div>
-					</div>
+<p>  Que es lo mismo que</p>
+ <p>d1 >> play ("x [-] xu [-] x", sample = d1.degree.map ({"x": 2, "-": 5}))</p>
+</div>
+</div>
+</div>
 					
-					
-					
-				<div class="bb-item" id="item7">
-						<div class="content">
-							<div class="scroller">
-								<h2>Efectos y Atributos</h2>
-                                
-                                
-                                <p >  Referencia de atributos del reproductor </p>
-
-
-                                <p> Para ver todos los atributos: </p>
-                                
-                                <p> print (Player.get_attributes ()) </p>
-
-                                <p> Puede ver qué efectos están disponibles evaluando </p>
-                                <p> print(FxList) </p>
-
-                                <p>  Usemos el filtro de paso alto para un ejemplo. Puedes ver que está descrito </p>
-                                <p> al igual que: </p>
-                                <p>  "Fx 'highPassFilter' - args: hpr, hpf" </p>
-
-                                <p> Cada efecto tiene un argumento "maestro" y luego argumentos secundarios. Aquí el </p>
-                                
- <p> El argumento # master es "hpf" (abreviatura de filtro de paso alto) y el argumento secundario </p> 
+<div class="bb-item" id="item7">
+<div class="content">
+<div class="scroller">
+<h2>Efectos y Atributos</h2>
+<p >  Referencia de atributos del reproductor </p>
+<p> Para ver todos los atributos: </p>
+<p> print (Player.get_attributes ()) </p>
+<p> Puede ver qué efectos están disponibles evaluando </p>
+<p> print(FxList) </p>
+<p>  Usemos el filtro de paso alto para un ejemplo. Puedes ver que está descrito </p>
+<p> al igual que: </p>
+<p>  "Fx 'highPassFilter' - args: hpr, hpf" </p>
+<p> Cada efecto tiene un argumento "maestro" y luego argumentos secundarios. Aquí el </p>
+<p> El argumento # master es "hpf" (abreviatura de filtro de paso alto) y el argumento secundario </p> 
 <p>  es "hpr" (abreviatura de resonancia de paso alto). El efecto solo se agrega cuando el
 El argumento # master no es cero: </p>
-                                
-                                <p> d1 >> suciedad ([0,4,2,1], dur = 1/2, hpf = 4000) </p>
-
+<p> d1 >> dirt ([0,4,2,1], dur = 1/2, hpf = 4000) </p>
 <p>  Esto establece el filtro de paso alto a 4000 Hz por lo que solo las frecuencias en el audio </p>
-                                <p> signal * above * que en realidad se escuchan. Cambiemos el valor de resonancia. Sus </p>
-                                <p> el valor predeterminado es 1, así que hagámoslo más pequeño </p>
-                                <p> d1 >> suciedad ([0,4,2,1], dur = 1/2, hpf = 4000) </p>
+<p> signal * above * que en realidad se escuchan. Cambiemos el valor de resonancia. Sus </p>
+<p> el valor predeterminado es 1, así que hagámoslo más pequeño </p>
+                                <p> d1 >> dirt ([0,4,2,1], dur = 1/2, hpf = 4000) </p>
 
-                                <p>d1 >> suciedad ([0,4,2,1], dur = 1/2, hpf = 4000, hpr = 0.3)</p>
+                                <p>d1 >> dirt ([0,4,2,1], dur = 1/2, hpf = 4000, hpr = 0.3)</p>
 
 
                                 <p> ¿Notar una diferencia? Podemos usar patterns / vars en nuestros efectos para hacerlos </p>
                                 <p> cambian con el tiempo: </p>
-<p> d1 >> suciedad ([0,4,2,1], dur = 1/2, hpf = linvar ([0,4000], 8), hpr = P [1,1,0.3] .stretch (8)) </p>
+<p> d1 >> dirt ([0,4,2,1], dur = 1/2, hpf = linvar ([0,4000], 8), hpr = P [1,1,0.3] .stretch (8)) </p>
 
 
 
 <h3> Referencia </h3>
 
 
-<h4> amp - Amplitud (por defecto es 1) </h4>
-<p> Establece el volumen de la nota / patrón</p>
+<h4> amp  </h4>
+<p> Amplitud (por defecto es 1) Establece el volumen de la nota / patrón</p>
 
                                 <p> d1 >> play ("*", dur = 1/2, amp = 1) </p>
 
@@ -1026,9 +900,9 @@ para n en P [0,1,2, (3,4)]:
 
 <p>Esto se hace usando la sintaxis a continuación (cada línea es técnicamente equivalente):
 </p>
-Scale.default.set ("principal")
-Scale.default.set (Scale.major)
-Scale.default.set ([0,2,4,5,7,9,11])
+<h5>Scale.default.set ("principal")</h5>
+<h5>Scale.default.set (Scale.major)</h5>
+<h5>Scale.default.set ([0,2,4,5,7,9,11])</h5>
 
 <p> O lo mismo, pero menor:
 
