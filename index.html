@@ -200,7 +200,7 @@
 
 <p> para hacer sonar  cualesquier linea de código en FoxDot solo basta con presionar shift + enter sobre la linea deseada </p>	
 							
-								<h3> Tocando Notas  </h3> 
+								<h2> Tocando Notas  </h2> 
 								<p> En FoxDot, todos los nombres de variables de dos caracteres están reservados para objetos de reproductor, como 'p1' </p>
 <p> La creación de un objeto de reproductor sin argumentos reproducirá una sola nota en el medio C, de forma predeterminada, repetidamente hasta que se detenga. </p>
 <p>  Use >> para asignarle uno de estos objetos a un reproductor así:</p>
@@ -316,124 +316,62 @@ También puede asignar valores a los atributos de los objetos del reproductor di
 			<p>p1.never ("reverse") </p>
 								
 								
-								<p><em>From <a href="http://www.gutenberg.org/ebooks/41595" target="_blank">"The Funny Side of Physic"</a> by A. D. Crabtre</em></p>
+								<p><em>Ver <a href="https://github.com/Qirky/FoxDot/blob/master/FoxDot/demo/01_playing_notes.py" target="_blank">Archivo</a> en ingles </em></p>
 							</div>
 						</div>
 					</div>
 					<div class="bb-item" id="item4">
 						<div class="content">
 							<div class="scroller">
-								<h2> 	Clock </h2>
+								<h2> Clock </h2>
 								
-								<p> Conceptos básicos del Clock </p>
+								<h3> Conceptos básicos del Clock </h3>
 
 
- <p> Para detener todos los objetos del >>, puede presionar Ctrl +. (Mantenga presionada la tecla Ctrl y presione el punto)
- Que es un atajo para el comando:
-</p>
-
-<p>Clock.clear ()
-</p>
- <p>Cambiar el tempo (esto tiene efecto en la siguiente barra) El valor predeterminado es 120 </p>
+<p> Para detener todos los objetos del >>, puede presionar Ctrl +. (Mantenga presionada la tecla Ctrl y presione el punto) Que es un atajo para el comando: </p>
+<p>Clock.clear ()</p>
+<p>Cambiar el tempo (esto tiene efecto en la siguiente barra) El valor predeterminado es 120 </p>
 <p>Clock.bpm = 144</p>
-
- <p>Para ver lo que está programado para ser jugado. </p>
-
+<p>Para ver lo que está programado para ser jugado. </p>
 <p>print (Reloj) </p>
+<p> Para ver cuál es la latencia </p>
+<p>print (Clock.latency)</p>
 
- Para ver cuál es la latencia
-<p>print (Clock.latency)
-</p>
- <h3> Clock avanzado </h3>
+                                <h3> Clock avanzado </h3>
 
 <p> Nota: No necesita ejecutar esta línea, se usa para instalar FoxDot para usuarios de Linux que usan Python 2. </p>
 
-<p>from __future__ import print_function
-</p>
-<p> Para ver lo que está programado para ser jugado.
-</p>
-
-<p>print (Clock)
-</p>
- 
- <p>Para ver cuál es la latencia
-
-</p>
-<p> print (Clock.latency)
-</p>
-
+<p>from __future__ import print_function</p>
+<p> Para ver lo que está programado para ser jugado.</p>
+<p>print (Clock)</p>
+<p>Para ver cuál es la latencia</p>
+<p> print (Clock.latency)</p>
 <p> El Clock puede programar cualquier cosa con un método __call__ usando
  Se necesita una pista de tiempo absoluto para programar una funciones
- Clock.schedule necesita saber el ritmo para invocar algo en
-
-</p>
-
-<p>Clock.schedule ()
-</p>
-
-<p> Programar un evento después de una cierta duración
- Clock.future necesita saber cuántos ritmos por delante para llamar a algo
-
-</p>
-<p> Clock.future ()
-
-</p>
-
-
-<p> Estos son equivalentes
-
-</p>
-<p>Clock.schedule (Clock.now () + 4, lambda: print ("hello"))
-
-</p>
-
-<p>Clock.future (4, lambda: print ("hello"))
-
-</p>
-
- <p>Para programar otra cosa
-
-</p>
-
-<p>Clock.schedule (lambda: print ("hello"))
-</p>
-
-<p> Podemos llamar a algo cada n beats
-
-</p>
-
-<p>Clock.every (4, lambda: print ("hello"))
-</p>
-
-<p> Obtener el reloj actual y agregar 2. Útil para la programación.
-
-</p>
-
-<p>Clock.now () + 2
-</p>
-
-
- <p>Con un decorador
-
-</p>
-
-<p> Puede crear su propia función y decorarla, para poder
-</p>
-<p> para usarlo en un objeto .every en un >>
-</p>
-
+ Clock.schedule necesita saber el ritmo para invocar algo en</p>
+<p>Clock.schedule ()</p>
+<p> Programar un evento después de una cierta duración Clock.future necesita saber cuántos ritmos por delante para llamar a algo</p>
+<p> Clock.future ()</p>
+<p> Estos son equivalentes</p>
+<p>Clock.schedule (Clock.now () + 4, lambda: print ("hello"))</p>
+<p>Clock.future (4, lambda: print ("hello"))</p>
+<p>Para programar otra cosa</p>
+<p>Clock.schedule (lambda: print ("hello"))</p>
+<p> Podemos llamar a algo cada n beats</p>
+<p>Clock.every (4, lambda: print ("hello"))</p>
+<p> Obtener el reloj actual y agregar 2. Útil para la programación.</p>
+<p>Clock.now () + 2</p>
+<p>Con un decorador</p>
+<p> Puede crear su propia función y decorarla, para poder</p>
+<p> para usarlo en un objeto .every en un >></p>
 <p>@PlayerMethod </p>
-<p>help de def (auto):
-   </p>
-   <p> print (self.gree)
-</p>
-<p>p1 >> pluck ([0,4]). every (3, "help")
-</p>
-
+<p>help de def (auto):</p>
+<p> print (self.gree)</p>
+<p>p1 >> pluck ([0,4]). every (3, "help")</p>
 <p> Y cancelarlo con </p>
 <p>p1.never ("help")</p>
-							
-
+                                
+                                <p><em>Ver <a href="https://github.com/Qirky/FoxDot/blob/master/FoxDot/demo/07_basic_clock.py" target="_blank">Archivo</a> original</em></p>
 							</div>
 						</div>
 					</div>
@@ -442,25 +380,66 @@ También puede asignar valores a los atributos de los objetos del reproductor di
 							<div class="scroller">
 								<h2>SynthDefs</h2>
 								
-								<p> 
-						FoxDot crea música dando a los objetos del reproductor un "instrumento digital"
-  para jugar, que se llaman 'SynthDefs'. Puedes ver la lista de preinstalados
-  'Synths' mediante la ejecución
-</p>
-						<p> 
-print (SynthDefs)
-</p>
-
-								<p>
-  Cada uno de estos representa un objeto `SynthDef` * *. Estos objetos son entonces
-  dado a los >> para sonar, como dar un instrumento a alguien en su
-orquesta.</p>
+<p>FoxDot crea música dando a los objetos del reproductor un "instrumento digital" para jugar, que se llaman 'SynthDefs'. Puedes ver la lista de preinstalados 'Synths' mediante la ejecución </p>
+<p> print (SynthDefs)</p>
+<p>Cada uno de estos representa un objeto `SynthDef` * *. Estos objetos son entonces dado a los >> para sonar, como dar un instrumento a alguien en su orquesta.</p>
 		
 		
 
-								<p>sawbass karp gong varsaw bell scratch pulse audioin blip pads rave donk saw orient creep growl marimba razz dub arpy ambi viola piano quin crunch noise star bass dab dirt twang swell pluck glass soprano charm spark bug squish sitar zap snick play2 play1 prophet ripple fuzz lazer klank nylon soft scatter loop
+								<ul>   <li>sawbass</li>
+                                    <li>karp </li>
+                                    <li>gong </li>
+                                    <li>varsaw </li>
+                                    <li>bell </li>
+                                    <li>scratch </li>
+                                    <li> pulse</li>
+                                    <li>audioin </li> blip 
+                                    <li>pads</li>
+                                    <li>rave </li>
+                                    <li>donk </li>
+                                    <li>saw </li>
+                                    <li>orient </li>
+                                    <li> creep </li>
+                                    <li>growl </li>
+                                    <li>marimba </li>
+                                    <li>razz </li>
+                                    <li>dub </li>
+                                    <li>arpy </li>
+                                    <li>ambi </li>
+                                    <li>viola </li>
+                                    <li>piano </li>
+                                    <li>quin </li>
+                                    <li>crunch </li>
+                                    <li>noise </li>
+                                    <li>star </li>
+                                    <li> bass  </li>
+                                    <li>dab </li>
+                                    <li>dirt </li>
+                                    <li>twang </li>
+                                    <li>swell </li>
+                                    <li>pluck </li>
+                                    <li>glass </li>
+                                    <li>soprano </li>
+                                    <li>charm </li>
+                                    <li>spark </li>
+                                    <li>bug </li>
+                                    <li>squish </li>
+                                    <li>sitar</li> 
+                                    <li>zap </li>
+                                    <li>snick </li>
+                                    <li>play2 </li>
+                                    <li>play1 </li>
+                                    <li>prophet </li>
+                                    <li>ripple </li>
+                                    <li>fuzz </li>
+                                    <li>lazer </li>
+                                    <li>klank </li>
+                                    <li>nylon </li>
+                                    <li>soft </li>
+                                    <li>scatter </li>
+                                    <li>loop </li>
+</ul>
 
-</p>
 
 								<p><em>From <a href="http://www.gutenberg.org/ebooks/41595" target="_blank">"The Funny Side of Physic"</a> by A. D. Crabtre</em></p>
 							</div>
