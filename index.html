@@ -53,7 +53,7 @@
 								
 						<p>FoxDot, se creó en 2015 para intentar abrir las vías de Live Coding para los usuarios que pueden ser nuevos en la programación y desean usarla para crear música rápida y fácilmente. FoxDot es una biblioteca de Python fácil de usar que crea un entorno de programación interactiva y habla con el potente motor de síntesis de sonido, llamado SuperCollider para hacer música. FoxDot programa eventos musicales de una manera sencilla y fácil de usar que hace que la codificación en vivo sea fácil y divertida tanto para los recién llegados como para los veteranos de programación.</p>
 						
-						
+						<p> </p>
 
 								<h3> Funcionamiento </h3>
 
@@ -104,10 +104,7 @@
 					   <img src="img/4.png" alt="FoxDot" >
 					   
 					   <p> 4 Descargar <em> <a href=" https://git-scm.com/download/win" target="_blank"> Git </a> esto para poder instalar posteriormente los quarks en supercollider</em></p>	
-                                
-                        <p> Para más info sobre la instalación en windows  <em> <a href="https://www.youtube.com/watch?v=sfwTC1e05yc&t=3s " target="_blank"> Ver este vídeo  </a>hecho por Steve Man</em></p>
-					 
-					 	
+					   
 					   
 					  <h3> Mac OS </h3>
 					  
@@ -200,10 +197,10 @@
 
 <p> para hacer sonar  cualesquier linea de código en FoxDot solo basta con presionar shift + enter sobre la linea deseada </p>	
 							
-								<h2> Tocando Notas  </h2> 
-								<p> En FoxDot, todos los nombres de variables de dos caracteres están reservados para objetos de reproductor, como 'p1' </p>
-<p> La creación de un objeto de reproductor sin argumentos reproducirá una sola nota en el medio C, de forma predeterminada, repetidamente hasta que se detenga. </p>
-<p>  Use >> para asignarle uno de estos objetos a un reproductor así:</p>
+								<h3> Tocando Notas  </h3> 
+								<p> En FoxDot, todos los nombres de variables de dos caracteres están reservados para objetos de jugador, como 'p1' </p>
+<p> La creación de un objeto de jugador sin argumentos reproducirá una sola nota en el medio C, de forma predeterminada, repetidamente hasta que se detenga. </p>
+<p>  Use >> para asignarle uno de estos objetos a un jugador así:</p>
 
 								<p> p1 >> pluck() </p>
 
@@ -217,7 +214,7 @@
 
 								<p> lo que significa que puede hacer cambios en su música usando solo una línea de código. </p>
 								
-								<p>Si ahora le das algunos argumentos al objeto de tu reproductor, puedes cambiar las notas que se están reproduciendo. </p>
+								<p>Si ahora le das algunos argumentos al objeto de tu jugador, puedes cambiar las notas que se están reproduciendo. </p>
 
 								<p> El primer argumento debería ser el grado de la nota que se tocará</p>
 								
@@ -227,7 +224,7 @@
 								
 								<p>  lo que significa que 0 se refiere a la primera nota de la escala. </p>
 								
-								<p> Dale a tu reproductor las instrucciones para hacer música con su Synth. </p>
+								<p> Dale a tu jugador las instrucciones para hacer música con su Synth. </p>
 								
 								<p> El primer argumento es la nota de la escala para jugar. El siguiente código </p>
 								
@@ -273,7 +270,7 @@
 								<p> p1 >> desplume ([0,0,0], dur = [1 / 4,1 / 2,3 / 4]) </p>
 								<p> p1 >> pluck ([0,0,0], dur = [1 / 4,0.25,3]) </p>
 								
-								<p> Las listas de valores se repiten a medida que el reproductor reproduce notas </p>
+								<p> Las listas de valores se repiten a medida que el jugador reproduce notas </p>
 								<p> La siguiente duración equivale a: 1,2,3,1,4,3</p>
 								
 								<p>  Si aún no entiendes esto, no te preocupes, más sobre los patrones en el tutorial de patrones</p>
@@ -283,7 +280,7 @@
 								<p> p1 >> pluck ([0,2,4, (0,2,4)])</p>
 								
 								<p>
-También puede asignar valores a los atributos de los objetos del reproductor directamente </p>
+También puede asignar valores a los atributos de los objetos del jugador directamente </p>
 				<p> p1.oct = 5</p>	
 
 <p> Para ver todos los nombres de los atributos del >>, solo ejecuta </p>
@@ -316,62 +313,154 @@ También puede asignar valores a los atributos de los objetos del reproductor di
 			<p>p1.never ("reverse") </p>
 								
 								
-								<p><em>Ver <a href="https://github.com/Qirky/FoxDot/blob/master/FoxDot/demo/01_playing_notes.py" target="_blank">Archivo</a> en ingles </em></p>
+								<p><em>From <a href="http://www.gutenberg.org/ebooks/41595" target="_blank">"The Funny Side of Physic"</a> by A. D. Crabtre</em></p>
 							</div>
 						</div>
 					</div>
 					<div class="bb-item" id="item4">
 						<div class="content">
 							<div class="scroller">
-								<h2> Clock </h2>
+								<h2> 	Clock </h2>
 								
-								<h3> Conceptos básicos del Clock </h3>
+								<p> Conceptos básicos del Clock </p>
 
 
-<p> Para detener todos los objetos del >>, puede presionar Ctrl +. (Mantenga presionada la tecla Ctrl y presione el punto) Que es un atajo para el comando: </p>
-<p>Clock.clear ()</p>
-<p>Cambiar el tempo (esto tiene efecto en la siguiente barra) El valor predeterminado es 120 </p>
+ <p> Para detener todos los objetos del >>, puede presionar Ctrl +. (Mantenga presionada la tecla Ctrl y presione el punto)
+ Que es un atajo para el comando:
+</p>
+
+<p>Clock.clear ()
+</p>
+ <p>Cambiar el tempo (esto tiene efecto en la siguiente barra) El valor predeterminado es 120 </p>
 <p>Clock.bpm = 144</p>
-<p>Para ver lo que está programado para ser jugado. </p>
-<p>print (Reloj) </p>
-<p> Para ver cuál es la latencia </p>
-<p>print (Clock.latency)</p>
 
-                                <h3> Clock avanzado </h3>
+ <p>Para ver lo que está programado para ser jugado. </p>
+
+<p>print (Reloj) </p>
+
+ Para ver cuál es la latencia
+<p>print (Clock.latency)
+</p>
+ <h3> Clock avanzado </h3>
 
 <p> Nota: No necesita ejecutar esta línea, se usa para instalar FoxDot para usuarios de Linux que usan Python 2. </p>
 
-<p>from __future__ import print_function</p>
-<p> Para ver lo que está programado para ser jugado.</p>
-<p>print (Clock)</p>
-<p>Para ver cuál es la latencia</p>
-<p> print (Clock.latency)</p>
+<p>from __future__ import print_function
+</p>
+<p> Para ver lo que está programado para ser jugado.
+</p>
+
+<p>print (Clock)
+</p>
+ 
+ <p>Para ver cuál es la latencia
+
+</p>
+<p> print (Clock.latency)
+</p>
+
 <p> El Clock puede programar cualquier cosa con un método __call__ usando
  Se necesita una pista de tiempo absoluto para programar una funciones
- Clock.schedule necesita saber el ritmo para invocar algo en</p>
-<p>Clock.schedule ()</p>
-<p> Programar un evento después de una cierta duración Clock.future necesita saber cuántos ritmos por delante para llamar a algo</p>
-<p> Clock.future ()</p>
-<p> Estos son equivalentes</p>
-<p>Clock.schedule (Clock.now () + 4, lambda: print ("hello"))</p>
-<p>Clock.future (4, lambda: print ("hello"))</p>
-<p>Para programar otra cosa</p>
-<p>Clock.schedule (lambda: print ("hello"))</p>
-<p> Podemos llamar a algo cada n beats</p>
-<p>Clock.every (4, lambda: print ("hello"))</p>
-<p> Obtener el reloj actual y agregar 2. Útil para la programación.</p>
-<p>Clock.now () + 2</p>
-<p>Con un decorador</p>
-<p> Puede crear su propia función y decorarla, para poder</p>
-<p> para usarlo en un objeto .every en un >></p>
+ Clock.schedule necesita saber el ritmo para invocar algo en
+
+</p>
+
+<p>Clock.schedule ()
+</p>
+
+<p> Programar un evento después de una cierta duración
+ Clock.future necesita saber cuántos ritmos por delante para llamar a algo
+
+</p>
+<p> Clock.future ()
+
+</p>
+
+
+<p> Estos son equivalentes
+
+</p>
+<p>Clock.schedule (Clock.now () + 4, lambda: print ("hello"))
+
+</p>
+
+<p>Clock.future (4, lambda: print ("hello"))
+
+</p>
+
+ <p>Para programar otra cosa
+
+</p>
+
+<p>Clock.schedule (lambda: print ("hello"))
+</p>
+
+<p> Podemos llamar a algo cada n beats
+
+</p>
+
+<p>Clock.every (4, lambda: print ("hello"))
+</p>
+
+<p> Obtener el reloj actual y agregar 2. Útil para la programación.
+
+</p>
+
+<p>Clock.now () + 2
+</p>
+
+
+ <p>Con un decorador
+
+</p>
+
+<p> Puede crear su propia función y decorarla, para poder
+</p>
+<p> para usarlo en un objeto .every en un >>
+</p>
+
 <p>@PlayerMethod </p>
-<p>help de def (auto):</p>
-<p> print (self.gree)</p>
-<p>p1 >> pluck ([0,4]). every (3, "help")</p>
+<p>help de def (auto):
+   </p>
+   <p> print (self.gree)
+</p>
+<p>p1 >> pluck ([0,4]). every (3, "help")
+</p>
+
 <p> Y cancelarlo con </p>
 <p>p1.never ("help")</p>
-                                
-                                <p><em>Ver <a href="https://github.com/Qirky/FoxDot/blob/master/FoxDot/demo/07_basic_clock.py" target="_blank">Archivo</a> original</em></p>
+										<p> </p>
+								<p> </p>
+								
+								<p> </p>
+								<p> </p>
+								
+								<p> </p>
+								<p> </p>
+								
+								<p> </p>
+								<p> </p>
+								
+								<p> </p>
+								<p> </p>
+								
+								<p> </p>
+
+								<p> </p>
+
+								<p> </p>
+
+								<p>  </p>
+
+								<p> </p>
+								<p> </p>
+								<p> </p>
+								<p> </p>
+								
+								<p> </p>
+								<p> </p>
+								<p> </p>
+
 							</div>
 						</div>
 					</div>
@@ -380,68 +469,27 @@ También puede asignar valores a los atributos de los objetos del reproductor di
 							<div class="scroller">
 								<h2>SynthDefs</h2>
 								
-<p>FoxDot crea música dando a los objetos del reproductor un "instrumento digital" para jugar, que se llaman 'SynthDefs'. Puedes ver la lista de preinstalados 'Synths' mediante la ejecución </p>
-<p> print (SynthDefs)</p>
-<p>Cada uno de estos representa un objeto `SynthDef` * *. Estos objetos son entonces dado a los >> para sonar, como dar un instrumento a alguien en su orquesta.</p>
+								<p> 
+						FoxDot crea música dando a los objetos del jugador un "instrumento digital"
+  para jugar, que se llaman 'SynthDefs'. Puedes ver la lista de preinstalados
+  'Synths' mediante la ejecución
+</p>
+						<p> 
+print (SynthDefs)
+</p>
+
+								<p>
+  Cada uno de estos representa un objeto `SynthDef` * *. Estos objetos son entonces
+  dado a los >> para sonar, como dar un instrumento a alguien en su
+orquesta.</p>
 		
 		
 
-								<ul>   <li>sawbass</li>
-                                    <li>karp </li>
-                                    <li>gong </li>
-                                    <li>varsaw </li>
-                                    <li>bell </li>
-                                    <li>scratch </li>
-                                    <li> pulse</li>
-                                    <li>audioin </li> blip 
-                                    <li>pads</li>
-                                    <li>rave </li>
-                                    <li>donk </li>
-                                    <li>saw </li>
-                                    <li>orient </li>
-                                    <li> creep </li>
-                                    <li>growl </li>
-                                    <li>marimba </li>
-                                    <li>razz </li>
-                                    <li>dub </li>
-                                    <li>arpy </li>
-                                    <li>ambi </li>
-                                    <li>viola </li>
-                                    <li>piano </li>
-                                    <li>quin </li>
-                                    <li>crunch </li>
-                                    <li>noise </li>
-                                    <li>star </li>
-                                    <li> bass  </li>
-                                    <li>dab </li>
-                                    <li>dirt </li>
-                                    <li>twang </li>
-                                    <li>swell </li>
-                                    <li>pluck </li>
-                                    <li>glass </li>
-                                    <li>soprano </li>
-                                    <li>charm </li>
-                                    <li>spark </li>
-                                    <li>bug </li>
-                                    <li>squish </li>
-                                    <li>sitar</li> 
-                                    <li>zap </li>
-                                    <li>snick </li>
-                                    <li>play2 </li>
-                                    <li>play1 </li>
-                                    <li>prophet </li>
-                                    <li>ripple </li>
-                                    <li>fuzz </li>
-                                    <li>lazer </li>
-                                    <li>klank </li>
-                                    <li>nylon </li>
-                                    <li>soft </li>
-                                    <li>scatter </li>
-                                    <li>loop </li>
-</ul>
+								<p>sawbass karp gong varsaw bell scratch pulse audioin blip pads rave donk saw orient creep growl marimba razz dub arpy ambi viola piano quin crunch noise star bass dab dirt twang swell pluck glass soprano charm spark bug squish sitar zap snick play2 play1 prophet ripple fuzz lazer klank nylon soft scatter loop
 
+</p>
 
-								<p><em>Ver<a href="https://github.com/Qirky/FoxDot/blob/master/FoxDot/demo/13_synthdefs.py" target="_blank">Archivo </a> original </em></p>
+								<p><em>From <a href="http://www.gutenberg.org/ebooks/41595" target="_blank">"The Funny Side of Physic"</a> by A. D. Crabtre</em></p>
 							</div>
 						</div>
 					</div>
@@ -449,267 +497,517 @@ También puede asignar valores a los atributos de los objetos del reproductor di
 						<div class="content">
 							<div class="scroller">
 							<h2>Samples</h2>
-							<h3> Reproducción de samples incorporadas</h3>
-<p>FoxDot también se puede usar para secuenciar y manipular samples de audio.
+							<h3> Reproducción de muestras incorporadas</h3>
+								<p>
+ FoxDot también se puede usar para secuenciar y manipular muestras de audio.
  Para hacer esto, todo lo que necesitas hacer es usar el juego especial SynthDef.
  El primer argumento de la obra SynthDef debería ser una cadena de caracteres
  en lugar de una lista de números como lo haría con cualquier otro SynthDef.
  Cada personaje representa un archivo de audio diferente, que se almacena en un búfer en SuperCollider. </p>
-<p>Para ver qué personaje se relaciona con qué archivo de audio, ejecuta </p>
-<p>print (BufferManager ())</p>
-<p>Puede reproducir samples de audio en FoxDot / snd / subdirectorios utilizando el
- 'play' Synth y usando una cadena de caracteres en lugar de la lista de notas.</p>
-<p> bd >> play ("x")</p>
-<p>Un carácter se refiere a un sonido y el espacio en blanco se usa para silencio, por lo que puedes difundir los sonidos a tiempo:</p>
-<p>bd >> play ("x x x")</p>
-<p>hh >> play ("-")</p>
-<p> Puedes hacer patrones de encaje usando corchetes hick juega como: "x o xo" </p>
-<p> d1 >> play ("(x) (x) o")</p>
-<p> Lo siguiente es lo mismo que "------- =" </p>
-<p> hh >> play ("--- (- =)")</p>
-<p> Colocar caracteres entre corchetes los reproducirá todo en el espacio de un tiempo Y se reproducirá como un personaje, no simultáneo, pero en rápida sucesión </p>
-<p>  d1 >> play ("x-o [-o]")</p>
-<p>d1 >> play ("x-o [---]")</p>
-<p>d1 >> play ("x-o [-----]") </p>
-<p>d1 >> play ("x-o [--------------]") </p>
-<p> y se pueden poner entre corchetes como si fueran un solo personaje. </p>
-<p> d1 >> play ("x [-] o (= [- o])") </p>
-<p>Puede combinar los corchetes como quiera: los siguientes patrones son idénticos </p>
-<p> d1 >> play ("x-o (- [- o])")</p>
-<p> d1 >> play ("x-o [- (o)]")</p>
-<p>  Las llaves acorazadas seleccionan una muestra de sonido al azar si quieres más variedad </p>
-<p> d1 >> play ("x-o {- = [-] [- o]}")</p>
-<p> Los soportes angulares combinan patrones para jugar simultáneamente</p>
-<!-- d1 >> play ("<jjj> <-> <jj> <V>") 
-d1 >> play (" <X> <-> <#> <V> ") -->
-<p> Cada personaje está asignado a una carpeta de archivos de sonido y puede seleccionar diferentes samples utilizando el argumento de la palabra clave " sample" </p>
-<p> d1 >> play ("(x [-]) xu [-]") </p>
-<p> d1 >> play ("(x [-]) xu [-]", sample = 1) </p>
-<p>  d1 >> play ("(x [-]) xu [-]", sample = 2) </p>
-<p> Cambiar la muestra para cada tiempo </p>
-<p> d1 >> play ("(x [-]) xu [-]", sample = [1,2,3]) </p>
-<p>  Puedes juntar dos patrones</p>
-<p> d1 >> play (P ["x-o-"] Y P ["**"]) </p>
-<p> Y efectos de cambio aplicados a todos los patrones de capas al mismo tiempo </p>
-<p> d1 >> play (P ["x-o-"] Y  P ["**"], room = 0.5) </p>
-<p>  Ejemplo del tutorial del reproductor, pero con samples en su lugar Condicionales ...</p>
-<p> d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x"))</p>
-<p>  O cámbialo al banco de muestra 2 multiplicando </p>
-<p> d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2) </p>
-<p> Chain multiple condicional </p>
-<p>d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2 + (d1.degree == "-") * 5)  </p>
-<p>  Que es lo mismo que</p>
- <p>d1 >> play ("x [-] xu [-] x", sample = d1.degree.map ({"x": 2, "-": 5}))</p>
-</div>
-</div>
-</div>
+
+
+
+<p>Para ver qué personaje se relaciona con qué archivo de audio, ejecuta
+print (BufferManager ())
+</p>
+							<p> 
+ Puede reproducir muestras de audio en FoxDot / snd / subdirectorios utilizando el
+ 'play' Synth y usando una cadena de caracteres en lugar de la lista de notas.
+</p>
+ 								<p> bd >> play ("x")
+ </p>
+
+
+								<p> 
+ Un carácter se refiere a un sonido y el espacio en blanco se usa para silencio, por lo que
+ puedes difundir los sonidos a tiempo:</p>
+ 
+ 								<p>
+bd >> play ("x x x")
+  </p>
+
+
+								<p> 
+hh >> play ("-")</p>
+
+
+								<p> Puedes hacer patrones de encaje usando corchetes 
+ hick juega como: "x o xo"
+ </p>
+
+
+								<p> 
+d1 >> play ("(x) (x) o")</p>
+
+
+								<p> 
+ Lo siguiente es lo mismo que "------- =" </p>
+
+
+								<p>  
+hh >> play ("--- (- =)")
+</p>
+
+ 	<p>  Colocar caracteres entre corchetes los reproducirá todo en el espacio de un tiempo
+ Y se reproducirá como un personaje, no simultáneo, pero en rápida sucesión
+</p>
+
+
+								<p>  
+d1 >> play ("x-o [-o]")
+</p>
+
+
+
+								<p> 
+
+d1 >> play ("x-o [---]")</p>
+
+d1 >> play ("x-o [-----]")
+
+d1 >> play ("x-o [--------------]")
+
+
+								<p> 
+ y se pueden poner entre corchetes como si fueran un solo personaje. </p>
+
+
+								<p> 
+d1 >> play ("x [-] o (= [- o])")
+</p>
+
+	
+								<p> 	
+ Puede combinar los corchetes como quiera: los siguientes patrones son idénticos
+</p>
+
+
+								<p> d1 >> play ("x-o (- [- o])")
+</p>
+
+
+
+
+
+
+
+
+								<p>  
+
+d1 >> play ("x-o [- (o)]")
+</p>
+
+ 
+								<p>  Las llaves acorazadas seleccionan una muestra de sonido al azar si quieres más variedad </p>
+								
+								
+								<p> 
+
+d1 >> play ("x-o {- = [-] [- o]}")</p>
+
+<p>  Los soportes angulares combinan patrones para jugar simultáneamente
+							
+</p>
+
+								<p> 
+
+d1 >> play ("<X> <-> <#> <V>")</p>
+
+
+								<p>  
+
+d1 >> play ("<X> <-> <#> <V>")
+</p>
+
+
+								<p> 
+
+ Cada personaje está asignado a una carpeta de archivos de sonido y puede seleccionar diferentes samples utilizando el argumento de la palabra clave " sample"
+</p>
+
+
+								<p> d1 >> play ("(x [-]) xu [-]")
+ </p>
+
+d1 >> play ("(x [-]) xu [-]", sample = 1)
+
+
+								<p> 
+
+d1 >> play ("(x [-]) xu [-]", sample = 2)
+
+</p>
+
+
+								<p> Cambiar la muestra para cada tiempo
+ 	</p>
+ 	
+								<p> 
+
+d1 >> play ("(x [-]) xu [-]", sample = [1,2,3])
+</p>
+ 
+								<p> 
+Puedes juntar dos patrones</p>
+
+<p> 
+d1 >> play (P ["x-o-"] & P ["**"])
+ </p>
+
+
+
+								<p>  
+ Y efectos de cambio aplicados a todos los patrones de capas al mismo tiempo
+d1 >> play (P ["x-o-"] & P ["**"], room = 0.5)
+</p>
+
+
+								<p>  
+ Ejemplo del tutorial del jugador, pero con muestras en su lugar
+ Condicionales ...</p>
+ 
+								<p> 
+
+d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x"))
+</p>
+		
+								<p>  O cámbialo al banco de muestra 2 multiplicando
+ </p>
+
+								<p> 
+d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2)
+</p>
+ Chain multiple condicional
+<p>d1 >> play ("x [-] xu [-] x", muestra = (d1.degree == "x") * 2 + (d1.degree == "-") * 5)
+								 </p>
+
+								<p>  Que es lo mismo que
+								</p><p>
+d1 >> play ("x [-] xu [-] x", sample = d1.degree.map ({"x": 2, "-": 5}))
+								</p>
+
+
+	
+								
+
+
+							
+
+							
+							</div>
+					</div>
+					</div>
 					
-<div class="bb-item" id="item7">
-<div class="content">
-<div class="scroller">
-<h2>Efectos y Atributos</h2>
-<p >  Referencia de atributos del reproductor </p>
-<p> Para ver todos los atributos: </p>
-<p> print (Player.get_attributes ()) </p>
-<p> Puede ver qué efectos están disponibles evaluando </p>
-<p> print(FxList) </p>
-<p>  Usemos el filtro de paso alto para un ejemplo. Puedes ver que está descrito </p>
-<p> al igual que: </p>
-<p>  "Fx 'highPassFilter' - args: hpr, hpf" </p>
-<p> Cada efecto tiene un argumento "maestro" y luego argumentos secundarios. Aquí el </p>
-<p> El argumento # master es "hpf" (abreviatura de filtro de paso alto) y el argumento secundario </p> 
-<p>  es "hpr" (abreviatura de resonancia de paso alto). El efecto solo se agrega cuando el
-El argumento # master no es cero: </p>
-<p> d1 >> dirt ([0,4,2,1], dur = 1/2, hpf = 4000) </p>
-<p>  Esto establece el filtro de paso alto a 4000 Hz por lo que solo las frecuencias en el audio </p>
-<p> signal * above * que en realidad se escuchan. Cambiemos el valor de resonancia. Sus </p>
-<p> el valor predeterminado es 1, así que hagámoslo más pequeño </p>
-                                <p> d1 >> dirt ([0,4,2,1], dur = 1/2, hpf = 4000) </p>
+					
+					
+				<div class="bb-item" id="item7">
+						<div class="content">
+							<div class="scroller">
+								<h2>Efectos y Atributos</h2>
 
-                                <p>d1 >> dirt ([0,4,2,1], dur = 1/2, hpf = 4000, hpr = 0.3)</p>
+<h3> </h3>
 
+<p> # Tutorial 4: Referencing Player Attributes
 
-                                <p> ¿Notar una diferencia? Podemos usar patterns / vars en nuestros efectos para hacerlos </p>
-                                <p> cambian con el tiempo: </p>
-<p> d1 >> dirt ([0,4,2,1], dur = 1/2, hpf = linvar ([0,4000], 8), hpr = P [1,1,0.3] .stretch (8)) </p>
+# You can set variables outside a player
+pitches = P[0,1,2,3,4]
+harmony = pitches + 2
 
+print(pitches)
+print(harmony)
 
+p1 >> pluck(pitches)
+p2 >> star(harmony)
 
-<h3> Referencia </h3>
+# If you set the duration, of the second, it might not have the desired effect
+p1 >> pluck(pitches)
+p2 >> star(harmony, dur=1/2)
 
+# It is possible for one player object to play exactly what another player is.
+# To have one player follow another, just use the follow method:
+p1 >> pluck(pitches)
+p2 >> star(dur=1/2).follow(p1) + 2
 
-<h4> amp  </h4>
-<p> Amplitud (por defecto es 1) Establece el volumen de la nota / patrón</p>
+# Works for other attributes too
+p1 >> pluck(pitches)
+p2 >> star(dur=p1.dur).follow(p1) + 2
 
-                                <p> d1 >> play ("*", dur = 1/2, amp = 1) </p>
+p1 >> pluck(pitches)
+p2 >> star(p1.degree).follow(p1) + 2
 
-                                <p> Medio volumen </p>
-                                <p> d1 >> play ("*", dur = 1/2, amp = .5) </p>
+# You can reference, and test for the current value
+# The == returns a 1 if true and a 0 if false
+print(p1.degree)
+print(p1.degree == 2)
 
-                                <p>  Creando un patrón con amplificador </p>
-                                <p> d1 >> play ("*", dur = 1/2, amp = [1,0,1,1,0]) </p>
-                                    
-                                   
-<h4> amplify  </h4> 
-                                <p>Chagnes amp, multiplicando agasint el valor existente (en lugar de sobreescribir) </p>
+# This allows you to do conditionals like
+p1 >> pluck([0,1,2,3], amp=(p1.degree==1))
 
-                                <p> Creando un patrón con amplificador </p>
-                                <p> d1 >> play ("*", dur = 1/2, amp = [1,0,1,1,0]) </p>
-                                <p> d1 >> play ("*", dur = 1/2, amplificar = [. 5,1,0]) </p>
+p1 >> pluck([0,1,2,3], amp=(p1.degree>1))
 
-<p>  Configurar una "caída" en la música (Reproduce a volumen completo durante 28, luego 0 por 4) </p>
-                                <p> p1 >> blip ([0,1,2,3], amplificar = var ([1,0], [28,4])) </p> 
+# Or change it to a different amp by multiplying by 4
+p1 >> pluck([0,1,2,3], amp=(p1.degree==1)*4)
 
-<h4>bits </h4>
-<p> La profundidad de bits, en número de bits, a la que se reduce la señal; </p>
-<p>este es un valor entre 1 y 24 donde se ignoran otros valores. </p>
-<p> Usar aplastamiento para establecer la cantidad de reducción a la velocidad de bits (por defecto es 8)
+# Chain multiple conditionals
+p1 >> pluck([0,1,2,3], amp=(p1.degree==1)*4 + (p1.degree==2)*1)
 
-                                </p>
-<h4> bitcrush</h4>
-                                <p>- Ver bits </p>
+# Which is the same as
+p1 >> pluck([0,1,2,3], amp=p1.degree.map({1:4, 2:1}))
+</p>
+<p> # ¿Notar una diferencia? Podemos usar patterns / vars en nuestros efectos para hacerlos
+# cambian con el tiempo:
+d1 >> suciedad ([0,4,2,1], dur = 1/2, hpf = linvar ([0,4000], 8), hpr = P [1,1,0.3] .stretch (8))
 
 
-<h4> chop </h4>
-<p> 'Chop's la señal en trozos utilizando una onda de pulso de baja frecuencia sobre el sostenido de una nota.
+
+
+####################
+Referencia
+####################
+
+
+
+####################
+# amp - Amplitud (por defecto es 1)
+# Establece el volumen de la nota / patrón
+
+d1 >> play ("*", dur = 1/2, amp = 1)
+
+# Medio volumen
+d1 >> play ("*", dur = 1/2, amp = .5)
+
+# Creando un patrón con amplificador
+d1 >> play ("*", dur = 1/2, amp = [1,0,1,1,0])
+
+
+
+####################
+# amplify - Chagnes amp, multiplicando agasint el valor existente (en lugar de sobreescribir)
+
+# Creando un patrón con amplificador
+d1 >> play ("*", dur = 1/2, amp = [1,0,1,1,0])
+d1 >> play ("*", dur = 1/2, amplificar = [. 5,1,0])
+
+# Configurar una "caída" en la música (Reproduce a volumen completo durante 28, luego 0 por 4)
+p1 >> blip ([0,1,2,3], amplificar = var ([1,0], [28,4]))
+
+
+
+####################
+# curva
+
+
+
+####################
+# benddelay - Ver curva
+
+
+
+####################
+# bits
+# La profundidad de bits, en número de bits, a la que se reduce la señal;
+# este es un valor entre 1 y 24 donde se ignoran otros valores.
+# Usar aplastamiento para establecer la cantidad de reducción a la velocidad de bits (por defecto es 8)
+
+
+
+####################
+# bitcrush - Ver bits
+
+
+####################
+# picar
+# 'Chuletas' la señal en trozos utilizando una onda de pulso de baja frecuencia sobre el sostenido de una nota.
+
+
+####################
+# cortar
+# Corta una duración
+p1 >> desplume (P [: 8], dur = 1/2, corte = 1/8)
+p1 >> desplume (P [: 8], dur = 1/2, corte = 1/4)
+p1 >> pluck (P [: 8], dur = 1/2, corte = 1/2)
 </p>
 
-<h4>cut</h4>
-<p> Corta una duración </p>
-<p> p1 >> desplume (P [: 8], dur = 1/2, cut = 1/8) </p>
-<p> p1 >> desplume (P [: 8], dur = 1/2, cut = 1/4) </p>
-<p> p1 >> pluck (P [: 8], dur = 1/2, corte = 1/2) </p>
+<p>  ####################
+# cortar
 
 
-<h4> grado </h4>
-                                <p>- El grado de la nota, o tono, se puede especificar por palabra clave (también el primer posicional) </p>
-<p> p1 >> blip (grado = [0,1,2,3]) </p>
 
-<p> Lo cual es lo mismo que: </p>
-<p> p1 >> blip ([0,1,2,3]) </p>
-
-<p>  Solo reproduce la nota "raíz" del acorde </p>
-<p> b1 >> bajo (p1.degree [0]) </p>
-
-<h4>  delay </h4>
-                                <p> duración de espera antes de enviar la información a SuperCollider (por defecto es 0) </p>
-
-<p> Retrasa cada 3 notas por .1 </p> 
-<p> p1 >> blip ([0,1,2,3], delay = [0,0,0.1]) </p>
-
-<p>  Retrasa cada 3 notas por .5 </p>
-<p> p1 >> blip ([0,1,2,3], delay = [0,0,0.5]) </p>
-
-<p>  Reproduce la nota una vez por cada retraso diferente </p>
-<p>p1 >> blip ([0,1,2,3], delay = (0,0.1)) </p>
-
-<p> p1 >> blip ([0,1,2,3], delay = (0,0,25)) </p>
-
-<p> p1 >> blip ([0,1,2,3], delay = (0, .1, .2, .3)) </p>
-                                    
-
-<h4>  dur </h4>
-                                <p> - Duraciones (predeterminado para 1 y 1/2 para el Reproductor de muestra)
-</p>
+####################
+# decay - Ver eco
 
 
-                            
-<h4 > eco  </h4>
-<p> Palabra clave del título: echo, palabra clave (s) de atributo: decaimiento </p>
-<p>  Establece el tiempo de caída para cualquier efecto de eco en tiempos, funciona mejor en Sample Player (por defecto es 0) </p>
-<p> Multiplicado contra el valor de sostenido </p>
-<p> d1 >> play ("x-o-", echo = 0.1) </p>
 
-<p> d1 >> play ("x-o-", echo = 0.5) </p>
+####################
+# grado - El grado de la nota, o tono, se puede especificar por palabra clave (también el primer posicional)
+p1 >> blip (grado = [0,1,2,3])
 
-<p> p1 >> pluck (P [: 8], echo = .25) </p>
+# Lo cual es lo mismo que:
+p1 >> blip ([0,1,2,3])
 
-<p> p1 >> pluck (P [: 8], echo = .5) </p>
-
-<p> p1 >> pluck (P [: 8], echo = .5, decay = .5) </p>
+# Solo reproduce la nota "raíz" del acorde
+b1 >> bajo (p1.degree [0])
 
 
-<h4> hpf  </h4>
-                                <p>  Filtro de paso alto</p>
-<p> Filtra todas las frecuencias por debajo del valor dado, eliminando las frecuencias más bajas </p>
 
-                                <p>4000 hertz </p>
-<p> p1 >> pluck (P [: 8], dur = 1/2, hpf = 4000) </p>
+####################
+# delay: duración de espera antes de enviar la información a SuperCollider (por defecto es 0)
 
-<p>  HPF es 0 para 4 tiempos, luego 4000 para 4 tiempos </p>
-                                
-<p> p1 >> pluck (P [: 8], dur = 1/2, hpf = var ([0,4000], [4,4])) </p>
+# Retrasa cada 3 notas por .1
+p1 >> blip ([0,1,2,3], delay = [0,0,0.1])
 
-<p>  Cambio lineal en hpf desde 0 toma 4 tiempos para llegar a 4000, 4 tiempos de vuelta a 0 </p>
-                                
- <p> p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [4,4])) </p>
+# Retrasa cada 3 notas por .5
+p1 >> blip ([0,1,2,3], delay = [0,0,0.5])
 
-<p>  El cambio lineal en hpf desde 0 toma 8 tiempos para llegar a 4000, luego se restablece a 0 </p>
-<p> p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [8,0])) </p>
+# Reproduce la nota una vez por cada retraso diferente
+p1 >> blip ([0,1,2,3], delay = (0,0.1))
 
-<p>  Con cambio de resonancia (el valor predeterminado es 1) </p>
-<p> p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [8,0]), hpr = .5) </p>
+p1 >> blip ([0,1,2,3], delay = (0,0,25))
 
-<p>  Con el cambio de resonancia como un linvar </p>
-<p> p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [8,0]), hpr = linvar ([0.1,1], 12)) </p>
+p1 >> blip ([0,1,2,3], delay = (0, .1, .2, .3))
 
 
-<h4>  lpf </h4> 
-                                <p> Filtro de paso bajo </p>
-<p>  Filtra todas las frecuencias por encima del valor dado, eliminando las frecuencias más altas </p>
-
-<p>  4000 hertz </p>
-<p> p1 >> pluck (P [: 8], dur = 1/2, lpf = 400) </p>
-
-<p>  Con el cambio de resonancia como un linvar </p>
-<p> p1 >> pluck (P [: 8], dur = 1/2, lpf = linvar ([500,4000], [8,0]), lpr = linvar ([0.1,1], 12)) </p>
 
 
-                                <h4>  pan </h4>
-<p>  Panoramización, donde -1 está muy a la izquierda, 1 está muy a la derecha (por defecto es 0) </p>
-
-<h4>  rate </h4>
-<p>  Variable keyword used for misc. cambios a una señal. P.ej. Velocidad de reproducción del reproductor de muestra (predeterminado en 1) </p>
-
-                            
-<h4> room  </h4> 
-<p> Palabra clave del título: sala, palabra clave (es) de atributo: mix </p>
-
-<p>  El argumento de la room especifica el tamaño de la room  </p>
-<p> d1 >> play ("x-o-", room  = 0.5) </p>
-
-<p>  Mix es la mezcla seca / húmeda de reverberación o la cantidad de reverberación mezclada con la fuente. 1 es todo reverberación, 0 no es reverberación en absoluto. (Por defecto 0.1) </p>
-                                
-<p> d1 >> play ("x-o-", sala = 0.5, mix = .5) </p>
+####################
+# dur - Duraciones (predeterminado para 1 y 1/2 para el Reproductor de muestra)
 
 
-<h4>sample </h4>
-<p>  Palabra clave especial para reproducciones  de sample; selecciona otro archivo de audio del banco de samples para un reproductor de sample . </p>
+
+####################
+# eco
+# Palabra clave del título: echo, palabra clave (s) de atributo: decaimiento
+# Establece el tiempo de caída para cualquier efecto de eco en tiempos, funciona mejor en Sample Player (por defecto es 0)
+# Multiplicado contra el valor de sostenido
+d1 >> play ("x-o-", echo = 0.1)
+
+d1 >> play ("x-o-", echo = 0.5)
+
+p1 >> pluck (P [: 8], echo = .25)
+
+p1 >> pluck (P [: 8], echo = .5)
+
+p1 >> pluck (P [: 8], echo = .5, decay = .5)
 
 
-<h4> slide  </h4> 
-<p> - Slide to To Slides 'el valor de frecuencia de una señal a frecuencia * (diapositiva + 1) durante la duración de una nota (por defecto es 0) </p>
 
-<p> p1 >> desplume (P [: 8], dur = 1/2, deslizamiento = 1) </p>
+####################
+# hpf - Filtro de paso alto
+# Filtra todas las frecuencias por debajo del valor dado, eliminando las frecuencias más bajas
 
-<p> p1 >> desplume (P [: 8], dur = 1/2, deslizamiento = 12) </p>
+# 4000 hertz
+p1 >> pluck (P [: 8], dur = 1/2, hpf = 4000)
 
-<p> p1 >> pluck (P [: 8], dur = 1/2, slide = var ([0, -1], [12,4])) </p>
+# HPF es 0 para 4 tiempos, luego 4000 para 4 tiempos
+p1 >> pluck (P [: 8], dur = 1/2, hpf = var ([0,4000], [4,4]))
 
-<h4> sus  </h4>
-                                <p>  Sustain (por defecto es `dur`) </p>
+# Cambio lineal en hpf desde 0 toma 4 tiempos para llegar a 4000, 4 tiempos de vuelta a 0
+p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [4,4]))
+
+# El cambio lineal en hpf desde 0 toma 8 tiempos para llegar a 4000, luego se restablece a 0
+p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [8,0]))
+
+# Con cambio de resonancia (el valor predeterminado es 1)
+p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [8,0]), hpr = .5)
+
+# Con el cambio de resonancia como un linvar
+p1 >> pluck (P [: 8], dur = 1/2, hpf = linvar ([0,4000], [8,0]), hpr = linvar ([0.1,1], 12))
 
 
-<h4> vib - Vibrato </h4>
-<p> Vibrato - Palabra clave del título: vib, Palabra clave del atributo (s): Vibrato (por defecto es 0) </p>
 
-<p> p1 >> pluck (P [: 8], dur = 1/2, vib = 12) </p>
+####################
+# lpf - Filtro de paso bajo
+# Filtra todas las frecuencias por encima del valor dado, eliminando las frecuencias más altas
 
-<p> Con el atributo secundario, vibdepth (predeterminado 0.2) </p>
-<p> p1 >> pluck (P [: 8], dur = 1/2, vib = 12, vibdepth = 0.5) </p>
+# 4000 hertz
+p1 >> pluck (P [: 8], dur = 1/2, lpf = 400)
 
-                                    
-                                    
+# Con el cambio de resonancia como un linvar
+p1 >> pluck (P [: 8], dur = 1/2, lpf = linvar ([500,4000], [8,0]), lpr = linvar ([0.1,1], 12))
+
+
+####################
+# pan
+# Panoramización, donde -1 está muy a la izquierda, 1 está muy a la derecha (por defecto es 0)
+
+
+
+
+####################
+# tarifa
+# Variable keyword used for misc. cambios a una señal. P.ej. Velocidad de reproducción del reproductor de muestra (predeterminado en 1)
+
+
+
+####################
+# habitación
+# Palabra clave del título: sala, palabra clave (es) de atributo: mix
+
+# El argumento de la habitación especifica el tamaño de la habitación
+d1 >> play ("x-o-", sala = 0.5)
+
+# Mix es la mezcla seca / húmeda de reverberación o la cantidad de reverberación mezclada con la fuente. 1 es todo reverberación, 0 no es reverberación en absoluto. (Por defecto 0.1)
+d1 >> play ("x-o-", sala = 0.5, mix = .5)
+
+
+
+####################
+# Reveb
+# Ver Habitación
+
+
+
+####################
+# muestra
+# Palabra clave especial para jugadores de muestra; selecciona otro archivo de audio del banco de muestras para un personaje de muestra.
+
+
+
+####################
+escala de #
+
+
+
+####################
+# forma
+
+
+
+####################
+# slide - Slide to To
+# Slides 'el valor de frecuencia de una señal a frecuencia * (diapositiva + 1) durante la duración de una nota (por defecto es 0)
+
+p1 >> desplume (P [: 8], dur = 1/2, deslizamiento = 1)
+
+p1 >> desplume (P [: 8], dur = 1/2, deslizamiento = 12)
+
+p1 >> pluck (P [: 8], dur = 1/2, slide = var ([0, -1], [12,4]))
+
+
+
+####################
+# sus - Sustain (por defecto es `dur`)
+
+
+
+####################
+# hinchar
+
+
+
+####################
+# vib - Vibrato
+# Vibrato - Palabra clave del título: vib, Palabra clave del atributo (s): Vibrato (por defecto es 0)
+
+p1 >> pluck (P [: 8], dur = 1/2, vib = 12)
+
+# Con el atributo secundario, vibdepth (predeterminado 0.2)
+p1 >> pluck (P [: 8], dur = 1/2, vib = 12, vibdepth = 0.5)
+
+
+
+####################
+# vibdepth - Ver vib</p>
 								
 								</div>
 								
@@ -722,73 +1020,144 @@ El argumento # master no es cero: </p>
 						<div class="content">
 							<div class="scroller">
 								<h2>Patrones</h2>
-                                
-                                <p> Usando Patrones
-
-
-<p>  Player Objects utiliza listas de Python, conocidas más comúnmente como matrices en otros idiomas,</p>
-<p>  para secuenciar ellos mismos. Ya has usado estos anteriormente, pero no son exactamente </p>
-<p>  flexible para la manipulación. Por ejemplo, intente multiplicar una lista por dos como esa: </p>
-
-<p> print([1, 2, 3] * 2) </p>
-
-<p> ¿El resultado es lo que esperabas? </p>
-
-<p>  FoxDot usa un tipo de contenedor llamado 'Patrón' para ayudar a resolver este problema. </p>
-<p>  Actúan como listas regulares pero cualquier operación matemática realizada en él se realiza para cada elemento </p>
-<p> en la lista y hecho así en pares si se usa un segundo patrón. Se crea un patrón básico como </p>
-<p>  lo harías con una lista normal o tupla, pero con una 'P' precediéndola. </p>
-
-<p> print(P [1,2,3] * 2) </p>
-
-<p> print(P [1,2,3] + 100) </p>
-
-<p>  En esta operación, la salida consiste en todas las combinaciones de los dos patrones, es decir </p>
-<p> [1 + 3, 2 + 4, 3 + 3, 1 + 4, 2 + 3, 3 + 4] </p>
-<p> print(P [1,2,3] + [3,4]) </p>
-
-                                <p>  La sintaxis de corte también funciona </p>
-                                
-<p> print(P [: 8]) </p>
-<p> print(P [0,1,2,3: 20]) </p>
-
-<p> Pruebe con otros operadores matemáticos y vea qué resultados obtiene. </p>
-<p> print(P [1,2,3] * (1,2)) </p>
-
-<p> Los objetos de patrón también encartan automáticamente cualquier lista anidada </p>
-
-<p> Lista normal: </p>
-<p> para n en [0,1,2, [3,4], 5]:
-    print(n) </p>
-
-<p>  Patrón
-para n en P [0,1,2, [3,4], 5]:
-    print(n) </p>
-  
-
-  
-<p> Use PGroups si desea evitar este comportamiento. Estos pueden ser implícitamente 
-<p> especificado como tuplas en Patrones: 
-para n en P [0,1,2, (3,4)]:
-    print(n) </p>
-
-<p> print(P (0,2,4) + 2) </p>
-
-<p>  En Python, puede generar un rango de enteros con el rango de sintaxis (inicio, finalización, paso). </p>
-<p>  Por defecto, start es 0 y el paso es 1. </p>
-<p> print(rango (10)) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] </p>
-
-<p>  Puede usar PRange (inicio, parada, paso) para crear un objeto Pattern con los valores equivalentes: </p>
-<p> print (PRange (10)) # P [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] </p>
-
-<p>  P [0, 2, 2, 6, 4, 10, 6, 14, 8, 18] </p>
-<p>  [0 * 1, 1 * 2, 2 * 1, 3 * 2, 4 * 1, 5 * 2, 6 * 1, 7 * 2, 8 * 1 ...] </p>
-<p> print (PRange (10) * [1, 2]) # Comportamiento de la clase de patrón</p>
-
-<p>   Agregar una lista (o Patrón) a un Patrón agregará los valores de elementos a la otra donde las listas de Python se concatonated. </p>
-<p> print(PRange (10) + [0,10])
-</p>
 								
+<p> # Player Objects utiliza listas de Python, conocidas más comúnmente como matrices en otros idiomas,
+# para secuenciar ellos mismos. Ya has usado estos anteriormente, pero no son exactamente
+# flexible para la manipulación. Por ejemplo, intente multiplicar una lista por dos como esa:
+
+imprimir ([1, 2, 3] * 2)
+
+# ¿El resultado es lo que esperabas?
+
+# FoxDot usa un tipo de contenedor llamado 'Patrón' para ayudar a resolver este problema.
+# Actúan como listas regulares pero cualquier operación matemática realizada en él se realiza para cada elemento
+# en la lista y hecho así en pares si se usa un segundo patrón. Se crea un patrón básico como
+# lo harías con una lista normal o tupla, pero con una 'P' precediéndola.
+
+imprimir (P [1,2,3] * 2)
+
+imprimir (P [1,2,3] + 100)
+
+# En esta operación, la salida consiste en todas las combinaciones de los dos patrones, es decir
+# [1 + 3, 2 + 4, 3 + 3, 1 + 4, 2 + 3, 3 + 4]
+imprimir (P [1,2,3] + [3,4])
+
+# La sintaxis de corte también funciona
+imprimir (P [: 8])
+imprimir (P [0,1,2,3: 20])
+
+# Pruebe con otros operadores matemáticos y vea qué resultados obtiene.
+imprimir (P [1,2,3] * (1,2))
+
+# Los objetos de patrón también encartan automáticamente cualquier lista anidada
+
+# Lista normal:
+para n en [0,1,2, [3,4], 5]:
+    imprimir (n)
+
+# Patrón
+para n en P [0,1,2, [3,4], 5]:
+    imprimir (n)
+
+# Use PGroups si desea evitar este comportamiento. Estos pueden ser implícitamente
+# especificado como tuplas en Patrones:
+para n en P [0,1,2, (3,4)]:
+    imprimir (n)
+
+imprimir (P (0,2,4) + 2)
+
+# En Python, puede generar un rango de enteros con el rango de sintaxis (inicio, finalización, paso).
+# Por defecto, start es 0 y el paso es 1.
+imprimir (rango (10)) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# Puede usar PRange (inicio, parada, paso) para crear un objeto Pattern con los valores equivalentes:
+print (PRange (10)) # P [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# P [0, 2, 2, 6, 4, 10, 6, 14, 8, 18]
+# [0 * 1, 1 * 2, 2 * 1, 3 * 2, 4 * 1, 5 * 2, 6 * 1, 7 * 2, 8 * 1 ...]
+print (PRange (10) * [1, 2]) # Comportamiento de la clase de patrón
+
+# Agregar una lista (o Patrón) a un Patrón agregará los valores de
+# elementos a la otra donde las listas de Python se concatonated.
+imprimir (PRange (10) + [0,10])
+
+# Para concatonate Patterns, use el operador de tubería de la siguiente manera:
+imprimir (PRange (10) | [0,10])
+# FoxDot convierte automáticamente cualquier objeto que se canaliza a un Patrón a la clase de Patrón base
+# por lo que no tiene que preocuparse por asegurarse de que todo sea del tipo correcto.
+
+# Reproduce todos los valores juntos
+p1 >> desplume (P (4,6,8))
+p1 >> desplume (P [0,1,2, P (4,6,8), 7,8])
+
+# Extiende los valores en el "dur" actual, p. Ej. si el dur es 2 latidos entonces jugará cada valor 2/3 latidos aparte
+p1 >> pluck (P * (0,2,4), dur = 1/2)
+p1 >> desplume (P * (0,2,4), dur = 1)
+p1 >> pluck (P * (0,2,4), dur = 2)
+p1 >> pluck (P [0,1,2, P * (4,6,8), 7,8], dur = 1)
+
+# Es lo mismo que P * pero cada dos veces que se tocan las notas se reparten por el valor dur.
+p1 >> desplume (P / (0,2,4), dur = 1/2)
+p1 >> desplume (P / (0,2,4), dur = 1)
+p1 >> desplume (P / (0,2,4), dur = 2)
+p1 >> pluck (P [0,1,2, P / (4,6,8), 7,8], dur = 1)
+
+# Extiende los valores en el "sus" actual, p. Ej. si el dur es 2 latidos y el sus es 3 latidos entonces jugará cada valor 1 latido aparte.
+p1 >> desplume (P + (0,2,4), dur = 2, sus = 3)
+p1 >> desplume (P + (0,2,4), dur = 2, sus = 1)
+p1 >> pluck (P [0,1,2, P + (4,6,8), 7,8], dur = 1, sus = 3)
+
+# Extiende los primeros valores (longitud - 1) con un espacio del último valor entre cada uno
+# Juega 0,2,4 con un espacio de 0,5:
+p1 >> pluck (P ^ (0,2,4,0.5), dur = 1/2)
+
+# Los patrones vienen con varios métodos para manipular los contenidos
+ayuda (Patrón)
+
+# Patrón estándar
+imprimir (P [: 8])
+
+# Mezclar el patrón aleatorizándolo
+imprimir (P [: 8] .shuffle ())
+
+# Añadir un patrón invertido al patrón
+imprimir (P [: 8] .palindrome ())
+
+# Cambia el patrón por n (valor predeterminado 1)
+imprimir (P [: 8] .rotar ())
+imprimir (P [: 8] .rotar (3))
+imprimir (P [: 8] .rotar (-3))
+
+# Toma el patrón y lo agrega tantas veces como sea necesario para alcanzar n cantidad de elementos en el patrón
+imprimir (P [: 8]. estiramiento (12))
+imprimir (P [: 8]. estiramiento (20))
+
+# Invierte un patrón
+imprimir (P [: 8] .reverse ())
+
+# Bucles un patrón n cantidad de veces
+imprimir (P [: 8] .loop (2))
+
+# Añadir un desplazamiento
+imprimir (P [: 8] .offadd (5))
+
+# Agregar un desplazamiento multiplicado
+imprimir (P [: 8] .offmul (5))
+
+# Stutter - Repite cada elemento n veces
+imprimir (P [: 8] .stutter (5))
+
+# Amen
+# Fusiona y encadena los primeros y los últimos dos elementos de modo que
+# drum pattern "x-o-" se convertiría en "(x [xo]) - o ([- o] -)"
+d1 >> play (P ["x-o -"]. amen ())
+imprimir (P [: 8] .amen ())
+
+# Bubble
+# Fusiona y encadena los primeros y los últimos dos elementos de modo que
+# patrón de batería "x-o-" se convertiría en "(x [xo]) - o ([- o] -)
+d1 >> play (P ["x-o -"]. bubble ())
+imprimir (P [: 8] .bubble ())</p>
 								</div>
 								
 								</div>
@@ -800,76 +1169,185 @@ para n en P [0,1,2, (3,4)]:
 							<div class="scroller">
 								<h2> Generador de patrones</h2>
 
-
-                                <p>  Patrones de referencia de generadores </p>
-
-
-<p>  Hay varias otras clases de patrones en FoxDot que te ayudan a generar matrices de números pero también a comportarse </p>
-                                <p>de la misma manera que el Patrón base. Para ver qué Patrones existen y probarlos, ejecuta </p>
-                                <p> print(clases (Patterns.Sequences)) </p>
-
-<h4>PEuclid </h4>
-                                <p> PEuclid (n, k) </p>
-<p> Devuelve el ritmo euclidiano que distribuye 'n' pulsos sobre 'k' pasos lo más uniformemente posible. </p> 
-                                <p> 3 pulsos en 8 pasos </p>
-                                <p> print(PEuclid (3, 8)) </p> 
-
-<h4> PDur </h4>
-                                <p>  PDur (n, k, start = 0, dur = 0.25) </p>
-<p>  Devuelve las duraciones reales basadas en ritmos euclidianos (ver PEuclid) donde dur es la longitud de cada paso. </p> 
-                                <p> Spreads 'n' pulsos sobre 'k' pasos lo más uniformemente posible </p> 
-
-                                <p> print(PDur (3,8)) # P [0.75, 0.75, 0.5] </p> 
-
-                                <p> print(PDur (5,8)) </p> 
-
-                                <p>  Da una lista de 3 dur, se abre con una lista de 5 dur </p>
-                                <p> print(PDur ([3,5], 8)) </p> 
-
-                                <p> d1 >> play ("x", dur = PDur (5,8)) </p> 
+<p> # Tutorial 15: Referencia de generadores de patrones
 
 
-<h4> PIndex </h4>
-                                <p> Devuelve el índice al que se accede </p> 
-
-                                <p> print(PIndex ()) </p> 
-                                <p> print(PIndex () * 4) </p> 
-
-<h4>  PSine </h4>
-                                <p>  PSine (n = 16) </p> 
-                                <p>  Devuelve valores de un ciclo de onda sinusoidal dividida en 'n' partes </p> 
-
-                                <p>  Split en 5 partes </p> 
-                                <p> print(PSine (5)) </p> 
-
-                                <p>  Split en 10 </p> 
-                                <p> print(PSine (10)) </p> 
+# Hay varias otras clases de patrones en FoxDot que te ayudan a generar matrices de números pero también a comportarse
+# de la misma manera que el Patrón base. Para ver qué Patrones existen y probarlos, ejecuta
+imprimir (clases (Patterns.Sequences))
 
 
-<h4>  PTri </h4>
-                                <p>  PTri (inicio, parada = Ninguno, paso = Ninguno) </p> 
-<p>  Devuelve un patrón equivalente a `Patrón (rango (inicio, parada, paso)) con su forma invertida añadida. </p> 
-                                <p>  Piénsalo como un ángulo "Tri". </p> 
 
-                                <p>  Hasta 5 y luego hasta 1 </p>
-                                <p> print(PTri (5)) </p> 
+####################
+# PEuclid
+# PEuclid (n, k)
+# Devuelve el ritmo euclidiano que distribuye 'n' pulsos sobre 'k' pasos lo más uniformemente posible.
 
-                                <p>  Hasta 8 y luego hasta 1 </p> 
-<p> print(PTri (8)) </p>
+# 3 pulsos en 8 pasos
+imprimir (PEuclid (3, 8))
 
-                                <p>  De 3 a 10, luego a 4 </p> 
-                                <p> print(PTri (3,10)) </p> 
 
-                                <p>  De 3 a 30, por 2, luego a 4 </p> 
-                                <p> print(PTri (3,20,2)) </p> 
 
-                                <p>  Hasta 4, luego hasta 1, luego hasta 8, luego hasta 1 </p> 
-                                <p> print(PTri ([4,8])) </p>
+####################
+# PDur
+# PDur (n, k, start = 0, dur = 0.25)
+# Devuelve las duraciones reales basadas en ritmos euclidianos (ver PEuclid) donde dur es la longitud de cada paso.
+# Spreads 'n' pulsos sobre 'k' pasos lo más uniformemente posible
 
-                                <p> p1 >> pluck (PTri (5), scale = Scale.default.pentatonic) </p> 
+imprimir (PDur (3,8)) # P [0.75, 0.75, 0.5]
 
-                                <p>  Igual que </p> 
-<p> p1 >> pluck (PRange (5) | PRange (5,0, -1), scale = Scale.default.pe</p> 
+imprimir (PDur (5,8))
+
+# Da una lista de 3 dur, se abre con una lista de 5 dur
+imprimir (PDur ([3,5], 8))
+
+d1 >> play ("x", dur = PDur (5,8))
+
+
+
+####################
+# PIndex
+# Devuelve el índice al que se accede
+
+imprimir (PIndex ())
+imprimir (PIndex () * 4)
+
+
+
+####################
+# PSine
+# PSine (n = 16)
+# Devuelve valores de un ciclo de onda sinusoidal dividida en 'n' partes
+
+# Split en 5 partes
+imprimir (PSine (5))
+
+# Split en 10
+imprimir (PSine (10))
+
+
+
+####################
+# PTri
+# PTri (inicio, parada = Ninguno, paso = Ninguno)
+# Devuelve un patrón equivalente a `Patrón (rango (inicio, parada, paso)) con su forma invertida añadida.
+# Piénsalo como un ángulo "Tri".
+
+# Hasta 5 y luego hasta 1
+imprimir (PTri (5))
+
+# Hasta 8 y luego hasta 1
+imprimir (PTri (8))
+
+# De 3 a 10, luego a 4
+imprimir (PTri (3,10))
+
+# De 3 a 30, por 2, luego a 4
+imprimir (PTri (3,20,2))
+
+# Hasta 4, luego hasta 1, luego hasta 8, luego hasta 1
+imprimir (PTri ([4,8]))
+
+p1 >> pluck (PTri (5), scale = Scale.default.pentatonic)
+
+# Igual que
+p1 >> pluck (PRange (5) | PRange (5,0, -1), scale = Scale.default.pentatonic)
+
+
+
+####################
+# PRand
+# PRand (inicio, parada = Ninguno)
+# Devuelve un entero aleatorio entre inicio y fin.
+
+# Devuelve un entero aleatorio entre 0 y start.
+imprimir (PRand (8) [: 5])
+
+# Devuelve un entero aleatorio entre inicio y fin.
+imprimir (PRand (8, 16) [: 5])
+
+# Si start es un tipo contenedor, devuelve un elemento aleatorio para ese contenedor.
+print (PRand ([1,2,3]) [: 5])
+
+# Puede suministrar una semilla
+print (PRand ([1,2,3], seed = 5) [: 5])
+
+# Mantiene la generación de tono aleatorio
+p1 >> pluck (PR y (8))
+
+# Crea una lista aleatoria e itera sobre esa misma lista
+p1 >> pluck (PRand (8) [: 3])
+
+
+
+####################
+# PRhythm
+# PRhythm toma una lista de duraciones y tuplas únicas que contienen valores que se pueden suministrar al `PDur`
+
+# Lo siguiente reproduce el hi hat con un ritmo euclidiano de 3 pulsos en 8 pasos
+d1 >> play ("x-o-", dur = PRhythm ([2, (3,8)]))
+
+imprimir (PRhythm ([2, (3,8)]))
+
+
+
+####################
+# PSum
+# PSum (n, total)
+# Devuelve un patrón de longitud 'n' que suma igual a 'total'
+
+# Devuelve un patrón de longitud 2, con elementos sumados hasta 8
+imprimir (PSum (3,8))
+
+# Devuelve un patrón de longitud 5, con elementos sumados a 4
+imprimir (PSum (5,4))
+
+
+
+####################
+# PStep
+# PStep (n, valor, predeterminado = 0)
+# Devuelve un patrón que cada término n es 'valor'; de lo contrario 'predeterminado'
+
+# Cada 4, haz que sea 1, de lo contrario será 0 por defecto
+imprimir (PStep (4,1))
+
+# Cada 8, haz que sea 6, de lo contrario, 4
+imprimir (PStep (8,6,4))
+
+# Cada 5, hazlo de 2, de lo contrario, 1
+imprimir (PStep (5,2,1))
+
+
+
+####################
+# PWalk
+# PWalk (max = 7, paso = 1, inicio = 0)
+
+# Por defecto, devuelve un patrón con cada elemento aleatoriamente 1 más alto o más bajo que el anterior
+imprimir (PWalk () [: 16])
+
+# Paso de cambio
+imprimir (PWalk (paso = 2) [: 16])
+
+# Con max
+imprimir (PWalk (max = 2) [: 16])
+
+# Comience en un número distinto de cero
+imprimir (PWalk (inicio = 6) [: 16])
+
+
+
+####################
+# PWhite
+# PWhite (lo = 0, hi = 1)
+# Devuelve valores aleatorios de coma flotante entre 'lo' y 'hi'
+
+# Lo predeterminado es 0, hi predeterminado a 1
+imprimir (PWhite () [: 8])
+
+# Devuelve números aleatorios entre 1 y 5
+imprimir (PWhite (1,5) [: 8]) </p>
 								
 								</div>
 								
@@ -884,7 +1362,7 @@ para n en P [0,1,2, (3,4)]:
 								<h2> Escalas</h2>
 				
 
-<p> Por defecto, los objetos del reproductor usan la escala C mayor.
+<p> Por defecto, los objetos del jugador usan la escala C mayor.
 </p>
 <p> Estos pueden cambiarse usando los argumentos de la palabra clave 'scale' y 'root'.
 </p>
@@ -900,9 +1378,9 @@ para n en P [0,1,2, (3,4)]:
 
 <p>Esto se hace usando la sintaxis a continuación (cada línea es técnicamente equivalente):
 </p>
-<h5>Scale.default.set ("principal")</h5>
-<h5>Scale.default.set (Scale.major)</h5>
-<h5>Scale.default.set ([0,2,4,5,7,9,11])</h5>
+Scale.default.set ("principal")
+Scale.default.set (Scale.major)
+Scale.default.set ([0,2,4,5,7,9,11])
 
 <p> O lo mismo, pero menor:
 
@@ -927,14 +1405,14 @@ Root.default.set ("D")
 </p>
 print (Scale.names ())
 
-<p> Puede cambiar la escala utilizada por un reproductor usando la palabra clave 'escala'
+<p> Puede cambiar la escala utilizada por un jugador usando la palabra clave 'escala'
 </p>
 p1 >> pads ([0,1,2], scale = Scale.minor)
 
-<p> Del mismo modo, puede cambiar los reproductores de la nota raíz utilizando la palabra clave raíz </p>
+<p> Del mismo modo, puede cambiar los jugadores de la nota raíz utilizando la palabra clave raíz </p>
 <p> y el objeto Root.default </p>
 
-<p> p1 >> pads ([0,1,2], scale = Scale.minor, root = 2)
+p1 >> pads ([0,1,2], scale = Scale.minor, root = 2)
 
 </p>
 								
@@ -948,93 +1426,91 @@ p1 >> pads ([0,1,2], scale = Scale.minor)
 						<div class="content">
 							<div class="scroller">
 								<h2> Variables</h2>
-                                
-                                <p> Uso de Vars </p> 
+
+<p> # Tutorial 11: Uso de Vars
 
 
-<p>  A TimeVar es una abreviatura de "Variable dependiente del tiempo" y es una característica clave de FoxDot. </p> 
-                                <p> A TimeVar tiene una serie de valores que cambia entre una cantidad predefinida de tiempos </p> 
-<p>  y se crea utilizando un objeto var con la sintaxis var ([list_of_values], [list_of_durations]). </p> 
+# A TimeVar es una abreviatura de "Variable dependiente del tiempo" y es una característica clave de FoxDot.
+# A TimeVar tiene una serie de valores que cambia entre una cantidad predefinida de tiempos
+# y se crea utilizando un objeto var con la sintaxis var ([list_of_values], [list_of_durations]).
 
-                                <p>  Genera el patrón: 0,0,0,0,3,3,3,3 ... </p> 
-                                <p> a = var ([0,3], 4) # La duración puede ser de valor único </p> 
-                                <p> print (int (Clock.now ()), a) # 'a' initally tiene un valor de 0 </p> 
-                                <p>  >>> 0, 0 </p> 
+# Genera el patrón: 0,0,0,0,3,3,3,3 ...
+a = var ([0,3], 4) # La duración puede ser de valor único
+print (int (Clock.now ()), a) # 'a' initally tiene un valor de 0
+# >>> 0, 0
 
-                                <p> print (int (Clock.now ()), a) # Después de 4 tiempos, el valor cambia a 3 </p>
-                                <p>  >>> 4, 3 </p> 
+print (int (Clock.now ()), a) # Después de 4 tiempos, el valor cambia a 3
+# >>> 4, 3
 
-<P>print (int (Clock.now ()), a) # Después de otros 4 tiempos, el valor cambia a 0 </P>
-                                <p>  >>> 8, 0 </p> 
+print (int (Clock.now ()), a) # Después de otros 4 tiempos, el valor cambia a 0
+# >>> 8, 0
 
-                                <p>  Duración también puede ser una lista </p> 
-                                <p> a = var ([0,3], [4,2]) </p> 
-                                <p> print (int (Clock.now ()), a) </p> 
+# Duración también puede ser una lista
+a = var ([0,3], [4,2])
+print (int (Clock.now ()), a)
 
-<p>  Cuando se usa un TimeVar en una operación matemática, los valores que afecta también se convierten en TimeVars </p> 
-<p>  que cambian de estado cuando el TimeVar original cambia de estado; esto incluso se puede usar con patrones:</p> 
-                                <p> a = var ([0,3], 4) </p> 
-                                <p> print (int (Clock.now ()), a + 5) # Cuando el tiempo es 0, a es 5 </p>
-                                <p>  >>> 5 </p>
+# Cuando se usa un TimeVar en una operación matemática, los valores que afecta también se convierten en TimeVars
+# que cambian de estado cuando el TimeVar original cambia de estado; esto incluso se puede usar con patrones:
+a = var ([0,3], 4)
+print (int (Clock.now ()), a + 5) # Cuando el tiempo es 0, a es 5
+# >>> 5
 
-                                <p> print (int (Clock.now ()), a + 5) </p>
-                                <p> Cuando el tiempo es 4, a es 8 </p> 
-                                <p>  >>> 8 </p> 
+print (int (Clock.now ()), a + 5) # Cuando el tiempo es 4, a es 8
+# >>> 8
 
-                                <p> b = PRange (4) + a </p> 
-                                <p> print (int (Clock.now ()), b) </p> 
-                                <p>  Después de 8 beats, el valor cambia a 0 </p>
-                                <p>  >>> P [0, 1, 2, 3] </p> 
+b = PRange (4) + a
+print (int (Clock.now ()), b) # Después de 8 beats, el valor cambia a 0
+# >>> P [0, 1, 2, 3]
 
-                                <p> print (int (Clock.now ()), b) # Después de 12 beats, el valor cambia a 3 </p> 
-                                <p>  >>> P [3, 4, 5, 6] </p> 
+print (int (Clock.now ()), b) # Después de 12 beats, el valor cambia a 3
+# >>> P [3, 4, 5, 6]
 
-<p>  Use 'var' con sus objetos Player para crear progresiones de acordes. </p>
-                                <p> a = var ([0,4,5,3], 4) </p> 
-                                <p> b1 >> bass (a, dur = PDur (3,8)) </p> 
-                                <p> p1 >> pads (a + (0,2), dur = PDur (7,16)) </p> 
+# Use 'var' con sus objetos Player para crear progresiones de acordes.
+a = var ([0,4,5,3], 4)
+b1 >> bajo (a, dur = PDur (3,8))
+p1 >> pads (a + (0,2), dur = PDur (7,16))
 
-                                <p>  Puede agregar una 'var' a un objeto Player o a una var. </p> 
-                                <p> b1 >> bajo (a, dur = PDur (3,8)) + var ([0,1], [3,1]) </p> 
+# Puede agregar una 'var' a un objeto Player o a una var.
+b1 >> bajo (a, dur = PDur (3,8)) + var ([0,1], [3,1])
 
-                                <p> b = a + var ([0,10], 8) </p> 
+b = a + var ([0,10], 8)
 
-                                <p> print (int (Clock.now ()), (a, b)) </p> 
+print (int (Clock.now ()), (a, b))
 
-                                <p>  La actualización de los valores de una 'var' lo actualizará en cualquier otro lugar </p> 
-                                <p> a.update ([1,4], 8) </p> 
+# La actualización de los valores de una 'var' lo actualizará en cualquier otro lugar
+a.update ([1,4], 8)
 
-                                <p> print (int (Clock.now ()), (a, b)) </p> 
+print (int (Clock.now ()), (a, b))
 
-                                <p>  Vars pueden ser nombrados ... </p> 
-                                <p> var.chords = var ([0,4,5,4], 4)  </p> 
+# Vars pueden ser nombrados ...
+var.chords = var ([0,4,5,4], 4)
 
-                                <p>  Y usado más tarde </p> 
-                                <p> b1 >> pluck (var.chords) </p> 
+# Y usado más tarde
+b1 >> pluck (var.chords)
 
-                                <p>  Cualquier jugador que use la var nombrada se actualizará </p> 
-                                <p> var.chords = var ([0,1,5,3], 4) </p> 
+# Cualquier jugador que use la var nombrada se actualizará
+var.chords = var ([0,1,5,3], 4)
 
-                                <p>  También puede usar un 'linvar' que cambia sus valores gradualmente a lo largo del tiempo </p> 
-                                <p>  Cambiar el valor de 0 a 1 en 16 tiempos </p> 
-                                <p> c = linvar ([0,1], 16) </p> 
+# También puede usar un 'linvar' que cambia sus valores gradualmente a lo largo del tiempo
+# Cambiar el valor de 0 a 1 en 16 tiempos
+c = linvar ([0,1], 16)
 
-                                <p>  Ejecutar esto varias veces para ver los cambios que suceden </p> 
-                                <p> print (int (Clock.now ()), c) </p> 
+# Ejecutar esto varias veces para ver los cambios que suceden
+print (int (Clock.now ()), c)
 
-                                <p>  Cambiar el amplificador basado en ese linvar </p> 
-                                <p> p1 >> pads (a, amp = c) </p> 
+# Cambiar el amplificador basado en ese linvar
+p1 >> pads (a, amp = c)
 
-<p>  a 'Pvar' es una 'var' que puede almacenar patrones (en oposición a decir enteros) </p>
-<p> d = Pvar ([P [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], P [0, 1, 2, 3, 4, 5, 4, 3, 2, 1]], 8) </p>
+# a 'Pvar' es una 'var' que puede almacenar patrones (en oposición a decir enteros)
+d = Pvar ([P [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], P [0, 1, 2, 3, 4, 5, 4, 3, 2, 1]], 8)
 
-<p> print (int (Clock.now ()), d) </p>
+print (int (Clock.now ()), d)
 
-<p> p1 >> pads (a, amp = c, dur = 1/4) + d </p>
+p1 >> pads (a, amp = c, dur = 1/4) + d
 
-<p> Cambiar la escala cada 16 tiempos </p>
-<p> Scale.default = Pvar ([Scale.major, Scale.minor], 16)
-                                </p>
+# Cambiar la escala cada 16 tiempos
+Scale.default = Pvar ([Scale.major, Scale.minor], 16) </p>
+								
 								</div>
 								
 								</div>
