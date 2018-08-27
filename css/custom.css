@@ -14,10 +14,10 @@ html { height: 100%; }
 
 body {
 	font-family: 'Cousine', monospace;
-	background: #fff;
+	background: #000;
 	font-weight: 300;
-	font-size: 100%;
-	color: #333;
+	font-size: 80%;
+	color: #ffffff;
 	height: 100%;
 }
 
@@ -29,6 +29,15 @@ a {
 	color: #555;
 	text-decoration: none;
 	outline: none;
+}
+
+
+
+
+code {
+    color: crimson;
+    
+   font-size:  17px;
 }
 
 a:hover {
@@ -225,11 +234,11 @@ a:hover {
 	font-weight: 300;
 	font-size: 4em;
 	padding: 0 0 10px;
-	color: #333;
+	color: #fff;
 	margin: 0 1% 40px;
 	text-align: left;
 	box-shadow: 0 10px 0 rgba(0,0,0,0.02);
-	text-shadow: 0 0 2px #fff;
+	text-shadow: 0 0 2px crimson;
 }
 
 .no-js .content h2 {
@@ -259,4 +268,12 @@ a:hover {
 	.content {
 		font-size: 75%;
 	}
+}
+
+li {
+    font-size: 12px;
+}
+
+img {
+    margin-left: 98px;
 }
