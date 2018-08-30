@@ -798,15 +798,15 @@ La mayoría de los efectos se aplican utilizando un único valor, como pan, pero
                                 <p>reproducción: El uso de chop esencialmente sólo reproduce la mitad del audio mientras que la otra mitad está siendo silenciada por el efecto "chop". Usando grueso esencialmente pausará el sonido y lo reanudará después de un ligero retraso. Esto lo hace ajustando la velocidad de reproducción a 0 mientras que chop ajustaría la amplitud a 0. Escuche la diferencia ejecutando el código de abajo en FoxDot:</p>
                                 
                                <p> <code>#usando chop</code></p>
-                              <p>  <code>c1 >> play("c", dur=4, chop=16, grosor=0)</code></p>
+                              <p>  <code>c1 >> play("c", dur=4, chop=16, coarse=0)</code></p>
                                <p> <code>#usando gruesos</code></p>
-                               <p> <code>c1 >> play("c", dur=4, grosor=16, chop=0)</code></p>
+                               <p> <code>c1 >> play("c", dur=4, coarse=16, chop=0)</code></p>
                                 
                                 <p>Otro uso para sonidos gruesos sería cuando se obtienen sonidos de "recorte" al usar chop. Esto ocurre cuando una amplitud va a 0 muy rápidamente y suena como un pequeño "pop". Ejecute estas líneas de código en FoxDot y escuche las diferencias:</p>
                                 
                                <p> <code>b1 >> bass(dur=2, chop=4,coarse=0)</code></p>
 
-                               <p> <code>b1 >> bajo(dur=2, coarse=4, chop=0)</code></p>
+                               <p> <code>b1 >> bass(dur=2, coarse=4, chop=0)</code></p>
 
 
  
@@ -877,7 +877,7 @@ La mayoría de los efectos se aplican utilizando un único valor, como pan, pero
                                 
                               <p>  <code>#Añade distorsión tanto a los reproductores de muestra como a los de sintetizador                                        </code></p>
                                <p> <code>d1 >> play("x * ", shape=0.5)                    </code></p>
-                               <p> <code>p1 >> suciedad ([0,5], forma=0,5, dur=8) + (0,4) </code></p>
+                               <p> <code>p1 >> dirt ([0,5], forma=0,5, dur=8) + (0,4) </code></p>
                                 <hr style= "border-color: #4e7c5c; width:90%">
                                 <h3>Reverb</h3>
                                 <h5>palabras clave:  room, mix = 0.1</h5>
@@ -927,7 +927,7 @@ La mayoría de los efectos se aplican utilizando un único valor, como pan, pero
                                 <p>Este efecto desplaza continuamente el sonido de izquierda a derecha, y viceversa, n número de veces, donde n es el valor dado. Esto depende del sustain de la nota (dado usando la palabra clave sus.</p>
                                 
                               <p>  <code># Mueve la sartén de izquierda a derecha 4 veces a través de 4 tiempos                                 </code></p>
-                                <p><code>p1 >> almohadillas(dur=4, spin=4) </code></p>
+                                <p><code>p1 >>pads(dur=4, spin=4) </code></p>
                                 
                                 <p># Mueve la cacerola de izquierda a derecha 4 veces a través de un latido</p>
                                 
@@ -1032,34 +1032,34 @@ La mayoría de los efectos se aplican utilizando un único valor, como pan, pero
                                 
                                 <p>Devuelve la representación de la cadena del reproductor (llamada cuando se utiliza la impresión para mostrar información en la consola). Si se le ha dado un nombre, devolverá el nombre seguido del sintetizador que se está utilizando. Si no es así, sólo devolverá información sobre el synthdef.</p>
                                 
-                                <p><code># Con un nombre
-                                            p1 = Reproductor ("p1")
-                                            p1 >> almohadillas(> p1 >> almohadillas()
-                                            imprimir(p1)
-                                            "p1 - pads"
-                                            # Sin un nombre
-                                            p1 = Player()
-                                            p1 >> almohadillas(> p1 >> almohadillas()
-                                            imprimir(p1)
-                                            "Un'puntear' Objeto de reproductor</code></p>
+                                <p><code># Con un nombre </code></p>
+                                <p><code>   p1 = player("p1")</code></p>
+                                <p><code>        p1 >> pads (> p1 >> pads()</code></p>
+                                <p><code>print(p1) </code></p>
+                                <p><code>"p1 - pads"</code></p>
+                                <p><code># Sin un nombre</code></p>
+                                <p><code>    p1 = Player()</code></p>
+                                <p><code>p1 >> pads(> p1 >> pads()</code></p>
+                                <p><code>print(p1)</code></p>
+                                            <p><code>"Un'puntear' Objeto de reproductor</code></p>
                                  <hr style= "border-color: #4e7c5c; width:90%"> 
                                <h3>addd__(valor)</h3>
                                 
                                 <p>Esto agrega valor al grado del Jugador. Si está utilizando el play synthdef, el valor se añade al atributo de muestreo en su lugar.</p>
                                 
                                <p><code># Las dos líneas son equivalentes
-                                p1 >>pads (P[0, 1, 2, 3] + (0, 4))
-                                p1 >> pads (P[0, 1, 2, 3]) + (0, 4)
+                              <p><code>  p1 >>pads (P[0, 1, 2, 3] + (0, 4))</code></p>
+                               <p><code> p1 >> pads (P[0, 1, 2, 3]) + (0, 4)</code></p>
 
                                 #Puede ser un patrón, PGroup, var, o un solo número
-                                p1 >>pads (P[0, 1, 2, 3]) +[0, 0, 4]
-                                p1 >> pads (P[0, 1, 2, 3]) + var([0, -2], 8)</code></p> 
+                               <p><code> p1 >>pads (P[0, 1, 2, 3]) +[0, 0, 4]</code></p>
+                             <p><code>   p1 >> pads (P[0, 1, 2, 3]) + var([0, -2], 8)</code></p> 
                                 
                                 
                                 <p>El uso de 'play' alterará los valores de la muestra de manera que estas líneas sean equivalentes</p>
                                 
-                                <p><code>p2 >> play("x-o-", sample=P[2, 3] +[0, 0, 1])
-                                         p2 >> play("x-o-", sample=[2, 3]) +[0, 0, 1]</code></p>
+                                <p><code>p2 >> play("x-o-", sample=P[2, 3] +[0, 0, 1])</code></p>
+                                      <p><code>   p2 >> play("x-o-", sample=[2, 3]) +[0, 0, 1]</code></p>
                                 
                                 <p>¿Qué es lo que quieres?</p>
                                 
@@ -1067,7 +1067,7 @@ La mayoría de los efectos se aplican utilizando un único valor, como pan, pero
                                     usando p1.amp. Esto devuelve un objeto PlayerKey, que actúa de forma similar a un TimeVar.</p>
                                 
                                 <p><code>__setattr__(attr, value)
-                                         __invert__()</code></p>
+                                   <p> <code>     __invert__()</code></p>
                                 
                                 
                                 <p>Es la abreviatura del método de reinicio.</p>
