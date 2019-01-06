@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> Efectos del Reproductor </title>
+      <meta name="FoxDot | Livecoding"/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style-tsula.css" />
+
+      <script> </script>
+
+</head>
+    
+     <div class="margenuno">
+ <heaheader  >
+     <h1 >Foxdot</h1>
+     <h2 >python y supercollider</h2>
+ <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+
+</heaheader>
+
+    </div>
+
+<body class="fondo">
+    <div class="margenuno">
+<h2>Efectos del Reprodcor</h2>
+                                              <p>Los efectos se pueden agregar a un Reproductor de la misma manera que se cambian sus atributos; utilizando argumentos de palabras clave. Al igual que con los atributos del Reproductor, pueden ser un único valor o una secuencia. Esta página contiene descripciones de los diferentes efectos disponibles en FoxDot y cómo aplicarlos. </p>
+<p>
+La mayoría de los efectos se aplican utilizando un único valor, como pan, pero algunos tienen un único efecto "padre" y uno o más efectos "hijo". Un ejemplo es slide, que es el padre, y slidedelay es el hijo. Si el efecto padre se establece en 0, el efecto no se aplica. Los valores hijo de 0 todavía se aplican si el padre es distinto de cero.</p>
+                                <p><code> # Efecto de diapositivas añadido                   </code></p>
+                              <p>  <code> p1 >> pluck(dur=4, slide=1, slidedelay=0.5)        </code></p>
+
+                               <p> <code> # Efecto de diapositivas no añadido                </code></p>
+                              <p>  <code> p1 >> pluck(dur=4, slide=0, slidedelay=0.5)        </code></p>
+
+                               <p> <code> # Efecto de deslizamiento añadido, con retardo cero</code></p>
+                               <p> <code> p1 >> pluck(dur=4, slide=1, slidedelay=0)          </code></p>
+                               <hr style= "border-color: #4e7c5c; width:90%"> 
+                                <h3>Sustain</h3>
+                                <h5>palabras claves: sus, blur=1</h5>
+                                <p>El argumento de la palabra clave sus se utiliza para establecer el "sustain" de una nota, lo que significa cuánto tiempo dura el sonido de la nota. Por defecto es la misma que la duración de la nota (ajustada con la palabra clave dur) y es un valor medido en términos de "beats". El siguiente código reproducirá una nota de un compás, una repetición con un sostenido de medio compás:</p>
+                                
+                               <p> <code># Duración de un latido, duración de medio latido</code></p>
+                              <p>  <code>p1 >> pluck(dur=1, sus=1/2)                      </code></p>
+                                
+                                <p>Utilice el desenfoque 'blur' para crear un efecto de "legato" (una palabra que significa "atado" en italiano). Este es un término musical que se refiere a cómo las notas se suceden entre sí, o se desdibujan juntas. El valor sus se multiplica por el valor de desenfoque actual de tal manera que el siguiente código duplica la longitud del sustain de cada una de las otras notas:</p>
+                                
+                               <p><code># Duplica la longitud de cualquier otra nota </code></p> 
+                               <p> <code>p1 >> pluck(dur=PDur(3,8), blur=[1, 2])</code></p> 
+                               <hr style= "border-color: #4e7c5c; width:90%"> 
+                                <h3>Stereo panning</h3>
+								<h5>palabras clave: pan </h5>
+                                <p>La panorámica (en audio) es la distribución del sonido a través de varios altavoces. Actualmente FoxDot sólo utiliza dos canales de salida (para el altavoz izquierdo y derecho) pero hay planes para expandirlo para múltiples altavoces. Para cambiar el panorama de un sonido, utilice el panorama y establezca el valor entre -1 (izquierda dura) y 1 (derecha dura). Un valor de panoramización de 0 envía la señal de audio de ambos altavoces por igual.</p>
+                                
+                               <p> <code># Alternar entre izquierda, centro y derecha</code></p>
+							 	<p><code>p1 >> pluck(pan =[-1, 0, 1])</code></p>
+                               <p> <code># Toca dos notas al mismo tiempo, pero en diferentes altavoces</code></p>
+							 	<p><code>p1 >> pluck((0, 4), pan=(-1,1))</code></p>
+                               <p> <code># Mueva gradualmente el sonido de izquierda a derecha usando una "linvar".</code></p>
+							 	<p><code>p1 >> pluck([0, 2, 4, 7], dur=1/4, pan=linvar([-1,1],8))</code></p>
+                                
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>Frequency modifier</h3>
+                                <h5>palabra clave: fmod</h5>
+                                
+                                <p>Esto añade un valor a la frecuencia utilizada para generar una nota, pero sólo en uno de los canales. Por ejemplo, al iniciar un reproductor sin instrucciones, se reproducirá continuamente una nota en el do medio, que es 261,6 Hz, a través de ambos canales de altavoz. Usando fmod = 10 reproducirá la nota a 261.6 Hz en un canal, y 271.6 Hz en el otro. Esto crea una notable "disonancia" o un sonido "atonal" debido a que las frecuencias están tan cerca unas de otras. Usando un valor más pequeño, como 2, crea una especie de efecto de flanger:</p>
+                                
+                               <p> <code># Simple efecto flanger                             </code></p>
+                                <p><code>p1 >> pluck(fmod = 2)                               </code></p>
+                                <p><code># Varía el efecto con el tiempo                     </code></p>
+                               <p> <code>p1 >> pluck(fmod=linvar([-10,10],8), dur=1/4, sus=1)</code></p>
+                               
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3> vibrato</h3>
+                                <h5>palabras clave: vib, vibdepth = 0.02</h5>
+                                
+                                <p>Vibrato es un término musical que se refiere a una modulación continua de la afinación, es decir, que cambia con el tiempo. Puedes establecer la velocidad del vibrato de una nota usando la palabra clave vib y la profundidad (el tamaño de la modulación) del vibrato usando la palabra clave vibdepth. La profundidad por defecto es de 0.02, lo que significa que el vibrato fluctúa entre +/- la frecuencia de la nota multiplicada por 0.02. También se puede pensar que fluctúa entre el 99% y el 101% del valor de frecuencia.</p>
+                                
+                              <p>  <code>p1 >> pads(dur=4, vib=4)               </code></p>
+                              <p>  <code>p1 >> pads(dur=4, vib=4, vibdepth=0.1) </code></p>
+                               <p> <code>p1 >> pads(dur=4, vib=4, vibdepth=1)   </code></p>
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>silde</h3>
+                                <h5> palabras clave: slide, slidedelay = 0</h5>
+                                <p>Se utiliza para cambiar la frecuencia de una nota con el tiempo. La frecuencia "desliza" a (1 + n) * freq donde n es el valor suministrado a la palabra clave de la diapositiva. Por ejemplo, un valor de diapositiva de 1 desplazará la frecuencia hasta el doble de su valor original (una octava hacia arriba). Un valor de diapositiva de -1 se deslizará a una frecuencia de 0.</p>
+
+                                <p> Por defecto, el efecto de diapositiva comienza inmediatamente después de que comienza la nota. Para retrasar el inicio de la diapositiva, puede utilizar la palabra clave slidedelay. Este debe ser un valor entre 0 (el comienzo de la nota) y 1 (el final de la nota).</p>
+                                
+                               <p> <code># Desliza una octava hacia arriba             </code></p>
+                            <p>    <code>p1 >> pluck(dur=4, slide=1)                   </code></p>
+                               <p> <code># Slide to 0                                  </code></p>
+                            <p>    <code>p1 >> pluck(dur=4, slide=-1)                  </code></p>
+                               <p> <code># Retrasa el efecto de la diapositiva para comenzar a mitad de la nota                                                </code></p>
+                                <p><code>p1 >> pluck(dur=4, slide=0.5, slidedelay=0.5) </code></p>
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>slide from </h3>
+                                <h5>palabra clave: slidefrom, slidedelay = 0</h5>
+                                <p>Similar a la diapositiva, este efecto también cambia la frecuencia de una nota con el tiempo, pero usted especifica dónde comienza la diapositiva. La frecuencia "desliza" desde (1 + n) * freq donde n es el valor suministrado a la palabra clave deslizante y termina en la frecuencia de la nota.</p>
+
+                                <p>Por ejemplo, un valor de 1 desplazará la frecuencia desde el doble de su valor original (una octava hacia arriba). Un valor de diapositiva de -1 se deslizará desde una frecuencia de 0. Por defecto, el efecto de diapositiva comienza inmediatamente después de que comienza la nota. Para retrasar el inicio de la diapositiva, puede utilizar la palabra clave slidedelay. Este debe ser un valor entre 0 (el comienzo de la nota) y 1 (el final de la nota).</p>
+                                
+                             <p>   <code># Deslízate de una octava hacia arriba</code></p>
+                            <p>    <code>p1 >> pluck(dur=4, slidefrom=1)       </code></p>
+                               <p> <code># Slide from 0                        </code></p>
+                            <p>    <code>p1 >> pluck(dur=4, slidefrom=-1)      </code></p>
+                               <p> <code># Retrasa el efecto de la diapositiva para comenzar a mitad de la nota                                        </code></p>
+                              <p>  <code>p1 >> pluck(dur=4, deslizamiento desde=0.5, deslizamiento retardado=0.5)                              </code></p>
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>Pitch bend</h3>
+                                <h5>palabras clave: bend, benddelay = 0</h5>
+                                <p>Otro efecto similar al deslizamiento, el pitch bend cambia la frecuencia de una nota a lo largo del tiempo, pero también vuelve a su frecuencia original al final de la nota. Aparte de eso, funciona exactamente igual que la diapositiva.</p>
+                                
+                             <p>   <code># Dobla una octava hacia arriba y hacia atrás otra vez</code></p>
+                             <p>   <code>p1 >> pluck(dur=4, bend=1)                            </code></p>
+                               <p> <code># Bend to 0 and back again                            </code></p>
+                               <p> <code>p1 >> pluck(dur=4, bend=-1)                           </code></p>
+                               <p> <code># Retrasa el efecto de curvatura para empezar a mitad de la nota                                                               </code></p>
+                               <p> <code>p1 >> pluck(dur=4, slide=0.5, bend=0.5)               </code></p>
+                                
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>chop</h3>
+                                <h5>palabras clave: chop </h5>
+                                <p>El "chops" la señal de audio en "n" partes, donde "n" es el valor que proporciona al argumento de la palabra clave. Utiliza el sustain de la nota (fijado con sus) para determinar el tamaño de las partes, por lo que también puede combinar chop y sus para crear efectos interesantes.</p>
+                                
+                               <p> <code># Cortar un sonido en 4 partes</code></p>
+                              <p>  <code>p1 >> pluck([0,1,2,3], dur=4, chop=4)</code></p>
+                              <p>  <code># Si la duración varía, el tamaño de la chuleta también variará</code></p>
+                                
+                                <p>Cambiar un único valor para "sus" iguala los tamaños y crea un bonito efecto de eco superpuesto.</p>
+                                <code>p1 >> pluck([0,[4,6,7]], dur=PDur(3,8), chop=4, sus=2)</code>
+                              
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>coarse</h3>
+                                <h5>palabras clave: coarse</h5>
+                                <p>Esto es similar a "chop" pero difiere en que la señal de audio no está siendo "cortada", sino que la velocidad de control (la frecuencia de las notas / la velocidad de reproducción de las muestras). Esto puede ser útil en varias situaciones.</p>
+                                <p>reproducción: El uso de chop esencialmente sólo reproduce la mitad del audio mientras que la otra mitad está siendo silenciada por el efecto "chop". Usando grueso esencialmente pausará el sonido y lo reanudará después de un ligero retraso. Esto lo hace ajustando la velocidad de reproducción a 0 mientras que chop ajustaría la amplitud a 0. Escuche la diferencia ejecutando el código de abajo en FoxDot:</p>
+                                
+                               <p> <code>#usando chop</code></p>
+                              <p>  <code>c1 >> play("c", dur=4, chop=16, coarse=0)</code></p>
+                               <p> <code>#usando gruesos</code></p>
+                               <p> <code>c1 >> play("c", dur=4, coarse=16, chop=0)</code></p>
+                                
+                                <p>Otro uso para sonidos gruesos sería cuando se obtienen sonidos de "recorte" al usar chop. Esto ocurre cuando una amplitud va a 0 muy rápidamente y suena como un pequeño "pop". Ejecute estas líneas de código en FoxDot y escuche las diferencias:</p>
+                                
+                               <p> <code>b1 >> bass(dur=2, chop=4,coarse=0)</code></p>
+
+                               <p> <code>b1 >> bass(dur=2, coarse=4, chop=0)</code></p>
+
+
+ 
+                                <p>
+                                    La línea que usa tosca = 4 suena un poco más limpia. Desafortunadamente esto no siempre sucede y lo grueso no siempre se puede aplicar a algunos sintetizadores, por ejemplo klank.</p>
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>Filtro de pasos altos</h3>
+                                <h5> palabras claves:  hpf, hpr = 1</h5>
+                                <p>Un sonido no trivial se compone de una combinación de ondas sonoras que vibran a varias frecuencias y amplitudes, y algunas de ellas pueden "filtrarse" de una señal utilizando un filtro. Esto se conoce a menudo como "síntesis sustractiva". Un filtro de paso alto eliminará las partes de una señal que están por debajo de cierta frecuencia, es decir, sólo permite el paso de frecuencias superiores al umbral. Esto se puede aplicar en FoxDot simplemente ajustando el valor hpf (abreviatura de filtro pasaaltos):</p>
+                                
+                            <p>    <code>#Ajuste el límite del filtro pasa-altos a 2000 Hz.</code></p>
+                             <p>   <code>d1 >> play("x-o-", hpf=2000)                      </code></p>
+                              <p>  <code># Establece el corte para que cambie con el tiempo usando una linvar                                                  </code></p>
+                               <p> <code>d1 >> play("x-o-", hpf=linvar([0,2000],32)        </code></p>
+                                
+                                <p>También puede ajustar la resonancia de paso alto para el filtro usando la palabra clave hpr. Esto se denomina a veces "rq" o "hpq". A medida que este valor disminuye, los armónicos cerca del valor de corte se incrementan - un valor cercano a 0 sonará como una onda sinusoidal oscilando en el valor establecido usando hpf. Tenga cuidado con los valores muy pequeños y muy grandes ya que podría obtener sonidos muy fuertes!</p>
+                                
+                              <p>  <code>#Ajuste el límite del filtro pasa-altos a 2000 Hz.</code></p>
+                               <p> <code>d1 >> play("x-o-", hpf=2000)</code></p>
+                                
+                              <p>  <code> Ajuste la resonancia a 0.2 - ¿puede oír la diferencia?</code></p>
+                                <p><code>d1 >> play("x-o-", hpf=2000, hpr=0.2)</code></p>
+                                
+                              <p>  <code>#Ajuste la resonancia de corte *y* para que cambie con el tiempo usando linvar                              </code></p>
+                                <p><code>d1 >> play("x-o-", hpf=linvar([0,2000],32), hpr=linvar([1,0.1],28))                                            </code></p>
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>Filtro paso bajo</h3>
+                                <h5>palabras clave: lpf, lpr = 1</h5>
+                                <p>Del mismo modo que el filtro de paso alto sólo permite el paso de frecuencias dentro de una señal de audio por encima de un determinado límite, el filtro de paso bajo sólo permite el paso de frecuencias dentro de una señal de audio por debajo de un determinado límite. La resonancia de paso bajo, lpr, funciona de la misma manera que la resonancia de paso alto.</p>
+                                
+                               <p> <code>Ponga el filtro de paso bajo a 400 Hz.</code></p>
+                               <p> <code>d1 >> play("x-o-", lpf=400)           </code></p>
+                                    
+                                <p><code># Cambiando la resonancia - ¿puedes oír la diferencia?</code></p>
+                               <p> <code>d1 >> play("x-o-", lpf=400, lpr=0.2)                  </code></p>
+
+                               <p> <code># Usa una linvar para variar ambos valores con el tiempo</code></p>
+                              <p>  <code>d1 >> play("x-o-", lpf=linvar([500,5000],32), lpr=linvar([1,0.1],28))                                       </code></p>
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>Bitcrush</h3>
+                                <h5>palabras clave: crush, bits = 8</h5>
+                                <p>El bitcrushing es un efecto de distorsión creado por la reducción de la frecuencia de muestreo de una señal de audio y del ancho de banda. Un valor de aplastamiento de 1 reducirá la velocidad de bits de la señal al valor de bits, que es 8 por defecto. Cada incremento de aplastamiento posterior reduce a la mitad la frecuencia de muestreo de la señal (a partir de 44,1 KHz). El efecto bitcrush requiere que los plugins SC3 estén instalados para funcionar.</p>
+                                
+                              <p>  <code># Aplica el efecto bit-crusher</code></p>
+                              <p>  <code>d1 >> play("X O", crush=4)    </code></p>
+                               
+                              <p>  <code> # Reduce el número de bits para más distorsión</code></p>
+                                <p><code>d1 >> play("X O", crush=4, bits=4)             </code></p>
+                                
+                                <p><code>#O reduzca la frecuencia de muestreo para un estilo diferente de distorsión!                                           </code></p>
+                               <p> <code>d1 >> play("X O", crush=32, bits=8)             </code></p>
+                                
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>distorsión</h3>
+                                <h5>palabra clave: dist</h5>
+                                <p>Esto requiere la instalación de los plugins SC3. Este debe ser un valor entre 0 y 1 y distorsiona la señal de audio.</p>
+                                
+                              <p>  <code>#Añade distorsión tanto a los reproductores de muestra como a los de sintetizado                                       </code></p>
+                                
+                                
+                               <p> <code>d1 >> play("x * ", dist=0.2)                   </code></p>
+                               <p> <code>p1 >> dirt ([0,5], dist=0,3, dur=8) + (0,4)</code></p>
+                                
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>Distorsión de la forma de onda</h3>
+                                <h5>palabras clave: shape</h5>
+                                <p>Este es otro tipo de distorsión que afecta la forma de onda de la señal de audio. Este valor debe estar entre 0 y 1, pero también se aceptan valores mayores (¡cuidado con los auriculares!). Este efecto de distorsión no requiere ninguna instalación adicional.</p>
+                                
+                              <p>  <code>#Añade distorsión tanto a los reproductores de muestra como a los de sintetizador                                        </code></p>
+                               <p> <code>d1 >> play("x * ", shape=0.5)                    </code></p>
+                               <p> <code>p1 >> dirt ([0,5], forma=0,5, dur=8) + (0,4) </code></p>
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>Reverb</h3>
+                                <h5>palabras clave:  room, mix = 0.1</h5>
+                                <p>Utilice la palabra clave room para añadir reverberación a un sonido. Esto emula el efecto de tocar el sonido en una habitación y puede ser en una escala de seco (0% mezcla del sonido reverberado) a húmedo (100% mezcla del sonido reverberado). La palabra clave de la sala establece el tamaño de la sala para emular la reverberación, y la mezcla es la mezcla porcentual como una fracción (es decir, 0,1 es 10%).</p>
+                                
+                              <p>  <code> #emula el reproductor en un pequeño salon </code></p>
+                              <p>  <code>p1 >> play("x o ", room=0.25)              </code></p>
+                                
+                              <p>  <code># Emular la reproducción de los sonidos en una habitación más grande                                           </code></p>
+                              <p>  <code>p1 >> play("x o ", room=0.8)               </code></p>
+                                
+                             <p>   <code> # Haz que la señal sea más'húmeda         </code></p>
+                                <p><code>p1 >> play("x o", room=0.8, mix=0.8)       </code></p>
+                                
+                                <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3>eco</h3>
+                                <h5>palabras clave: echo, decay = 1</h5>
+                                <p>Este efecto a menudo se conoce con el nombre de "Comb Delay" pero aplicarlo a un solo sonido le dará el efecto de un eco en una habitación. Utilice la palabra clave eco para definir la duración (en tiempos) entre cada sonido repetido. El siguiente código reproduce una sola nota en repetición, pero oímos el eco de vuelta a nosotros después de 1 latido.</p>
+                                
+                                <code>p1 >> blip(dur=4, echo=1)                    </code>
+                                
+                                <p>NOTA: A veces puede que tenga que añadir reverberación utilizando el argumento de palabra clave de la sala para escuchar el efecto de eco. Esto se debe a que un sonido es detenido por el SuperCollider una vez que es detectado como silencioso. Si el eco se produce después de un período de silencio, tendrá que añadir reverberación para mantener el sonido "vivo" por así decirlo. He aquí un ejemplo:</p>
+                                
+                               <p> <code># No oímos ningún efecto de eco              </code></p>
+                               <p> <code>d1 >> play("x-o-", dur=1, echo=0.75)         </code></p>
+                                
+                             <p>   <code># Añade reverberación y lo haremos             </code></p>
+                              <p>  <code> d1 >> play("x-o-", dur=1, echo=0.75, room=0.5)</code></p>
+                                
+                                <p>Por defecto, probablemente sólo oirá un eco del sonido original. Para escuchar más ecos, aumente la duración de la caída:</p>
+                                
+                              <p> <code># Sólo oigo un eco        </code></p>
+                               <p> <code>p1 >> blip(dur=4, echo=1) </code></p>
+                                
+                             <p>   <code># Ahora oímos varios              </code></p>
+                             <p>   <code>p1 >> blip(dur=4, echo=1, decay=8)</code></p>
+                                
+                             <p>   <code># Podemos usar echo para hacer los bucles de batería más interesantes también                                          </code></p>
+                              <p>  <code>d1 >> play("(x )( x)o ", room=0.1, echo=0.75/2, decay=4)</code></p>
+                                
+                                
+                                <p>Tenga cuidado de no utilizar demasiado eco en demasiados reproductores, ya que utiliza una gran cantidad de CPU y puede provocar un fallo del SuperCollider.
+                                </p>
+                               <hr style= "border-color: #4e7c5c; width:90%"> 
+                                <h3>Pan spin</h3>
+                                <h5>palabras clave: spin</h5>
+                                <p>Este efecto desplaza continuamente el sonido de izquierda a derecha, y viceversa, n número de veces, donde n es el valor dado. Esto depende del sustain de la nota (dado usando la palabra clave sus.</p>
+                                
+                              <p>  <code># Mueve la sartén de izquierda a derecha 4 veces a través de 4 tiempos                                 </code></p>
+                                <p><code>p1 >>pads(dur=4, spin=4) </code></p>
+                                
+                                <p># Mueve la cacerola de izquierda a derecha 4 veces a través de un latido</p>
+                                
+                               <p> <code>p1 >> pads(dur=4, sus=1, spin=4)  </code></p>
+                             <hr style= "border-color: #4e7c5c; width:90%">   
+                                <h3>cut</h3>
+                                <h5> palabras clave: cut</h5>
+                                <p>Para detener un sonido abruptamente (en lugar de usar sólo un sus más corto) puede usar la palabra clave "cortar". Esto es especialmente útil cuando se reproducen muestras utilizando la reproducción de SynthDef, ya que sus no tiene ningún efecto sobre el sonido en sí. La duración en la que se detiene el sonido es el valor de corte como proporción del valor sus, es decir, un corte de 0,5 detendrá el sonido a mitad de camino.</p>
+                                
+                                <p><code> # Detenga un sonido inmediatamente en lugar de su decadencia natural                              </code></p>
+                            
+                                <p><code>p1 >> pads(dur=4, corte=0.75)  </code></p>
+                                
+                               <p> <code># Acortar las muestras a una décima parte de su longitud normal                                          </code></p>
+                                
+                               <p> <code>d1 >> play("x-o-", cut=0.1)    </code></p>
+                              <hr style= "border-color: #4e7c5c; width:90%">  
+                                <h3>Filtro de formantos</h3>
+                                <h5>palabras clave:  formant</h5>
+                                <p> Esto usa la clase Formlet de SuperCollider para añadir un filtro de resonancia muy simple al sonido, no muy diferente al efecto "vocal" de TidalCycles. Los valores deben estar entre 1 y 7.</p>
+                                
+                                <p><code># Recorre los diferentes niveles podemos aplicar el filtro </code></p>
+                             <p>   <code> p1 >> pluck(formant=P[:8])                                </code></p>
+                            
+                            
+                            
+                            
+                            
+                           
+                              <hr style= "border-color: #4e7c5c; width:90%">  
+                                <h3>Distorsión del Overdrive</h3>
+                                <h5>palabras clave: drive</h5>
+                                <p>Una distorsión creada al amplificar el sonido y luego recortarlo a una amplitud mucho más "normal". Los valores deben estar entre 0 y 1, pero se aceptan valores mayores.</p>
+                                
+                               <p> <code>#Añade distorsión de sobremarcha                            </code></p>
+                              <p>  <code>p1 >> dirt(dur=1/2, accionamiento=1)                    </code></p>
+ </div>                           
+
+</body>
+<div class="margenuno"> <a href="adr.html"> Atras </a></div>
+    <div class="siguiente">  <a  href="mdr.html">siguiente </a> </div>
+<footer>
+</footer>

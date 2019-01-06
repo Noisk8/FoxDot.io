@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> Escala y Afinación </title>
+      <meta name="FoxDot | Livecoding"/>
+      <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style-tsula.css" />
+      
+
+      <script> </script>
+
+</head>
+
+ <div class="margenuno">
+ <heaheader  >
+     <h1 >Foxdot</h1>
+     <h2 >python y supercollider</h2>
+ <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+
+</heaheader>
+
+    </div>
+
+<body class="fondo">
+
+<div class="margenuno">
+    <h2> Escalas y afinación</h2>
+
+                                <p>FoxDot se inspira mucho en la teoría tradicional de la música occidental, incluyendo el uso de escalas musicales. Una escala es esencialmente un subconjunto de las notas musicales (tonos) entre una nota, por ejemplo C, y la misma una octava más alta. La nota inicial es la clave de la escala. Así que comenzando en Do, estas notas son: </p>
+                                
+                                <p><code>C, C#, D, D#, E, F, F#, G, G#, A, A#, B</code></p>
+                                
+                                <p>
+                                    Este conjunto de todas las notas se llama la escala cromática. Si esto fuera una lista de Python llamada cromática, entonces cromática[0] devolvería C, cromática[1] devolvería C#, cromática[2] devolvería D, y así hasta cromática[11], que devolvería B. Debido a que cada escala musical es un subconjunto de estos tonos, podemos pensar en cada escala como una lista de índices para acceder a los tonos en la escala cromática. Veamos la escala mayor como ejemplo:</p>
+								
+                                
+                                <p>La escala de Do Mayor se compone de C, D, E, F, G, A y B:</p>
+                                
+                                <p><code>cromático =[C, C#, D, D#, E, F, F#, G, G#, A, A#, B]</code></p>
+                                <p><code>C = cromático[0]</code></p>
+                                <p><code>D = cromático[2]</code></p>
+                                <p><code>E = cromático[4]</code></p>
+                                <p><code>F = cromático[5]</code></p>
+                                <p><code>G = cromático[7]</code></p>
+                                <p><code>A = cromático[9]</code></p>
+                                <p><code>B = cromático[11]</code></p>
+                                
+                                <p>Una forma de crear la escala mayor usando un bucle podría ser:</p>
+                                <p><code>pasos =[0, 2, 4, 5, 7, 9, 11]</code></p>
+                                <p><code>Escala = []</code></p>
+                                <p><code>para el paso en la escala:</code></p>
+                                <p> <code>-scale.append(cromático[paso])</code></p>
+                                <p><code># escala ==[C, D, E, F, G, A, B]</code></p>
+                                
+                                <p>Nuestra lista de pasos contiene los índices necesarios para crear la escala mayor. Así que cuando usamos el siguiente código para tocar todas las notas de la escala, estamos suministrando otra lista de índices, que se está usando para acceder a la lista de escalas:
+                                </p>
+                                
+    
+                                <p><code># Toca cada nota en la escala</code></p>
+                                <p><code>p1 >> pluck([0, 1, 2, 3, 4, 5, 6, 7])</code></p>
+                                <p><code># Esencialmente estamos jugando:</code></p>
+                                <p><code>p1 >> pluck([scale[0], scale[1], scale[2], ..., scale[7])</code></p>
+                                <p><code># Que es equivalente a:</code></p>
+                                <p><code>p1 >> pluck([cromático[0], cromático[2], cromático[4], escala[5], ...., cromático[11])</code></p>
+                                
+                                <p>A veces puede que quieras usar una nota que no está en la escala, tan "aguda" como Do# en la escala de Do Mayor, que se llama "accidental" aunque sea a propósito. Puedes usar números en coma flotante y FoxDot se aproximará a la nota a la que intentas acceder. Por ejemplo, para acceder a C# en la escala de Do mayor, usaría la escala[0.5] porque C# está entre C y D, que son la escala[0] y la escala[1] respectivamente.</p>
+                                
+                                <h3>Lista de escalas</h3>
+                                <p>Para ver una lista de las escalas disponibles simplemente ejecute el comando <code>print(Scale.names()).</code> Esto devolverá una lista de todas las escalas como cadenas así:</p>
+                                
+                                <p><code> print(Scale.names())</code></p>
+                                <p>['aeolian', 'chinese', 'chromatic', 'custom', 'default', 'diminished', 'dorian', 'dorian2', 'egyptian', 'freq', 'harmonicMajor', 'harmonicMinor', 'indian', 'justMajor', 'justMinor', 'locrian', 'locrianMajor', 'lydian', 'lydianMinor', 'major', 'majorPentatonic', 'melodicMajor', 'melodicMinor', 'minor', 'minorPentatonic', 'mixolydian', 'phrygian', 'prometheus', 'romanianMinor', 'yu', 'zhi']</p>
+                                
+                                <p>Se puede acceder a cada objeto de la escala escribiendo Escala seguido de un ":</p>
+                                
+                                <p><code># Ver los semitonos de la escala mayor</code></p>
+                                <p><code> print(Escale.major)</code></p>
+                                <p><code># Accede a lo largo de la escala mayor</code></p>
+                                <p><code>print(len(Scale.major))</code></p>
+                                
+                                <h3>Ajuste de la escala</h3>
+                                
+                                <p>De forma predeterminada, cada reproductor utiliza una escala predeterminada accesible de forma global llamada Scale.default. Esto se puede cambiar de varias maneras:</p>    
+                                
+                                <p><code># Simplemente asignando el objeto de escala a Scale.default</code></p>
+                                <p><code>Scale.default  = Scale.minor</code></p>
+                                <p><code># Puedes usar el nombre de la cadena</code></p>
+                                <p><code>Scale.default = "minor"</code></p>
+                                <p><code>También puede utilizar el método "set", que permite más opciones</code></p>
+                                <p><code>Scale.default.set("minor")</code></p>
+                                
+                                <p>Los jugadores individuales pueden utilizar escalas independientes simplemente suministrando un objeto de escala a la palabra clave de la escala como lo haría con cualquier otro atributo de reproductor:</p>
+                                
+                                <p><code># Establece la escala a mayor</code></p>
+                                <p><code>Scale.default = Scale.major</code></p>
+                                <p><code># Forzar a un reproductor a usar la escala menor</code></p>
+                                <p><code>p1 >> pluck([0,1,2,3], scale=Scale.minor)</code></p>
+                                
+                                <h3>Afinación y personalización</h3>
+                                <p>La afinación musical es esencialmente la relación entre las frecuencias de las notas en una escala. La afinación más comúnmente utilizada en la música popular occidental es la afinación temperada igual de 12 pasos, que se encuentra en instrumentos como un piano. Otro sistema de afinación muy popular es el de "sólo entonación", que se analizará a continuación. Puede leer más sobre estos sistemas de ajuste haciendo clic en los enlaces del texto de arriba.</p>
+
+                                <p>Del mismo modo que podemos ver los objetos de escala, también podemos ver los objetos de afinación:</p>
+                                <p><code># Igual de temperamental</code></p>
+                                <p><code>print(Tuning.ET12)</code></p>
+                                <p><code># Sólo entonación</code></p>
+                                <p><code>print(Tuning.just)</code></p>
+                                
+                                <p>Usando Scale.default.set también podemos establecer la afinación para la escala por defecto, así que ajustemos la afinación a sólo entonación mientras tocamos un acorde mayor y escuchemos el ligero cambio de color:</p>
+         
+
+                                <p><code> # Toca un acorde en repetición</code></p>
+                                <p><code>p1 >> pluck((0, 2, 4))</code></p>
+                                <p><code># Establece la sintonía en sólo</code></p>
+                                <p><code>Escala.default.set("major", tuning=Tuning.just)</code></p>
+                                <p><code># Vuelve a tener el mismo temperamento</code></p>
+                                <p><code>Escala.default.set("major", tuning=Tuning.ET12)</code></p>
+                                <p>Usted no tiene que usar escalas o afinación existentes - ¡puede incluso usar las suyas propias! Simplemente usando una lista o patrón de números en lugar de la escala y sintonizando nombres.</p>
+                                <p><code>Scale.default.set([0, 2, 3, 5, 6, 9, 10], tuning=[0.1, 0.9, 2.1, 2.9, 4.1, 4.9, 6.1, 6.9, 8.1, 8.9, 10.1, 10.9])</code></p>
+                                
+                                
+    </div>                            
+</body>
+<div class="margenuno"> <a href="ma.html"> Atras </a></div>
+    <div class="siguiente">  <a  href="midi.html">siguiente </a> </div>
+<footer>
+</footer>

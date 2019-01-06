@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> Patrones Basicos </title>
+      <meta name="FoxDot | Livecoding"/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+
+      <script> </script>
+
+</head>
+
+<heaheader>
+ <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+
+</heaheader>
+
+<body class="fondo">
+    
+    <div class="margenuno">
+    <h2>Patrones basicos</h2>
+								
+							<h3> Cómo usar patrones</h3>
+                            <p> Los objetos del reproductor utilizan listas Python, a menudo conocidas como arrays en otros lenguajes de programación, para crear secuencias de valores, como afinación y duración. Sin embargo, las listas no son las estructuras de datos más intuitivas para las transformaciones. Por ejemplo, trate de multiplicar una lista - ¿qué sucede?</p>
+                                
+                            <p>    <code>print([1, 2, 3] * 2)</code></p>
+                                
+                                <p>El resultado es la misma lista repetida dos veces! Si quieres manipular los valores internos (por ejemplo, duplicarlos) en Python, puedes hacerlo de la siguiente manera:</p>
+                                
+                                <p> <code> values = [1, 2, 3]</code></p>
+ 
+                            <p><code># Use a loop</code></p>
+                             <p> <code>  my_list = []</code></p>
+                              <p> <code> for i in values:</code></p>
+                             <p> <code>      my_list.append(i * 2)</code></p>
+                             <p>  <code> print(my_list)</code></p>
+
+                                <p><code> # List comprehension</code></p>
+                                <p>  <code> print([i*2 for i in values])
+                                
+                                </code></p>
+
+                                <p> Para ambos métodos, requiere tener que recorrer en bucle todos los valores y multiplicar cada uno individualmente. Las cosas se complican aún más si también quieres multiplicar cada segundo valor por un número diferente. Esto requiere bastante trabajo, especialmente si no sabes qué números vas a usar. Aquí es donde entra la clase de Patrones. </p>
+
+<p> Los patrones actúan como las listas regulares de Python pero cualquier transformación matemática que se realice en ellas se hace a cada ítem de la lista. La forma más sencilla de crear un patrón es añadir una "P" mayúscula al comienzo de una lista:</p>
+                                
+                            <p>    <code>
+                                    my_list    = [0, 1, 2, 3]</code></p>
+                              <p>  <code> my_pattern = P[0, 1, 2, 3]
+                                </code></p>
+                                
+                                <p>Ahora, cuando realice una operación, como una multiplicación, obtendrá el patrón transformado:</p>
+                                
+                                <p><code>print(my_pattern * 2)</code></p>
+                               <p><code> P[0, 2, 4, 6]
+                                </code></p>
+                                
+                                <p> También puede crear un patrón como lo haría con cualquier otro objeto Python usando el nombre de la clase seguido de corchetes con argumentos:</p>
+                                
+                               <p> <code>my_pattern = Pattern([0, 1, 2, 3])</code></p>
+                                
+                                <p> Los patrones también son "modulo indexable" lo que significa que no importa qué valor usemos como índice cuando accedemos a los datos de un Patrón, siempre y cuando sea un entero obtenemos un valor devuelto. Si el índice es mayor que la longitud del Patrón, entonces volvemos al principio del Patrón y empezamos a buscar:</p>
+                                
+                            <p><code> pat = P[0, 1, 2]</code></p>
+                            <p><code>print(pat[2])</code></p>
+                           <p><code> 2</code></p>
+                              <p> <code> print(pat[3])</code></p>
+                             <p><code>   0</code></p>
+                                
+                                <h3> Transformaciones </h3>
+                                <p> Puede realizar una operación sobre un patrón utilizando una lista u otro patrón para crear transformaciones más complejas. Por ejemplo, sumando los patrones <code>P[0, 1, 2, 3] </code> y <code>P[4, 7] </code>se realizará la operación, lo que significa que el patrón resultante será el resultado <code>P[0 + 4, 1 + 7, 2 + 4, 3 + 7]</code> que es <code> P[4, 8, 6, 10]</code> El uso de patrones de longitudes sin divisor común creará un nuevo patrón que contiene todos los valores de las combinaciones:</p>
+                                
+                            <p> <code> >>> P[0, 1, 2, 3] + P[4, 5, -2]</code></p>
+                              <p><code>  P[4, 6, 0, 7, 5, -1, 6, 8, -2, 5, 7, 1]</code></p>
+                                
+                                <p> Los patrones también tienen métodos específicos para la transformación, como <code> rotar, invertir y clasificar,</code>  que pueden utilizarse para manipular el orden:</p>
+                                
+                               <p><code>P[4, 1, 3, 2].rotate()</code></p> 
+                               <p><code>P[1, 3, 2, 4]</code></p>
+                                <p><code>P[4, 1, 3, 2].reverse()</code></p>
+                                <p><code>P[2, 3, 1, 4]</code></p>
+                                <p><code> P[4, 1, 3, 2].sort()</code></p>
+                              <p> <code> P[1, 2, 3, 4] </code></p>
+                                
+                                
+                                <p> Puede evaluar <code>help(Pattern)</code> para ver más información sobre los métodos.</p>
+                                
+                                <h3> Funciones del patron</h3>
+                                
+                                <p> Hay una serie de funciones que devuelven diferentes Patrones. Estos generan Patrones más largos usando sólo unos pocos argumentos. Para ver una lista de funciones de Patrón, puede evaluar la ayuda (Patrones.Secuencias). En Python, puedes generar un rango de enteros con el rango de sintaxis (inicio, parada, paso). Por defecto, el inicio es 0 y el paso es 1. Puede utilizar PRange (inicio, parada, paso) para crear un objeto Pattern con los valores equivalentes:</p>
+                                
+                              <p>  <code> print(list(range(0, 10 2)))</code></p>
+                               <p><code> [0, 2, 4, 6, 8]</code></p>
+                                <p><code>print(PRange(0, 10, 2))</code></p>
+                              <p><code>  P[0, 2, 4, 6, 8]</code></p>
+                                 
+                                
+                                <p> Y debido a que estas instancias de retorno de Patrón podemos tratarlas como objetos de Patrón y usar métodos de Patrón y realizar operaciones aritméticas sobre ellas así:</p>
+                                
+                               <p><code> 
+                                   print(PRange(0, 10, 2).reverse() + [1, 2])</code></p>
+                                <p> <code>P[9, 8, 5, 4, 1, 10, 7, 6, 3, 2]</code></p>
+                                
+                                
+                                <h3> Concatenando Patrones </h3>
+                                
+                                <p> En Python, normalmente se concatenan dos listas (se agrega una a otra) usando el operador + pero ya hemos visto que haciendo esto con Patterns se añaden los valores de un patrón a los contenidos de otro. Para concatenar dos objetos Pattern juntos, puede usar el símbolo pipe, |, con el que los usuarios de Linux pueden estar familiarizados - se usa para conectar programas de línea de comandos enviando salida de un proceso como entrada a otro.</p>
+                                
+                                <p><code>  print(PRange(4) | [1,7,6])</code></p> 
+                                    <p> <code>   P[0, 1, 2, 3, 1, 7, 6]
+                                </code></p>
+                                
+                                <h3> Cordones de patrones y PGroups </h3>
+                                
+                                <p>¿Qué sucede cuando un Patrón contiene una lista anidada como ésta?</p>
+                                
+                                <p><code> pat = P[0, 2, [3, 5]]</code></p>
+                                        <p><code>print(pat)</code></p>
+                                      <p><code>  P[0, 2, P[3, 5]]</code></p>
+                                
+                                
+                                <p> En primer lugar, la lista anidada se convierte en un patrón (y cualquier lista anidada que pudiera contener también se convierte). Si intentamos acceder al patrón anidado aquí es lo que pasa:</p>
+                                
+                              <p>  <code>
+ 
+                                  print(pat[0])</code></p>
+                               <p> <code>0</code></p>
+                                <p><code>print(pat[1])</code></p>
+                               <p><code> 2</code></p>
+                               <p><code> 3  print(pat[2])</code></p>
+                               
+                               
+                                
+                                <p> ¿Eso es extraño...? Se te perdonaría por pensar que la última línea devolvería P[3, 5] porque ese es el objeto en la tercera ranura de la palmadita, pero no es así como se comportan los Patrones. Los patrones están entrelazados, lo que significa que los valores de los patrones anidados se devuelven cuando se accede a su patrón padre. Para acceder al segundo valor del patrón anidado en el ejemplo anterior necesitamos hacer un bucle a través del Patrón por segunda vez, es decir, usar un valor de índice mayor que la longitud del Patrón:</p>
+                                
+                                <p><code>   for i in range(6):  </code></p>
+                                        <p><code>   print(pat[i],)  </code></p>
+                                      <p><code>   0, 2, 3, 0, 2, 5
+                                
+                                          </code></p>
+                                
+                                <p> Debido a esto, cuando imprima la longitud de un Patrón, verá el tamaño del Patrón como si estuviera expandido como está arriba. Si usas paréntesis redondos y anidas una tupla de valores, verás que sucede algo muy diferente:</p>
+                                
+                               <p> <code>pat = P[0, 2, (3, 5)]</code></p>
+                                    <p><code>  print(pat)</code></p>
+                                     <p><code>    P[0, 2, P(3, 5)]</code></p>
+                                
+                                
+                                <p> El último ítem en el patrón se conoce como un PGroup y se usa para mantener los valores dentro de un patrón juntos, es decir, no enlazados:</p>
+                                
+                                <p><code>  print(pat[0])</code></p>
+                                      <p><code>  0</code></p>
+                                      <p><code>   print(pat[1])</code></p>
+                                    <p><code>    2</code></p>
+                                   <p><code>    print(pat[2])</code></p>
+                                   <p>  <code>  P(3, 5)</code></p>
+                                
+                                <p> Agrupar valores significa que se tocan al mismo tiempo y esto es muy útil cuando se desea tocar notas juntos, por ejemplo, acordes:</p>
+                                
+                              <p><code> p1 >> pluck([(0, 2, 4), (0, 3, 5)], dur=4) </code></p>  
+                                
+                                <p> Puede agregar tuplas/ PGrupos a un Patrón para crear un nuevo patrón de elementos de PGrupo:</p>
+                                
+                                <p> <code> pat = P[0, 3, 5, 4]</code></p>
+                                   <p> <code>     print(pat + (0, 2))</code></p>
+                                    <p> <code>    P[P(0, 2), P(3, 5), P(5, 7), P(4, 6)]</code></p>
+                                    <p> <code>    print(pat + [(0, 2), (2, 4)])</code></p>
+                                        <p> <code>    P[P(0, 2), P(5, 7), P(5, 7), P(6, 8)]</code></p>
+        
+        </div>
+                                
+                                
+
+</body>
+<div class="margenuno"> <a href="or.html"> Atras </a></div>
+    <div class="siguiente">  <a  href="vdt.html">siguiente </a> </div>
+<footer>
+</footer>

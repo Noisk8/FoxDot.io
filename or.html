@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> Objeto Reproductor </title>
+      <meta name="FoxDot | Livecoding"/>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style-tsula.css" />
+      
+
+      <script> </script>
+
+</head>
+
+ <div class="margenuno">
+ <heaheader  >
+     <h1 >Foxdot</h1>
+     <h2 >python y supercollider</h2>
+ <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+
+</heaheader>
+
+    </div>
+
+<body class="fondo">
+
+    <div class="margenuno">
+<h2>Introducción objeto reproductor </h2>
+                                <h3> Eligiendo un sonido </h3>
+                                
+                                <p>Cuando FoxDot arranca, reserva todos los nombres de variables en minúsculas dos caracteres, por ejemplo, aa, p1 y bd, para utilizarlos como "reproductores". Estos son los objetos que tocan sonidos para nosotros basados en las instrucciones que les damos. La primera instrucción que le damos es decirle qué instrumento (sintetizador) tocar. Para ver una lista de todos los sintetizadores disponibles, evalúe lo siguiente:</p>
+								
+                               <p> <code>print(SynthDefs)</code></p>
+                                
+                                <p>Es la abreviatura de Synth Definition. Elige uno y asígnalo a un objeto de reproductor FoxDot usando dos signos "mayor que", también conocido como "flecha doble". Si mi SynthDef elegido fuera "pluck" y mi objeto de jugador elegido fuera p1, entonces asignaría "pluck" a p1 así:</p>
+                                
+                                <p><code> p1 >> pluck()</code></p>
+                                
+                                <p> Asegúrese de incluir los corchetes al final de "pluck" o no funcionará. Para detener un objeto de reproductor individual, simplemente ejecute<code> p1.stop()</code> Para detener todos los objetos del reproductor, puede presionar Ctrl+. que es un acceso directo para el comando <code> Clock.clear()</code></p>
+                                    <hr style= "border-color: #4e7c5c; width:90%">
+                                
+                                <h3>Asignando instrucciones</h3>
+                                
+                                <p> El >> en Python se suele reservar para un tipo de operación, como por ejemplo cómo se usa un símbolo `+' para añadir, pero no es el caso en FoxDot, y la razón se aclarará en breve. Añadiendo argumentos en los corchetes, puede cambiar las notas que se están reproduciendo. El primer argumento, el tono de la nota (a veces llamado grado), no necesita ser nombrado explícitamente, pero necesitará especificar otros atributos (como la duración) si desea cambiarlos. Estos valores pueden ser un valor individual o una lista de valores que el jugador jugará sucesivamente. Por ejemplo, el código de abajo toca tres notas seguidas continuamente hasta que se detiene p1:</p>
+                                
+                             <p>   <code>p1 >> pluck([0, 2, 4], dur=[1, 1/2, 1/2], amp=0.75)</code></p>
+                                
+                                <p> El primer argumento es el tono de la nota que queremos tocar, que es una lista de 3 números; 0, 2 y 4. El reproductor jugará cada uno de ellos por turno. Por defecto, todos los reproductores usarán la escala C-Major, que podemos considerar como una lista Python:</p>
+                                
+                               <p> <code> CMajor = [C, D, E, F, G, A, B]</code></p>
+                                
+                                <p> Los números que usamos para la afinación se refieren al índice de las notas que queremos escoger de esta escala. Entonces, con nuestra lista de lanzamientos[0, 2, 4] nuestras notas serían:</p>
+                                
+                              <p>  <code>CMajor[0] => C </code></p>
+                               <p> <code> CMajor[2] => E </code></p>
+                             <p><code>   CMajor[4] => G  </code></p>
+                                
+                                <p>La duración de estas notas se derivan del argumento dur palabra clave, que es también una lista de tres números; 1, 1/2 y 1/2. La posición de estos valores se refiere a la posición de los valores que hemos suministrado para el paso. Así que la primera nota durará un tiempo y las dos notas siguientes durarán la mitad de un tiempo. El último argumento de la palabra clave, amp, se utiliza para establecer la amplitud (volumen) de la nota, donde 0 es silencioso y 1 es más alto. Podrás encontrar otras palabras clave que puedes usar en la sección Atributos de los reproductores. </p>
+
+<p>También puede agregar valores al Reproductor para crear variaciones en las secuencias o incluso reproducir acordes. Por ejemplo, el código de abajo se reproducirá cada 3 notas 4 tonos más alto:</p>
+                                
+                              <p>  <code> p1 >> pluck([0, 1, 2, 3], dur=2) + [0, 0, 4]</code></p>
+                                <p> Para crear acordes, utilice una tupla en lugar de una lista. El código de abajo añadirá una tríada básica a cada nota tocada:</p>
+                               <p> <code>p1 >> pluck([0, 1, 2, 3], dur=2) + (0, 2, 4)</code></p>
+                                
+                                    <hr style= "border-color: #4e7c5c; width:90%">
+                                
+                                <h3> Reproduciendo Samples </h3>
+                               
+                                <p> FoxDot también puede reproducir muestras de audio, como percusión, usando un SynthDef especial llamado play. En lugar de tomar una lista de números como primer argumento, toma una cadena de caracteres donde cada carácter se relaciona con un sonido diferente. He aquí un ejemplo de un patrón de batería muy básico:</p>
+                                
+                             <p>   <code> d1 >> play("x-o-")</code></p>
+                                
+                                <p> La cadena también puede contener información sobre cómo debe reproducirse la secuencia, lo que se hace utilizando diferentes tipos de paréntesis. Poner dos o más caracteres entre corchetes redondos alternará qué sonido reproducir en cada bucle a través de la secuencia:</p>
+                                
+                              <p>  <code> d1 >> play("(x-)(-x)o-") </code></p>
+                                
+                                <p> Poner varios caracteres entre corchetes los reproducirá sucesivamente en un solo paso. Este ejemplo interpreta un trillizo de hi-hats durante su cuarto paso:</p>
+                                
+                              <p>  <code> d1 >> play("x-o[---]", dur=1)</code></p>
+                                
+                                <p> También puede utilizar frenos rizados para elegir un sonido al azar, para añadir un poco de variedad a su secuencia:</p>
+                                
+                              <p>  <code> d1 >> play("x-o{-=*}")</code></p>
+                                
+                                <p> Todos estos pueden ser usados y anidados juntos para crear patrones complejos:</p>
+                                
+                             <p>   <code> d1 >> play("(x[--])xo{-[--][-x]}")</code></p>
+        
+        </div>
+                                
+    
+</body>
+    
+    <div class="margenuno"> <a href="primerossonidos.html"> Atras </a></div>
+    <div class="siguiente">  <a  href="patronesbasicos.html">siguiente </a> </div>
+
+<footer>
+</footer>

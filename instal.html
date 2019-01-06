@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> Instalasión </title>
+      <meta name="FoxDot | Livecoding"/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style-tsula.css" />
+
+      <script> </script>
+
+</head>
+    
+     <div class="margenuno">
+ <heaheader  >
+     <h1 >Foxdot</h1>
+     <h2 >python y supercollider</h2>
+ <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+
+</heaheader>
+
+    </div>
+
+<body class="fondo">
+    
+    
+    <div class="margenuno">
+  <h2>Instalación</h2>
+
+        <hr style= "border-color: #4e7c5c; width:90%">
+			<h3> Linux </h3>
+
+			<p> Para linux puedes utilizar este <em> <a href=" https://github.com/Noisk8/InstalandoFoxDot-En-linux" target="_blank"> script</a> para agilizar el proceso de instalación. Recuerda ver las notas del repositorio para ver todos los componentes de instalación </em></p>
+
+<hr style= "border-color: #4e7c5c; width:90%">
+	<h3> Windows </h3>
+
+				
+        
+        <p>  podes ver este <a href="https://www.youtube.com/watch?v=sfwTC1e05yc&t=4s">vídeo</a> de steve man</p>
+        
+
+					<hr style= "width:75%">
+					  <h3> Mac OS </h3>
+
+					  <p> 1 Descargar <em> <a href="https://supercollider.github.io/download " target="_blank"> SuperCollider </a> En una versión superior a la 3.7</em></p>
+					 	<p> 2 Descargar <em> <a href="https://www.python.org/downloads/mac-osx/" target="_blank"> Python 2.7</a>  o superior </em></p>
+
+
+										 	<p> 3 Descargar <em> <a href=" https://git-scm.com/download/mac" target="_blank"> Git</a> esto para poder instalar posteriormente los quarks en supercollider </em></p>
+
+					 	<p> 4 Instalar pip </p>
+
+					 	<p> 4.1 descargamos el script get_pip | Abrimos la terminal y ejecutamos el comando </p>
+
+					 	<p><code> curl -O https://bootstrap.pypa.io/get-pip.py </code></p>
+
+					 	<p> 4.2 ejecutamos el scrip con el comando </p>
+
+					<p>	<code> python get-pip.py </code>	</p>
+
+						<p> 5 instalar FoxDot con el siguiente comando </p>
+
+								<p><code> sudo pip install FoxDot </code></p>
+
+<p> 6 descargar el repositorio de Foxdot de github e instarlo  </p>
+
+<p><code> git clone https://github.com/Qirky/FoxDot.git </code> </p>
+
+<p> 6.1 entramos a la carpeta de FoxDot e instalamos FoxDot </p>
+
+<p><code>  cd FoxDot </code></p>
+
+<p><code>  sudo python setup.py install </code> 	</p>
+
+
+<hr style= "border-color: #4e7c5c; width:90%">
+								<h5> Para todas las plataformas </h5>
+
+								<p> Despues de tener Supercollider, python y pip procedemos a abrir supercollider y de a una ejecutamos (shift + enter ) las siguientes lineas </p>
+
+								<p><code> Quarks.install("https://github.com/Qirky/FoxDotQuark.git") </code></p>
+								<p><code> Quarks.install("https://github.com/supercollider-quarks/BatLib.git") </code></p>
+<hr style= "width:75%">
+<h3> Cómo empezar? </h3>
+
+                             <h4>Linux</h4>
+                            <p> Para linux sigue las instrucciones del <em> <a href=" https://github.com/Noisk8/InstalandoFoxDot-En-linux" target="_blank"> Repositorio</a>  </em></p>
+<hr style= "width:75%">
+                            <h4> Windows </h4>
+
+                            <p> 1 Abre Supercollider </p>
+                            <p>1.2 Ejecuta (shift + enter) el siguiente comando </p>
+                            <p><code> FoxDot.start </code></p>
+                            <p> 2 abre el cmd y dirigete hasta la carpeta de python </p>
+                            <p> 2.1 ejecuta <code>python -m FoxDot </code> </p>
+
+                            <img src="img/5.png" alt="FoxDot" >
+
+<hr style= "width:75%">
+
+                            <h4> Mac OS </h4>
+                            <p> 1 Abre Supercollider </p>
+                            <p> 1.2 Ejecuta (shift + enter) el siguiente comando </p>
+                            <p><code> FoxDot.start </code></p>
+                            <p> 2 Abre una terminal y dirigete hasta la carpeta donde clonaste el repositorio de FoxDot </p>
+                            <p> <code> cd FoxDot/ </code></p>
+                            <p> 2.1  ejecuta python -m FoxDot </p>
+                            <p>  <code> python -m FoxDot</code></p>
+
+                            <h3> Ejecutando lineas en FoxDot </h3>
+
+                            <p> para hacer sonar  cualesquier linea de código en FoxDot solo basta con presionar shift + enter sobre la linea deseada </p>	
+
+        </div>
+</body>
+    
+    <div class="margenuno"> <a href="fun.html"> Atras </a></div>
+    <div class="siguiente">  <a  href="primerossonidos.html">siguiente </a> </div>

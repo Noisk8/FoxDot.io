@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> Variables dependientes de tiempo </title>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style-tsula.css" />
+
+      <script> </script>
+
+</head>
+    
+     <div class="margenuno">
+ <heaheader  >
+     <h1 >Foxdot</h1>
+     <h2 >python y supercollider</h2>
+ <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+
+</heaheader>
+
+    </div>
+
+<body class="fondo">
+    
+    <div class="margenuno">
+    
+    
+    <h2>Variables dependientes del tiempo</h2>
+							<h3>Programación a tiempo </h3>
+								<p>Cuando usted está codificando música en vivo, a menudo querrá que las cosas cambien con el tiempo. Una buena manera de demostrar esto es usando secuencias de acordes. Digamos que tenemos la secuencia C-F-C-G, que podemos representar como la lista de Python <code>[0, 3, 0, 4]</code>, y queremos tocar los acordes para 8 tiempos cada uno pero con un jugador que esté tocando notas cada cuarto de compás. ¿Cómo lo hacemos? Una solución podría ser usar el método del Patrón tartamudeo que repite valores en un Patrón "n" veces:  </p>
+                                
+                             <p>   <code>print(P[0, 3, 0, 4].stutter(4) + (0, 2, 4)) </code></p>
+                              <p>  <code>P[P(0, 2, 4), P(0, 2, 4), P(0, 2, 4), P(0, 2, 4), P(3, 5, 7), P(3, 5, 7), P(3, 5, 7), P(3, 5, 7), P(0, 2, 4), P(0, 2, 4), P(0, 2, 4), P(0, 2, 4), P(4, 6, 8), P(4, 6, 8), P(4, 6, 8), P(4, 6, 8)]</code></p>
+                                
+                                <p> Así que para tocar la secuencia de acordes de arriba con un sonido "pluck" podríamos hacer algo como esto:</p>
+							
+                                <p><code> p1 >> pluck(P[0, 3, 0, 4].stutter(32), dur=1/4) + (0, 2, 4) </code></p>
+                                
+                                <p> Con 4 notas por compás y 8 tiempos por acorde podemos deducir fácilmente que necesitamos tartamudear cada valor de tono 32 veces. El problema es que tenemos que cambiar ese valor cada vez que cambiamos la duración. Si cambiamos nuestra duración a <code>[1/2, 1/4, 1/4, 1/4]</code> necesitaríamos hacer algunas matemáticas en nuestra cabeza (o usar Python) para calcular cuántas veces tartamudear los valores de la afinación. Para evitar esto podemos usar variables que cambian su valor con el tiempo, así que después de 8 tiempos automáticamente empezamos a tocar un tono diferente. Estas son conocidas como "variables dependientes del tiempo" o "TimeVar" para abreviar.</p>
+                                <p> Un TimeVar tiene una serie de valores entre los que cambia después de un número predefinido de latidos y se crea usando un objeto var con la sintaxis <code> var([lista_de_valores],[lista_de_duraciones]) </code> Ejemplo:</p>
+                                    
+                                <p><code>  >>> a = var([0,3],4)             # Duration can be single value</code></p> 
+                                        <p><code>   print(int(Clock.now()), a)   # 'a' initially has a value of 0 when 0 beats have elapsed </code></p>
+                                        <p><code> 0, 0</code></p>
+                                            <p><code>print(int(Clock.now()), a)   # After 4 beats, the value changes to 3</code></p>
+                                       <p>  <code>  4, 3</code></p>
+                                         <p> <code> print(int(Clock.now()), a)   # After another 4 beats, the value changes back to 0
+                                            8, 0  </code></p>
+
+
+ 								<p> Así que para resolver nuestro problema original con la reproducción de una secuencia de acordes, podríamos utilizar el siguiente código con cualquier valor de duración y todavía aquí la secuencia de juego de 8 tiempos por acorde: </p>
+
+
+								<p> Así que para resolver nuestro problema original con la reproducción de una secuencia de acordes, podríamos utilizar el siguiente código con cualquier valor de duración y todavía aquí la secuencia de juego de 8 tiempos por acorde:</p>
+                                
+                               <p> <code> p1 >> pluck(var([0, 3, 0, 4], 8), dur=[1,1/4,1/4,1/2]) + (0, 2, 4) </code></p>
+                                
+                                <h3> Transformando Timevars</h3>
+                                <p> Cuando se utiliza una operación matemática en una variable, se devuelve una nueva variable que también cambia su valor con el tiempo:</p>
+                                
+                               <p> <code> a = var([0,3], 4) </code></p>
+                               <p> <code>  b = a + 5 </code></p>
+                               <p> <code> print(a, b) # Current time = 0 </code></p>
+                                  <p> <code>     0, 5 </code></p>
+                              <p>  <code>  print(a, b)        # beat = 4 </code></p>
+                               <p> <code>  3, 8 </code></p>
+                               <p> <code> c = PRange(4) + a</code></p>
+                                <p> <code> print(c)   # beat = 8 and 'a' has a value of 0 </code></p>
+                               <p> <code> P[0, 1, 2, 3] </code></p>
+                              <p>  <code>  print(c)  # beat = 12 and a has a value of 3 </code></p>
+                                <p> <code>       P[3, 4, 5, 6]</code></p>
+                                  <hr style= "border-color: #4e7c5c; width:90%">
+                                <h3> Cambio continuo</h3>
+                                
+                                <p> Hasta ahora sólo hemos visto un TimeVar tomar uno de un conjunto de valores predefinidos, pero también hay tipos de TimeVar que gradualmente cambian entre sus valores con el tiempo. Un ejemplo de ello es la <code>linvar</code>. Esto es instanciado de la misma manera que un var pero el valor cambia linealmente entre estados con el tiempo. El ejemplo de abajo mueve el panoramizado de izquierda a derecha a lo largo de 8 tiempos y luego de nuevo hacia atrás.</p>
+                                
+                              <p>  <code> p1 >> pluck(dur=1/4, pan=linvar([-1,1],8)) </code></p>
+    
+    </div>
+
+
+</body>
+<div class="margenuno"> <a href="patronesbasicos.html"> Atras </a></div>
+    <div class="siguiente">  <a  href="adr.html">siguiente </a> </div>
+<footer>
+</footer>

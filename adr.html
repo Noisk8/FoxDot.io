@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> Atributos del Reproductor </title>
+      <meta name="FoxDot | Livecoding"/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style-tsula.css" />
+
+      <script> </script>
+
+</head>
+    
+     <div class="margenuno">
+ <heaheader  >
+     <h1 >Foxdot</h1>
+     <h2 >python y supercollider</h2>
+ <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+
+</heaheader>
+
+    </div>
+
+<body class="fondo">
+    
+    <div class="margenuno">
+    <h2>Atributos del reroductor</h2>
+
+                                <h3>Introducción </h3>
+
+                                <p> A los objetos del reproductor FoxDot se les asignan sintetizadores que toman varios argumentos de palabras clave en un conjunto de corchetes para manipular las secuencias que se están reproduciendo. Probablemente ya hayas visto <code>Dur</code> y <code> Pan</code>, pero ¿qué más podemos usar? Hay muchas opciones, que se dividen en dos grupos: atributos y efectos. Los atributos son cosas que afectan qué nota se toca y cuándo y los efectos son cosas que cambian cómo suena el sonido, bueno, ¡suena! Puede ver una lista de todos los posibles términos de palabras clave evaluando el código</p>
+                                
+                              <p>  <code>print(Player.get_attributes())</code></p>
+                                <code>('degree', 'oct', 'dur', 'delay', 'blur', 'amplify', 'scale', 'bpm', 'sample', 'sus', 'fmod', 'pan', 'rate', 'amp', 'vib', 'vibdepth', 'slide', 'sus', 'slidedelay', 'slidefrom', 'bend', 'benddelay', 'coarse', 'striate', 'pshift', 'hpf', 'hpr', 'lpf', 'lpr', 'swell', 'bpf', 'bpr', 'bits', 'amp', 'crush', 'dist', 'chop', 'tremolo', 'echo', 'decay', 'spin', 'cut', 'room', 'mix', 'formant', 'shape')</code>
+                                
+                                <p>Tenga en cuenta que un SuperCollider <code>SynthDef</code> puede tomar argumentos de palabras clave específicos que no están en la lista anterior. Puedes establecer los valores para un atributo o efecto de un reproductor especificándolos como un argumento de palabra clave dentro de una llamada de SynthDef:</p>
+                                
+                               <p> <code>p1 >> pluck([0, 1, 2, 3], dur=1/2, sus=2)</code></p>
+                                  <hr style= "border-color: #4e7c5c; width:90%">
+
+                                <h3>Atributos</h3>
+                                
+                                <p>Estos son los valores de las palabras clave que FoxDot utiliza para decidir qué nota o muestra se reproducirá en cada momento. Sin ningún orden en particular: <code> degree, oct, dur, scale, amp, amplify, bpm, sample, and delay.</code> Vamos a repasar cada uno de estos en profundidad con algún código de ejemplo ahora.</p>
+                                
+                                <h4>degree</h4>
+                                <p>Esto a veces se denomina "tono" y se refiere al índice de la escala que debemos utilizar para crear una nota - así que para tocar la primera nota de una escala, se utiliza el valor de grado 0. No es necesario especificar este por nombre ya que es siempre el primer argumento utilizado. Aquí hay un código de ejemplo que reproduce las primeras cuatro notas de la escala por defecto (Do mayor).</p>
+                                
+                                
+                                
+                                <p><code> p1 >> pluck([0, 1, 2, 3])</code></p>
+                                
+                                  <hr style= "border-color: #4e7c5c; width:90%">
+                                
+                                <h4> oct</h4>
+                                
+                                <p> Esta es la octava en la que desea tocar una nota. Por defecto es 5, de modo que la nota que se toca al iniciar un objeto de jugador "en blanco" es la C media. Una octava es (normalmente) 12 semitonos, por lo que la quinta octava comienza en el 60º semitono. Añadimos este valor a nuestra afinación (que obtenemos al usar el grado para obtener el valor final de la nota. Un número más pequeño toca una nota más baja y un número más grande toca una nota más alta:</p>
+                                
+                                <code>p1 >> pluck(oct=[4, 5, 6])</code>
+                                
+                                  <hr style= "border-color: #4e7c5c; width:90%">
+                                
+                                <h4> dur </h4>
+                                
+                                <p>Es la duración de una nota. Las duraciones no pueden ser negativas y deben contener al menos un número distinto de cero. Una duración puede ser de cualquier tipo siempre y cuando pueda ser representada por un valor de coma flotante. Las siguientes son todas las duraciones válidas:</p>
+                                
+                               <p> <code> # Valor individual para todas las notas </code></p>
+                             <p>   <code>     p1 >> pluck([0, 1, 2, 3], dur=1/2) </code></p>
+
+                               <p> <code>   # Una lista de duraciones puede ser números enteros, fracciones o valores de coma flotante. </code></p>
+                                   <p> <code>   p1 >> pluck([0, 1, 2, 3], dur=[1,1/2,0.5])</code> </p>
+
+                                <p>  <code>      p1 >> pluck([0, 1, 2, 3], dur=[0.1,0.3,0.43,0.17])</code> </p>
+                               
+                                
+                                <p>Puede "saltar" una nota poniendo la duración a cero o "silenciándola" utilizando un objeto de <code> rest</code> reposo con la duración entre paréntesis:</p>
+                                
+                               <p> <code>  # Salta cada tercera nota </code></p>
+                                 <p> <code>      p1 >> pluck([0, 1, 2, 3], dur=[1, 1, 0])</code> </p>
+
+                                    <p> <code>   # Descansa cada tercera nota por 2 tiempos</code> </p>
+                                   <p>  <code> p1 >> pluck([0, 1, 2, 3], dur=[1, 1, resto(2)])  </code></p>
+                                
+                                  <hr style= "border-color: #4e7c5c; width:90%">
+                                
+                                <h4>Escala </h4>
+	                           <p>Como su nombre indica, esto establece la escala del objeto del jugador. Debe ser una lista, un Patrón o un objeto Escala (que es una subclase de Patrón). Para ver una lista de escalas, puede evaluar el siguiente código:</p>
+                                
+                                
+                                <code> print(Scale.names()) </code>
+                                <code>['aeolian', 'chinese', 'chromatic', 'custom', 'default', 'diminished', 'dorian', 'dorian2', 'egyptian', 'freq', 'harmonicMajor', 'harmonicMinor', 'indian', 'justMajor', 'justMinor', 'locrian', 'locrianMajor', 'lydian', 'lydianMinor', 'major', 'majorPentatonic', 'melodicMajor', 'melodicMinor', 'minor', 'minorPentatonic', 'mixolydian', 'phrygian', 'prometheus', 'romanianMinor', 'yu', 'zhi']</code>
+                                
+                                <p> Por defecto, FoxDot utiliza la escala "mayor". Para cambiar esto a la escala menor, por ejemplo, puede utilizar el argumento de la palabra clave de la escala y la escala Scale.minor así:</p>
+                                
+                                <p> <code> # reproducir con la escala por defecto</code></p>
+                                      <p><code>  p1 >> pluck([0, 2, 4, 6, 7])</code></p>
+
+                                      <p><code>  # cambiar a menor</code></p>
+                                     <p> <code>  p1 >> pluck([0, 2, 4, 6, 7], scale=Scale.minor)</code></p>
+                                
+                                <p> Si desea cambiar la escala para todos los reproductores, puede establecer el valor Escala.predeterminada:</p>
+                                <p> <code>  # Iniciar un reproductor en la escala por defecto (Major) </code></p>
+                                   <p> <code>  p1 >> pluck([0, 2, 4, 6, 7])</code></p>
+
+                                   <p> <code>  # Cambia la escala por defecto a Dorian </code></p>
+                                   <p> <code>Escala.default = Escala.dorian </code></p>
+
+                               <p> <code> #Puede especificar la escala por defecto como una cadena </code></p>
+                            <p>  <code>  Escala.default = "dorian"</code></p>
+                                
+                                  <hr style= "border-color: #4e7c5c; width:90%">
+                                
+                                <h3>amp</h3>
+                                <p> Es la amplitud de una nota, o su volumen/volumen. Los valores normalmente oscilan entre 0 y 1, pero puede ajustar valores más grandes para que una nota sea aún más fuerte, pero tenga cuidado de no hacer demasiado ruido o podría dañarse los oídos o los altavoces. </p>
+                                
+                               <p> <code> p1 >> pluck([0, 1, 2], dur=[1, 1/2, 1/2], amp=[1, 0.5, 1/3])</code></p>
+                                
+                            <p> Podemos crear patrones bastante rítmicos usando amplificador usando valores de 0 también:</p>
+							
+                           <p> <code> p1 >> pluck(dur=1/4, amp=[1, 1/2, 1/2, 1, 0, 1, 0, 1, 1/2, 1/2, 1, 0, 1, 1/2, 1/4, 1])</code></p>
+                                
+                                <p> ¿Pero qué pasa si queremos tocar este ritmo en cualquier otro bar? Una forma podría ser añadir manualmente un montón de 0s a la secuencia o usar un objeto Pattern y usar su método de "stutter" tartamudeo, pero también podemos usar otro argumento de palabra clave diseñado para este propósito; amplificar.</p>
+                                
+                                <h3> amplifly </h3>
+                                
+                                <p> Antes de que un sonido sea disparado por un reproductor, el valor del amplificador se multiplica por amplificar para que puedas usar cosas como TimeVar para ajustar una amplitud a 1 o 0 (es decir, encendido y apagado) durante cierto tiempo:</p>
+                                
+                               <p> <code> p1 >> pluck(dur=1/4, amp=[1, 1/2, 1/2, 1, 0, 1, 0, 1, 1/2, 1/2, 1, 0, 1, 1/2, 1/4, 1], amplify=var([1,0],[6,2])) </code></p>
+                                
+                                <p> Esto es útil si desea activar o desactivar varios reproductores al mismo tiempo:</p>
+                            
+                           <p> <code> p1 >> pluck(dur=1/4, amp=[1, 1/2, 1/2, 1, 0, 1, 0, 1, 1/2, 1/2, 1, 0, 1, 1/2, 1/4, 1])</code> </p>
+                               <p>  <code>   p2 >> bass(var([0, 3], 8), dur=1/2)</code> </p>
+
+                                <p>  <code> p1.amplify = p2.amplify = var([1,0],4)</code></p>
+                            
+                                <p> The last line is quite clumsy so you can use a Group object in place (see here for more information):</p>
+                            
+                              <p>  <code> p1 >> pluck(dur=1/4, amp=[1, 1/2, 1/2, 1, 0, 1, 0, 1, 1/2, 1/2, 1, 0, 1, 1/2, 1/4, 1])</code> </p>
+                                 <p>  <code> p2 >> bass(var([0, 3], 8), dur=1/2)</code> </p>
+
+                                  <p><code>  Group(p1, p2).amplify = var([1,0],4)</code></p>
+                                
+                                <h3> bpm</h3>
+                            
+                                <p> Si desea que un objeto de reproductor se reproduzca a un tempo diferente, puede utilizar el atributo bpm. Estos son los latidos por minuto. El tempo del reloj de programación global se puede establecer cambiando su atributo bpm usando Clock.bpm = 140 por ejemplo (ver aquí para más información).</p>
+                                
+                              <p>  <code> # Reproduce en el tempo Clock.bpm (por defecto 120)</code></p>
+                               <p><code>p1 >> pluck([0, 1, 2, 3])</code></p> 
+
+                                   <p> <code>    # Forzar al jugador a usar 100 bpm</code></p>
+                                   <p> <code>    p2 >> campana([4, 5, 7], bpm=100)</code></p>
+
+                                    <p> <code>  # Siempre se reproducirá a 100 bpm incluso si se cambia Clock.bpm</code></p>
+                                      <p> <code> Reloj.bpm = 200</code></p>
+                                
+                                <h3> sample </h3>
+                                
+                                <p> Esto sólo se usa con el reproductor de muestra, llamado play. Este SynthDef toma una cadena como su primer argumento (conocido como "play string") en lugar de una lista de valores de afinación y reproduce muestras de audio almacenadas en su portátil basándose en el carácter de la cadena. Cada carácter se asigna a una carpeta de muestras y, de forma predeterminada, reproduce la primera muestra de esa carpeta. Para reproducir una muestra diferente, utilice la palabra clave de muestra:</p>
+                                
+                               <p> <code> 
+                                
+                                    # samples por defecto </code></p>
+                               <p> <code>  p1 >> play("x-o-") </code></p>
+
+                               <p> <code># Un conjunto diferente de samples </code></p>
+                              <p>  <code>  p1 >> play("x-o-", sample=1) </code></p>
+
+                               <p> <code>   # Puede ser una lista de valores </code></p>
+                            <p>   <code> p1 >> play("x-o-", sample=[0, 1, 2])</code></p>
+                                
+                                <p> Los valores deben ser enteros. Si una carpeta contiene 3 muestras y utiliza el valor 4, el objeto del reproductor volverá al primer archivo de la carpeta y reproducirá ese archivo, por lo que no necesita saber exactamente cuántas muestras hay en una carpeta.</p>
+                                
+                                <h3> delay </h3>
+                                
+                                <p> En la música (y especialmente en la música electrónica) el retardo se refiere a menudo a una especie de efecto "eco" en el que un sonido se reproduce de nuevo poco después de que comienza, pero un poco más silencioso. En FoxDot, sin embargo, se refiere literalmente a una cantidad de tiempo, en latidos, para retrasar la reproducción de un sonido. Aquí, retrasaremos cada tercera nota por medio tiempo:</p>
+                            
+                                
+                               <p> <code> p1 >> pluck([0, 1, 2, 3], delay=[0, 0, 0.5]) </code></p>
+                            
+                            
+                            <p> Si quieres tocar la nota y tocarla con un retardo, puedes usar una tupla o un PGroup con el primer valor 0, lo que significa que no hay retardo. El segundo valor indicará cuánto tiempo debe demorarse la segunda nota: </p>
+                                
+                              <p>  <code> #"stutter" cada tercera nota </code></p>
+                               <p> <code>       p1 >> pluck([0, 1, 2, 3], delay=[0, 0, (0, 0.5)]) </code></p>
+
+                                    <p> <code>   # Retrasa una nota para tocar *después* de la siguiente</code></p>
+                                    <p>  <code>  p1 >> pluck([0, 1, 2, 3], delay=[0, 0, (0, 1.5)])</code></p>
+                                
+                                
+    <p> </p>
+</div>
+</body>
+    <div class="margenuno"> <a href="vdt.html"> Atras </a></div>
+    <div class="siguiente">  <a href="edr.html">siguiente </a> </div>
+
+<footer>
+</footer>

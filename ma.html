@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> Manipulación Algoritmica</title>
+      <meta name="FoxDot | Livecoding"/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style-tsula.css" />
+
+      <script> </script>
+
+</head>
+    
+     <div class="margenuno">
+ <heaheader  >
+     <h1 >Foxdot</h1>
+     <h2 >python y supercollider</h2>
+ <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+
+</heaheader>
+
+    </div>
+<body class="fondo">
+    
+<div class="margenuno">
+  <h2> Manipulación algoritmica</h2>
+				<p>Una de las cosas buenas de la codificación en vivo es que puede programar eventos para que ocurran, o se repitan, en el futuro. Esto le permite continuar codificando mientras se llaman funciones repetidas y añadir variedad a su música. Esta sección es un análisis detallado de cómo se implementa cada método del Reproductor y cómo puede combinar varias instancias del mismo para crear música compleja a partir de patrones simples.
+             </p>
+                                 <hr style= "border-color: #4e7c5c; width:90%"> 
+                                <h3>Fundamentos</h3>
+                                <p>Primero veamos un ejemplo simple que invierte una secuencia cada 8 latidos:</p>
+                                <p><code>p1 >> pluck([0, 1, 2, 3, 4, 5, 6, 7]).every(8, "reverse")</code></p>
+                                <p>El primer argumento es el número de pulsaciones entre cada llamada de un método y el segundo es el nombre del método en sí como una cadena. La razón para usar el nombre de cadena del método en lugar de una función es que Python puede comprobar si el método es válido usando la función getattr y generar un error si no lo es. Ejecutando el código <code>print(getattr(p1, "reverse"))</code> le dará algo similar al método bound Player.reverse of p1 - pluck. Lo que entonces sucede, en esencia, es que el reloj de programación ejecuta <code>getattr(p1, "reverse").__call__()</code> cada 8 tiempos.</p>
+                                
+                                <p>Puede utilizar una lista de duraciones para programar llamadas a métodos a intervalos irregulares:</p>
+                                
+                                <p><code>p1 >> pluck([0, 1, 2, 3, 4, 5, 6, 7]).every([6, 2], "reverse")</code></p>
+                                
+                                <p>El código de arriba llamará al método inverso después de 6 latidos, luego 2 latidos después de eso, luego otra vez 6 latidos después de esa llamada, repitiendo esto hasta que se detenga. También puede utilizar un objeto Pattern o PatternGenerator como PRand para llamar métodos a veces no predeterminados:</p>
+                                <p><code>p1 >> pluck([0, 1, 2, 3, 4, 5, 6, 7]).every(PRand([2, 4, 8]), "reverse")</code></p>
+                                <p>Si intenta especificar varias llamadas del mismo método, verá que sólo se programa la última llamada actualizada. Si desea utilizar más de una llamada repetida al mismo método, puede utilizar la palabra clave de identificación y darle un nombre o número para diferenciarla:</p>
+                                <p><code># Llama "reversa" cada 8 latidos *y* cada 5 latidos</code></p>
+                                <p><code>d1 >> pluck([0, 1, 2, 3, 4, 5, 6, 7]).every(8, "reverse").every(5, "reverse", ident=1)</code></p>
+                                
+                                
+                                <p>Los métodos de los jugadores que pueden ser usados con cada uno efectivamente son reversa, rotación, barajar, saltar y tartamudear.
+                                La palabra clave del ciclo</p>
+                                <p><code>La palabra clave del ciclo</code></p>
+                                
+                                <p>A veces puede ser útil programar un método para el mismo punto en un ciclo de N-tiempos, por ejemplo, tartamudear el sonido en el 6º tiempo de cada ciclo de 8 tiempos. Puede hacerlo simplemente especificando la longitud del ciclo como argumento de palabra clave:</p>
+                                
+                                <p><code>d1 >> play("x-o-").every(6, "stutter", cycle=8)</code></p>
+                                <p>En lugar de llamar tartamudeo a cada 6 latidos, se llama cada 8 latidos (el tamaño del ciclo), pero compensado por 6 latidos.
+                                El método del tartamudeo en profundidad</p>
+                                
+                                <p>Uno de los métodos más útiles que se puede llamar usando cada uno es el método del tartamudeo. Reproduce el último evento enviado a SuperCollider varias veces a lo largo de una duración especificada. También puede especificar atributos/efectos para adjuntar a los eventos como pan o shape usando argumentos de palabras clave.</p>
+                                
+                                <p>Puede especificar el número de veces que un evento tartamudea simplemente proporcionando un número entero a cada llamada siguiendo el nombre del método como una cadena. El valor por defecto es 2, lo que significa que escuchará 1 evento adicional - 2 menos el evento que ya se está reproduciendo. Usando un valor de 4 se reproducirán 3 eventos extra (ya tienes la idea). Por defecto, los eventos serán tartamudeados a lo largo de la duración del evento que está tartamudeando, pero también puede tartamudear los eventos a lo largo de un período de tiempo determinado mediante el suministro de una palabra clave dur:</p>
+                                
+                                <p><code># Reproducir el evento 4 veces cada 6 latidos a través de 1/2 latido</code></p>
+                                <p><code>d1 >> play("x-o-", dur=1/2).every(6, "stutter", 4)</code></p>
+                                <p><code># Juega el evento 4 veces cada 6 latidos a través de 3 latidos</code></p>
+                                <p><code>d1 >> play("x-o-", dur=1/2).every(6, "stutter", 4, dur=3)</code></p>
+                                <p><code>También puede especificar el número de eventos a tartamudear usando la palabra clave 'n</code></p>
+                                <p><code>d1 >> play("x-o-", dur=1/2).every(6, "stutter", dur=3, n=4)</code></p>
+                                
+                                <p>Así como usted proporciona argumentos de palabras clave para controlar el sonido de sus sintetizadores, puede hacer lo mismo con el tartamudeo para controlar el sonido que se está reproduciendo. Estos pueden ser una lista o patrón de valores que se dan a cada evento tartamudeado a su vez, es decir, no jugado todos a la vez:</p>
+                                
+                                
+                                <p><code># Tartamudea 8 veces con el aumento de la velocidad de reproducción</code></p>
+                                <p><code>d1 >> play("x-o-").every(4, "stutter", 8, rate=[1,2,3,4,5,6,7,8])</code></p>
+                                 <p><code># Tartamudeo 4 veces con paneo alternado y mayor velocidad</code></p>
+                                <p><code>d1 >> play("x-o-").every(4, "stutter", 4, dur=3, pan=[-1, 1], rate=2)</code></p>
+                                 <p><code>#Todavía puedes usar tuplas / PGroups para añadir efectos simultáneos</code></p>
+                                <p><code>d1 >> play("x-o-").every(4, "stutter", 4, dur=1, pan=(-1,1), rate=(4, 1/2))</code></p>
+                                <p>Tenga en cuenta que cuando se utiliza una lista de valores, sólo se utilizarán los primeros n valores (donde n es el número de veces que se tartamudea).</p>
+                                 <hr style= "border-color: #4e7c5c; width:90%"> 
+                                <h3>Uso de métodos de patrones</h3>
+                                
+                                <p>Además de revertir, rotar, barajar, saltar y tartamudear, también puede programar cualquier método que pertenezca a la clase Patrón para que se llame en cualquier atributo de un reproductor. El comportamiento es ligeramente diferente a cuando se programan los métodos de los jugadores en el sentido de que en lugar de ser llamado cada n beats, es llamado y luego desllamado so-to-speak. Probablemente es mejor demostrarlo con un ejemplo:</p>
+                                
+                                <p><code>Llama al método "trim" en el atributo de grado</code></p>
+                                <p><code>d1 >> play("x-o-").every(4, "trim", 3)</code></p>
+                                
+                                <p>El patrón "x-o-" se recorta a sólo "x-o" después de 4 tiempos y luego vuelve a "x-o-" de nuevo después de los siguientes 4 tiempos. Por defecto, el método se llama atributo grado (que es pitch para la mayoría de los sintetizadores y la cadena de caracteres para el sintetizador de reproducción) - puede especificar un atributo diferente anteponiendo al nombre del método el nombre del atributo y luego un ":</p>
+                                
+                                
+                                <p><code># Trim the octave pattern to 3 every 4 beats</code></p>
+                                <p><code>p1 >> pluck([0,1,2,3], oct=[4,5,6,7]).every(4, "oct.trim", 3)</code></p>
+                                
+                                <p>Los argumentos que se proporcionarían al método del patrón se dan siguiendo el nombre del método. Por ejemplo, el método de patrón offadd, que superpone un patrón consigo mismo pero con un valor añadido y retrasado por una duración, toma 2 argumentos; el valor a añadir y el tiempo de retardo (por defecto es 0,5). Aquí hay algunos ejemplos de cómo usarlo con cada una de las aplicaciones:</p>
+                                
+                                <p><code># Toca una nota 2 pasos más alto retrasado 1/2 latido</code></p>
+                                <p><code>p1 >> pasha([0, 4], dur=[3/4, 3/4, 1/2]).every(3, "offadd", </code></p>
+                                <p><code># Toca una nota 4 pasos más alto retrasado 3/4 de un ritmo</code></p>
+                                <p><code>p1 >> pasha ([0,1,3,4], dur=1/2).every(5, "offadd", 4, 3/4)</code></p>
+                                
+                                <p>Puede utilizar cualquier método de la clase Patrón, que puede ver ejecutando help(Pattern) o mirando las descripciones en profundidad.</p>
+                                
+</div>
+</body>
+    
+    <div class="margenuno"> <a href="mdr.html"> Atras </a></div>
+    <div class="siguiente">  <a  href="eyf.html">siguiente </a> </div>
+
+<footer>
+</footer>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> MIDI </title>
+      <meta name="FoxDot | Livecoding"/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style-tsula.css" />
+
+      <script> </script>
+
+</head>
+    
+     <div class="margenuno">
+ <heaheader  >
+     <h1 >Foxdot</h1>
+     <h2 >python y supercollider</h2>
+ <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+
+</heaheader>
+
+    </div>
+
+<body class="fondo">
+    
+    <div class="margenuno">
+
+    <h2>Configuración MIDI</h2>
+                                <p>Esta sección trata sobre el uso de los reproductores FoxDot para secuenciar eventos musicales utilizando un dispositivo MIDI externo. Esto requiere las versiones más actualizadas de FoxDot y el SuperCollider "FoxDot Quark". Puedes encontrar más información sobre cómo mantenerte al día aquí.</p>
+                                
+                                <h3>Envío de mensajes a un dispositivo MIDI </h3>
+                                
+                                <p>Lo primero que hay que hacer es conectar el portátil al dispositivo MIDI y asegurarse de que se instalan los controladores correctos, lo que suele ocurrir automáticamente, aunque no siempre. A continuación, asegúrese de que SuperCollider pueda "ver" el dispositivo. Para ello, abra el SuperCollider y ejecute esta línea de código:</p>
+                                
+                                <p><code>FoxDot.midi</code></p>
+                                
+                                <p>A continuación, debería ver un mensaje en la "ventana de mensajes" en este sentido:</p>
+                                
+                                <p><code>MIDI: device 0 2 -1202759152  (Microsoft GS Wavetable Synth)</code></p>
+                                <p><code>MIDI: device 1 3 -1202759144  (USB2.0-MIDI)</code></p>
+                                <p><code>MIDI Sources:</code></p>
+                                <p><code>MIDIEndPoint("USB2.0-MIDI", "USB2.0-MIDI")</code></p>
+                                <p><code>MIDI Destinations:</code></p>
+                                <p><code>MIDIEndPoint("Microsoft GS Wavetable Synth", "Microsoft GS Wavetable Synth")</code></p>
+                                <p><code>MIDIEndPoint("USB2.0-MIDI", "USB2.0-MIDI")</code></p>
+                                <p><code>-> MIDIClient</code></p>
+                                
+                                <p>En caso contrario, consulte la documentación de SuperCollider sobre MIDIClient. Esta es una lista de los dispositivos MIDI a los que SuperCollider (y FoxDot) pueden enviar mensajes. El primer dispositivo es el sintetizador MIDI interno de Microsoft para Windows y el segundo es un dispositivo externo conectado por USB (estos pueden tener diferentes nombres dependiendo del dispositivo y la conexión). Por defecto, FoxDot enviará mensajes al primer destino MIDI ("Microsoft GS Wavetable Synth" en este ejemplo) pero puedes seleccionar un dispositivo diferente ejecutando el mismo código pero con el índice del dispositivo preferido entre paréntesis. Así que para seleccionar el dispositivo "USB2.0-MIDI" me ejecutaría:</p>
+                                
+                                
+                                <p><code>FoxDot.midi(1)</code></p>
+                                
+                                <p>Ahora puedes enviar mensajes a tu dispositivo MIDI desde FoxDot! Para hacer esto, necesitas usar el sintetizador MidiOut. Funciona igual que un sintetizador normal pero envía mensajes de tono y amplitud a un dispositivo MIDI, por ejemplo</p>
+                                <p><code>p1 >> MidiOut([0,1,2,3,4,5], dur=PDur(3,8), amp=[1,1/2,1/2]).every(6, "stutter", 4, dur=3, oct=6)</code></p>
+                                
+                                
+                                <p>Puede especificar el canal MIDI como lo haría con cualquier otro atributo, por ejemplo, usando el canal = 1, que por defecto es 0.</p>
+                                
+                                
+                                <p><code>p1 >> MidiOut([0,1,2,3], canal = 1)</code></p>
+                                <p>Nota: Tenga cuidado al repetir la misma nota con la misma duración; si un evento de note-on MIDI se activa un poco antes que el note-off MIDI del evento anterior, será detenido por el note-off. Este es un error conocido y está siendo investigado.
+                                Sincronización de mensajes MIDI y mensajes FoxDot</p>
+                                
+                                <p>Si estás usando FoxDot y tu dispositivo MIDI, puedes notar que los eventos de sonido no están sincronizados. Para solucionar esto necesitas configurar manualmente el valor Clock.midi_nudge, que añade un retardo a los mensajes MIDI. Aquí hay un código de ejemplo para ayudar a sincronizar los mensajes:</p>
+                                <p><code>p1 >> MidiOut([0,4])</code></p>
+                                <p><code>p2 >> play ("x * ")</code></p>
+                                <p><code>#El valor suele estar entre 0,15 y 0,25</code></p>
+                                <p><code>Clock.midi_nudge = 0.2</code></p>
+                                <p>Cuando los sonidos estén sincronizados, permanecerán sincronizados hasta la próxima vez que inicie FoxDot, ¡así que recuerde este valor!
+                                </p>
+ </div>
+</body>
+<div class="margenuno"> <a href="eyf.html"> Atras </a></div>
+    <div class="siguiente">  <a  href="tusynth.html">siguiente </a> </div>
+<footer>
+</footer>

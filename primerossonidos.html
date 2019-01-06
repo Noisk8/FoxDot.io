@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> Primeros sonidos  </title>
+      <meta name="FoxDot | Livecoding"/>
+      <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style-tsula.css" />
+
+      <script> </script>
+
+</head>
+
+  <div class="margenuno">
+ <heaheader  >
+     <h1 >Foxdot</h1>
+     <h2 >python y supercollider</h2>
+ <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+
+</heaheader>
+
+    </div>
+
+<body class="fondo">
+    
+    <div class="margenuno">
+    
+    <h2>Haciendo tus primeros sonidos </h2>
+<h3> Abriendo el editor de FoxDot </h3>
+
+<p> Felicidades por haber instalado FoxDot - ¡hagamos algunos sonidos! Primero necesitas abrir SuperCollider para que podamos cargar los sonidos de FoxDot. Una vez que se abra SuperCollider, escriba lo siguiente en el editor: </p>
+
+<p><code> FoxDot.start </code></p>
+
+<p>Siga las instrucciones de instalación para sus descargas de Python y SuperCollider. Para ejecutar esta línea de código es necesario colocar el cursor de texto en la línea y presionar Ctrl+Return. La línea debería parpadear y debería ver que algunos números se vuelven verdes en la parte inferior de su pantalla:  </p>
+
+<img src="http://docs.foxdot.org/wp-content/uploads/2018/03/sc_bootup.png" width="600"  >
+
+<p> Ahora podemos abrir el editor FoxDot y empezar a hacer sonidos. Puede abrir el editor yendo a su aplicación de línea de comandos (Símbolo del sistema en Windows, Terminal en Mac y Linux), escribiendo el siguiente código y presionando enter:</p>
+
+<p> <code>python -m FoxDot</code></p>
+
+<p> Esto le indica a su computadora que ejecute el intérprete de Python y el módulo FoxDot como un script independiente. Usted debe ser recibido con una ventana que se ve algo como esto:</p>
+
+<img src="img/foxdot_editor.png" width="600">
+
+<h3> Evaluando Código</h3>
+<p>Lo que tienes aquí es un editor de texto interactivo; puedes escribir código pero también ejecutar el código dentro del propio editor. Para ejecutar un bloque de código (líneas no separadas por líneas en blanco) asegúrese de que su cursor de texto está en el bloque de código que desea evaluar y presione Ctrl+Enter en Windows/Linux o Comando+Return en Mac. El texto debería parpadear en rojo por un momento y ser impreso en la consola en la parte inferior de la pantalla: <p>
+
+<img src="img/foxdot_editor_exec.png" width="600">
+
+<h3> Crea un ruido </h3>
+
+<p>Hagamos un simple bucle de punteo. Escriba lo siguiente en el editor de FoxDot y evalúelo: <p>
+
+<p><code> p1 >> pluck() </code></p>
+
+<p>Esto debería iniciar un bucle muy básico reproduciendo una nota punteada al repetir. Para detener esto, agregue .stop() al final de la línea para que se vea así: </p>
+<p><code> p1 >> pluck().stop()</code></p>
+<p> Evalúe la línea para detener el bucle. ¡Ahí lo tienes! Has hecho sonido con FoxDot - echa un vistazo al resto de la sección "Getting Started" para familiarizarte con otros aspectos del entorno antes de pasar a las secciones avanzadas... ¡y diviértete!</p>
+    </div>
+
+</body>
+    
+    <div class="margenuno"> <a href="instal.html"> Atras </a></div>
+    <div class="siguiente">  <a  href="or.html">siguiente </a> </div>
+
+<footer>
+</footer>

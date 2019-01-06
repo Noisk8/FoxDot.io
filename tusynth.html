@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> Tu propio synth</title>
+      <meta name="FoxDot | Livecoding"/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+      <link rel="stylesheet" type="text/css" href="css/..."/>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style-tsula.css" />
+
+      <script> </script>
+
+</head>
+    
+     <div class="margenuno">
+ <heaheader  >
+     <h1 >Foxdot</h1>
+     <h2 >python y supercollider</h2>
+ <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+
+</heaheader>
+
+    </div>
+<body class="fondo">
+    
+    <div class="margenuno">
+    <h2> Usando tu propio SynthDef</h2>
+                                <p>
+                                    Aunque FoxDot viene con su propia gama de SynthDefs para que puedas controlarla, es posible que quieras escribir una propia o utilizar una que ya hayas creado. Esta página te muestra cómo escribir un SynthDef para usar con FoxDot. Esta página requiere un conocimiento básico de los SynthDefs de SuperCollider; si desea obtener más información, puede visitar la documentación de SuperCollider sobre el tema.</p>
+                                    <p>
+                                    Comencemos con un SynthDef muy básico escrito en SuperCollider hecho de una onda sinusoidal y una envolvente de percusión básica. Si también estamos controlando la amplitud y la panorámica, podría parecerse a esto:</p>
+                                
+                                <p><code>SynthDef.new(\sine,</code></p> 
+                                <p><code>  {|amp=1, sus=1, pan=0, freq=0|</code></p> 
+                                <p><code> var osc, env;</code></p>
+                                <p><code>osc=SinOsc.ar(freq, mul: amp);</code></p> 
+                                <p><code>    env=EnvGen.ar(Env.perc(TiempoAtaque: 0.01, releaseTime: sus), doneAction: 2);</code></p> 
+                                <p><code> osc=(osc * env);</code></p> 
+                                <p><code> osc = Pan2.ar(osc, pan);</code></p> 
+                                <p><code>Out.ar(0, osc)}).add;</code></p>
+                                
+                                <p>Para activar mensajes de sintetizador en SuperCollider desde FoxDot, sólo necesitas darle a FoxDot una referencia al SynthDef. Puede hacerlo ejecutando el siguiente código en FoxDot:</p>
+                                
+                                
+                                
+                                <p><code>sine = SynthDef("sine")</code></p> 
+                                
+                                <p>El seno a la izquierda es como FoxDot se referirá al sintetizador, y el "seno" entre paréntesis a la derecha es el nombre del SynthDef en SuperCollider. No tienen que tener el mismo nombre, pero tiene sentido mantener la coherencia. Una vez que tengas un SynthDef sinusoidal en FoxDot, puedes usarlo con un objeto de reproductor como cualquier otro.</p>
+                                
+                                
+                                <p><code> p1 >> sine([0, 4, 6, 7], dur=1/2)</code></p>
+                                
+                                <p>Sin embargo, si intentas usar efectos en FoxDot, te darás cuenta de que no funciona:</p>
+                                <p><code>p1 >> sine([0, 4, 6, 7], dur=1/2, shape=0.5, chop=4)</code></p> 
+                                
+                                <p>Para poder "encadenar" los efectos es necesario hacer algunos ajustes en el SuperCollider SynthDef. En primer lugar, es necesario poder suministrar al SynthDef un argumento de bus, que almacenará la salida del sintetizador a medida que se añadan efectos. Luego necesitas usar In.kr para el valor de frecuencia (en realidad lo estás leyendo desde un bus, no lo estás suministrando directamente) y luego ReplaceOut.ar en vez de Out.ar en la última línea para que escribamos la señal de audio al bus de efectos en vez de al dispositivo de audio de tu computadora. Tu nuevo SynthDef debería ser algo así:</p>
+                                
+                                <p><code>SynthDef.new(\sine,</code></p> 
+                                <p><code>{|amp=1, sus=1, pan=0, freq=0, bus=0|</code></p> 
+                                <p><code>var osc, env;</code></p>
+                                <p><code>freq = In.kr(bus, 1;</code></p>
+                                <p><code>osc=SinOsc.ar(freq, mul: amp);</code></p> 
+                                <p><code>env=EnvGen.ar(Env.perc(attackTime: 0.01, releaseTime: sus), doneAction: 0);</code></p>
+                                <p><code>osc=(osc * env);</code></p> 
+                                <p><code>  osc = Pan2.ar(osc, pan);</code></p> 
+                                <p><code>ReplaceOut.ar(bus, osc)}).add;</code></p> 
+                                
+                                <p>Asegúrese de que cualquier argumento doneAction esté en 0 para que el nodo no se encuentre inmediatamente. Efectos como reverberación o eco requieren que el sintetizador no se suelte hasta más tarde. Ahora intenta ejecutar el código de FoxDot desde arriba y deberías escuchar el sonido con los efectos aplicados!</p>
+                         	<p><code>p1 >> sine([0, 4, 6, 7], dur=1/2, shape=0.5, chop=4)</code></p> 
+        
+        </div>
+
+</body>
+<div class="margenuno"> <a href="index.html"> Atras </a></div>
+    <div class="siguiente">  <a  href="instal.html">siguiente </a> </div>
+<footer>
+</footer>
