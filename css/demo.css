@@ -1,0 +1,123 @@
+
+.content {
+	position: relative;
+	display: flex;
+    align-items: center;
+	min-height: 20vh;
+	margin: 0 auto;
+	padding: 1em 2em;
+}
+
+.content--fixed {
+	position: auto;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	display: grid;
+	align-content: space-between;
+	width: 100%;
+	max-width: none;
+	height: 100vh;
+	padding: 0.5em;
+	pointer-events: none;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: auto auto 4em;
+	grid-template-areas: 'header ...'
+	'... ...'
+	'github demos';
+}
+
+.content--fixed a {
+	pointer-events: auto;
+}
+
+
+
+.info {
+	margin: 0 0 0 1.25em;
+	color: var(--color-link-hover);
+}
+
+
+/* Top Navigation Style */
+.codrops-links {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	margin: 0 1em 0 0;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.codrops-icon {
+	display: inline-block;
+	margin: 0.15em;
+	padding: 0.25em;
+}
+
+/* Common styles for the menus */
+.menu {
+	position: auto;
+	
+}
+
+.menu__item {
+	line-height: 1;
+	position: relative;
+	display: block;
+	margin: 1em 0;
+	outline: none;
+}
+
+.menu__item-name,
+.menu__item-label {
+	position: relative;
+	display: inline-block;
+}
+
+.menu__item-name {
+	font-size: 1.25em;
+}
+
+.menu__item-label {
+	margin: 0 0 0 0.5em;
+}
+
+
+/* CLASES J*/
+
+/* 1*/
+
+.margenuno {
+    
+    position: relative;
+    
+    margin-left: 2%;
+    width: 650px;
+    font-family: 'Space Mono', monospace;
+    
+       
+}
+
+.fondo {
+    background: #e3dca7;
+    
+}
+
+
+code {
+    color:#621f0b;
+    font-size: 18px;
+    
+}
+
+
+.siguiente{
+    
+    position: auto;
+    margin-left: 530px;
+    margin-top: -25px;
+    font-family: 'Space Mono', monospace;
+    
+    
+}
