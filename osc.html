@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" class="">
+
+<head>
+
+      <meta charset="UTF-8"/>
+      <title> Foxdot OSC Processing </title>
+      <meta name="FoxDot | Livecoding"/>
+    <link rel="shortcut icon" href="favicon.ico">
+		
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style-tsula.css" />
+      
+
+      <script> </script>
+
+</head>
+
+    <div class="margenuno">
+ <heaheader  >
+      <a href="index.html" ><img  src="img/LOGO.png" alt="Logo"  /></a>
+     <h2 >python y supercollider</h2>
+
+
+</heaheader>
+
+    </div>
+
+
+<body class="fondo">
+    
+    <div class="margenuno">
+    
+ <h3> Python y Processing </h3>
+
+  <p>Foxdot tiene la posibilidad de enviar mensajes vía osc, en este caso vamos ver como conecté foxdot con Processing... </p>
+        
+        <p>Un día youtubsiando encontré este <a href="https://www.youtube.com/watch?v=vIY0t_5weTE" target="_blank">vídeo </a> de <a href=" https://twitter.com/rucochanman" target="_blank">ruco </a> y quede como WTF -o-, como chucha lo hace, investigue pero no encontre eso puntualmente como puentiar foxdot con processing, luego me contacte con ruco y me compartió esta <a href="https://qiita.com/rucochanman/items/c27a9acaa99d960df149" target="_blank">guía</a> </p>
+        
+        <p> xoxoxo fue complejo hacer la doble traducción porque no se ni ingles ni japones pero acá están los pasos </p>
+        
+        
+        <p>Lo primero que hay que tener en cuenta es que el archivo ServerManager.py ubicado en la carpeta lib de Foxdot contiene en su codigo el socket para poner tu dirección y nombrar el puerto osc. Solo tuve que anexar tres lineas en el archivo para indicarle por donde va salir por osc</p>
+        
+        
+        <p>abajo de la linea 195 se agreran estas linea</p>
+        
+        <code> self.myOSC = OSCClient() </code>
+        <code>self.myOSC.connect( ("127.0.0.1", 12345) ) </code>
+        
+        <p>y abajo de la 280</p>
+        
+        <code>self.myOSC.send( osc_message )</code>
+        
+      <p>  el codigo debería de quedar  <a href="" target="_blank">así </a></p>
+        
+        </div>
+
+ 
+
+
+
+</body>
+    
+    <div class="margenuno"> <a href="index.html"> Atras </a></div>
+    
+    <div class="siguiente">  <a  href="instal.html">siguiente </a> </div>
+    
+
+<footer >
+</footer>
