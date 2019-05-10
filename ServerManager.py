@@ -1,3 +1,8 @@
+Noi Sk8 <juansk8jaramillo@gmail.com>
+	
+23:40 (hace 0 minutos)
+	
+para mí
 """ Handles OSC messages being sent to SuperCollider.
 """
 from __future__ import absolute_import, division, print_function
@@ -62,10 +67,8 @@ class RequestTimeout(Exception):
 class BidirectionalOSCServer(OSCServer):
     """
     This is a combination client/server
-
     The UDP server is necessary for receiving responses from the SCLang server
     when we query it with requests.
-
     Note that this is not thread-safe, as the receive() method can discard messages
     """
     def __init__(self, server_address=('localhost', 0), client=None, return_port=0):
@@ -111,7 +114,6 @@ class BidirectionalOSCServer(OSCServer):
     def receive(self, pattern, timeout=2):
         """
         Retrieve the first message matching the pattern
-
         All messages received that do not match will be discarded
         """
         expr = getRegEx(pattern)
@@ -194,7 +196,6 @@ class SCLangServerManager(ServerManager):
         self.client = OSCClientWrapper()
         self.client.connect( (self.addr, self.port) )
 
-        #ruco_change#
         self.myOSC = OSCClient()
         self.myOSC.connect( ("127.0.0.1", 12345) )
 
@@ -269,24 +270,22 @@ class SCLangServerManager(ServerManager):
 
     def sendOSC(self, osc_message):
         """ Sends an OSC message to the server. Checks for midi messages """
-        
+       
         if osc_message.address == OSC_MIDI_ADDRESS:
-        
+       
             self.sclang.send( osc_message )
-        
+       
         else:
-        
+       
             self.client.send( osc_message )
-        
+       
             #ruco_change#
             self.myOSC.send( osc_message )
-        
-        # If we are sending other messages as well
-        
+       
         if self.forward is not None:
-            
+           
             self.forward.send(osc_message)
-        
+       
         return
 
     def freeAllNodes(self):
@@ -327,27 +326,27 @@ class SCLangServerManager(ServerManager):
 
 
     def get_init_node(self, node, bus, group_id, synthdef, packet):
-    
+   
         msg = OSCMessage("/s_new")
 
         # Make sure messages release themselves after 8 * the duration at max (temp)
-        
+       
         max_sus = float(packet["sus"] * 8) # might be able to get rid of this
-        
+       
         key = "rate" if synthdef.name in (SamplePlayer, LoopPlayer) else "freq"
-        
+       
         if key in packet:
-        
+       
             value = ["rate", packet[key]]
-        
+       
         else:
-        
+       
             value = []
-        
+       
         osc_packet = ["startSound", node, 0, group_id, 'bus', bus, "sus", max_sus] + value
 
         msg.append( osc_packet )
-        
+       
         return msg, node
 
     def get_control_effect_nodes(self, node, bus, group_id, packet):
@@ -368,19 +367,19 @@ class SCLangServerManager(ServerManager):
 
                 # Get next node ID
                 node, last_node = self.nextnodeID(), node
-            
+           
                 msg = OSCMessage("/s_new")
-            
+           
                 osc_packet = [self.fx_names[fx], node, 1, group_id, 'bus', bus] + this_effect
-            
+           
                 msg.append(osc_packet)
-            
+           
                 pkg.append(msg)
 
         return pkg, node
 
     def get_synth_node(self, node, bus, group_id, synthdef, packet):
-        
+       
         msg = OSCMessage("/s_new")
 
         new_message = {}
@@ -425,7 +424,7 @@ class SCLangServerManager(ServerManager):
                 osc_packet = [self.fx_names[fx], node, 1, group_id, 'bus', bus] + this_effect
                 msg.append( osc_packet )
                 pkg.append(msg)
-    
+   
         return pkg, node
 
     def get_synth_envelope(self, node, bus, group_id, synthdef, packet):
@@ -498,7 +497,7 @@ class SCLangServerManager(ServerManager):
         return data
 
     def get_exit_node(self, node, bus, group_id, packet):
-        
+       
         msg = OSCMessage("/s_new")
         node, last_node = self.nextnodeID(), node
         osc_packet = ['makeSound', node, 1, group_id, 'bus', bus, 'sus', float(packet["sus"])]
@@ -507,7 +506,7 @@ class SCLangServerManager(ServerManager):
         return msg, node
 
     def get_bundle(self, synthdef, packet, timestamp=0):
-        """ Returns the OSC Bundle for a notew based on a Player's SynthDef, and event and effects dictionaries """ 
+        """ Returns the OSC Bundle for a notew based on a Player's SynthDef, and event and effects dictionaries """
 
         # Create a specific message for midi
 
@@ -516,7 +515,7 @@ class SCLangServerManager(ServerManager):
             return self.get_midi_message(synthdef, packet, timestamp)
 
         # Create a bundle
-        
+       
         bundle = OSCBundle(time=timestamp)
 
         # Get the actual synthdef object
@@ -527,7 +526,7 @@ class SCLangServerManager(ServerManager):
         group_id = self.nextnodeID()
         msg = OSCMessage("/g_new")
         msg.append( [group_id, 1, 1] )
-        
+       
         bundle.append(msg)
 
         # Get the bus and SynthDef nodes
@@ -540,7 +539,7 @@ class SCLangServerManager(ServerManager):
 
         msg, this_node = self.get_init_node(this_node, this_bus, group_id, synthdef, packet)
 
-        # Add effects to control rate e.g. vibrato        
+        # Add effects to control rate e.g. vibrato       
 
         bundle.append( msg )
 
@@ -573,9 +572,9 @@ class SCLangServerManager(ServerManager):
         # ORDER 2 (AUDIO EFFECTS)
 
         pkg, this_node = self.get_post_env_effect_nodes(this_node, this_bus, group_id, packet)
-    
+   
         for msg in pkg:
-    
+   
             bundle.append(msg)
 
         # OUT
@@ -584,22 +583,22 @@ class SCLangServerManager(ServerManager):
 
         bundle.append(msg)
 
-        return bundle        
+        return bundle       
 
     def send(self, address, message):
         """ Sends message (a list) to SuperCollider """
         msg = OSCMessage(address)
-        
+       
         msg.append(message)
-        
+       
         self.client.send(msg)
-        
+       
         # If we are sending other messages as well
-        
+       
         if self.forward is not None:
-        
+       
             self.forward.send(message)
-        
+       
         return
 
     def free_node(self, node):
@@ -648,9 +647,9 @@ class SCLangServerManager(ServerManager):
         if self._is_recording is False:
 
             if fn is None:
-                
+               
                 fn = "{}.aiff".format(get_timestamp())
-            
+           
             path = os.path.join(RECORDING_DIR, fn)
 
             msg = OSCMessage('/foxdot-record')
@@ -658,19 +657,19 @@ class SCLangServerManager(ServerManager):
             self.sclang.send(msg)
 
             self._is_recording = True
-        
+       
         return
 
     def stopRecording(self):
         """ Stops recording audio from SuperCollider """
         if self._is_recording is True:
-            
+           
             msg = OSCMessage('/foxdot-record')
             msg.append([0, ""]) # flag to stop recording
             self.sclang.send(msg)
-            
+           
             self._is_recording = False
-        
+       
         return
 
     def loadCompiled(self, fn):
@@ -705,9 +704,9 @@ class SCLangServerManager(ServerManager):
         """ Boots SuperCollider using `subprocess`"""
 
         if not self.booted:
-            
+           
             os.chdir(SC_DIRECTORY)
-            
+           
             print("Booting SuperCollider Server...")
 
             self.daemon = subprocess.Popen([SCLANG_EXEC, '-D', FOXDOT_STARTUP_FILE])
@@ -717,9 +716,9 @@ class SCLangServerManager(ServerManager):
             self.booted = True
 
         else:
-            
+           
             print("Warning: SuperCollider already running")
-            
+           
         return
 
     def makeStartupFile(self):
@@ -736,7 +735,7 @@ class SCLangServerManager(ServerManager):
 
             files = [FOXDOT_OSC_FUNC, FOXDOT_BUFFERS_FILE]
             files = files + GET_SYNTHDEF_FILES() + GET_FX_FILES()
-            
+           
             for fn in files:
 
                 f = open(fn)
@@ -757,7 +756,7 @@ class SCLangServerManager(ServerManager):
         return
 
 try:
-    
+   
     import socketserver
 
 except ImportError:
@@ -829,7 +828,7 @@ class TempoServer(ThreadedServer):
 
         # Public ip for server is the first IPv4 address we find, else just show the hostname
         self.ip_pub = self.hostname
-        
+       
         try:
 
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -859,10 +858,14 @@ class TempoServer(ThreadedServer):
         self.server_thread.start()
         return
 
-    def update_tempo(self, bpm):
+    def update_tempo(self, source, bpm, bpm_start_beat, bpm_start_time):
         """ Sends information  to all connected peers about changing tempo """
         for peer in self.peers:
-            peer.update_tempo(bpm)
+            if peer is not source:
+                peer.update_tempo(bpm, bpm_start_beat, bpm_start_time)
+        # Update the master clock tempo if receiving from another peer
+        if source is not None:
+            self.metro.update_tempo_from_connection(bpm, bpm_start_beat, bpm_start_time)
         return
 
     def kill(self):
@@ -894,7 +897,7 @@ class RequestHandler(socketserver.BaseRequestHandler):
 
         assert "init" in data
 
-        send_to_socket(self.request, {"clock_time": time.time()})
+        send_to_socket(self.request, {"clock_time": time.time()}) # maybe time at a beat?
 
         self.master.peers.append(self)
 
@@ -902,11 +905,11 @@ class RequestHandler(socketserver.BaseRequestHandler):
 
             data = read_from_socket(self.request)
 
+            # If a client disconnects, remove and print message
+
             if data is None:
 
-                print("Client disconnected from {}".format(self.client_address))
-
-                break
+                return self.disconnect()
 
             else:
 
@@ -916,21 +919,36 @@ class RequestHandler(socketserver.BaseRequestHandler):
 
                     send_to_socket(self.request, self.metro.get_sync_info())
 
+                # Tell server to update tempo and update clients
+
                 elif "new_bpm" in data:
 
-                    self.metro.update_tempo(data["new_bpm"])
+                    self.master.update_tempo(self, **data["new_bpm"])
 
                 elif "latency":
 
                     send_to_socket(self.request, ["latency"])
 
-            
         return
 
+    def disconnect(self):
+        """ Prints a message to the master clock and removes a reference to this client """
+        print("Client disconnected from {}".format(self.client_address))
+        self.master.peers.remove(self)
+        return 0
 
-    def update_tempo(self, bpm):
+    def update_tempo(self, bpm, bpm_start_beat, bpm_start_time):
 
-        send_to_socket(self.request, {"new_bpm": bpm })
+        data = {
+            "new_bpm" :
+                {
+                    "bpm" : bpm,
+                    "bpm_start_time" : bpm_start_time,
+                    "bpm_start_beat" : bpm_start_beat
+            }
+        }
+
+        send_to_socket(self.request, data)
 
         return
 
@@ -939,12 +957,12 @@ class TempoClient:
     def __init__(self, clock):
         self.metro = clock
 
-        self.sync_keys = ("start_time", "bpm", "beat", "time") # ,"seed")
+        self.sync_keys = ("bpm_start_beat", "bpm_start_time", "bpm")
 
         self.server_hostname = None
         self.server_port     = None
         self.server_address  = None
-        
+       
         self.socket   = None
 
     def connect(self, hostname, port=57890):
@@ -982,7 +1000,7 @@ class TempoClient:
         self.recording_latency = False
 
         send_to_socket(self.socket, ["init"])
-        
+       
         self.start_timing()
 
         return self
@@ -1015,19 +1033,20 @@ class TempoClient:
         """ Listens out for data coming from the server and passes it on
             to the handler.
         """
-        
+       
         # First message is machine clock time
 
         time_data = read_from_socket(self.socket)
 
         self.stop_timing()
 
-        self.metro.calculate_nudge(time_data["clock_time"], self.stop_time, self.latency)
-        
+        # self.metro.calculate_nudge(time_data["clock_time"], self.stop_time, self.latency)
+        self.metro.calculate_nudge(time_data["clock_time"], self.start_time, self.latency)
+       
         # Enter loop
 
         while self.listening:
-            
+           
             data = read_from_socket(self.socket)
 
             # Might be recording latency
@@ -1036,22 +1055,36 @@ class TempoClient:
 
                 self.stop_timing()
                 self.recording_latency = False
-            
+           
             if data is None:
                 break
-            
+           
             if "sync" in data:
+
                 for key in self.sync_keys:
                     if key in data["sync"]:
-                        setattr(self.metro, key, data["sync"][key])
-            
+                        object.__setattr__(self.metro, key, data["sync"][key])
+
+                self.metro.update_tempo_from_connection(**data["sync"])
+
+                self.metro.flag_wait_for_sync(False)
+           
             elif "new_bpm" in data:
 
-                self.metro.update_tempo(data["new_bpm"])
+                self.metro.update_tempo_from_connection(**data["new_bpm"])
         return
 
-    def update_tempo(self, bpm):
-        send_to_socket(self.socket, {"new_bpm": bpm})
+    def update_tempo(self, bpm, bpm_start_beat, bpm_start_time):
+        """ Sends data to other connected FoxDot instances to update their tempo """
+        data = {
+            "new_bpm" :
+                {
+                    "bpm" : bpm,
+                    "bpm_start_time" : bpm_start_time,
+                    "bpm_start_beat" : bpm_start_beat
+            }
+        }
+        return self.send(data)
 
     def kill(self):
         """ Properly terminates the connection to the server """
@@ -1064,4 +1097,5 @@ if __name__ != "__main__":
 
     from .Settings import ADDRESS, PORT, PORT2
 
-    DefaultServer = SCLangServerManager(ADDRESS, PORT, PORT2)
+    # DefaultServer = SCLangServerManager(ADDRESS, PORT, PORT2)
+    Server = SCLangServerManager(ADDRESS, PORT, PORT2)
