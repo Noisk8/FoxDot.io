@@ -1,8 +1,3 @@
-Noi Sk8 <juansk8jaramillo@gmail.com>
-	
-23:40 (hace 0 minutos)
-	
-para mí
 """ Handles OSC messages being sent to SuperCollider.
 """
 from __future__ import absolute_import, division, print_function
