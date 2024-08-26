@@ -3,6 +3,8 @@
 	position: relative;
 	display: flex;
     align-items: center;
+    justify-content: center;
+	flex-direction: column;
 	min-height: 20vh;
 	margin: 0 auto;
 	padding: 1em 2em;
@@ -14,7 +16,8 @@
 	top: 0;
 	left: 0;
 	display: grid;
-	align-content: space-between;
+	justify-content: center;
+	align-content: center;
 	width: 100%;
 	max-width: none;
 	height: 100vh;
@@ -91,16 +94,17 @@
 .margenuno {
     
     position: relative;
-    
-    margin-left: 2%;
+    margin: 0 auto;
     width: 650px;
     font-family: 'Space Mono', monospace;
+	justify-content: center;
+	align-content: center;
     
        
 }
 
 .fondo {
-    background: #e3dca7;
+    background: #000000;
     
 }
 
@@ -120,4 +124,13 @@ code {
     font-family: 'Space Mono', monospace;
     
     
+}
+
+p, h1, h2, h3 {
+
+	color:antiquewhite;
+}
+
+a {
+    color: rgb(17, 221, 88);
 }

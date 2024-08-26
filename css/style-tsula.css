@@ -14,7 +14,7 @@
 
 .menu--tsula .menu__item:hover .menu__item-name,
 .menu--tsula .menu__item:focus .menu__item-name {
-	color: #222328;
+	color: #f8f8f8;
 	background: #621f0b;
 }
 
