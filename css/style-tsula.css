@@ -1,50 +1,62 @@
 .menu--tsula {
-	font-family: 'Space Mono', monospace;
+    font-family: 'Space Mono', monospace;
+    position: relative;
 }
 
 .menu--tsula .menu__item {
-	padding-left: 0.25em;
+    line-height: 1;
+    position: relative;
+    display: block;
+    margin: 1em 0;
+    outline: none;
+    padding-left: 0.25em;
+}
+
+.menu--tsula .menu__item-name,
+.menu--tsula .menu__item-label {
+    position: relative;
+    display: inline-block;
 }
 
 .menu--tsula .menu__item-name {
-	font-size: 1em;
-	text-transform: uppercase;
-	color: #17362a;
+    font-size: 1.25em;
+    color: var(--color-primary);
+    text-transform: uppercase;
 }
 
 .menu--tsula .menu__item:hover .menu__item-name,
 .menu--tsula .menu__item:focus .menu__item-name {
-	color: #f8f8f8;
-	background: #621f0b;
+    color: var(--color-primary);
+    background: var(--color-secondary);
 }
 
 .menu--tsula .menu__item::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	right: 100%;
-	width: 0.9em;
-	height: 1em;
-	opacity: 0;
-	background: #621f0b;
-	animation: none; /* For Chrome */
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 100%;
+    width: 0.9em;
+    height: 1em;
+    opacity: 0;
+    background: var(--color-secondary);
+    animation: none; /* For Chrome */
 }
 
 .menu--tsula .menu__item-label {
-	margin: 0;
-	color: #621f0b;
+    margin: 0;
+    color: var(--color-secondary);
 }
 
 .menu--tsula .menu__item:hover::before,
 .menu--tsula .menu__item:focus::before {
-	animation: blinkblink 0.4s cubic-bezier(0.5,0,1,1) infinite alternate;
+    animation: blinkblink 0.4s cubic-bezier(0.5,0,1,1) infinite alternate;
 }
 
 @keyframes blinkblink {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
